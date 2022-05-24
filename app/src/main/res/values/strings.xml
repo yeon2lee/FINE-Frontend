@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">fine_app</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">fine</string>
+    <string name="title_home">홈</string>
+    <string name="title_friendList">친구</string>
+    <string name="title_chatList">채팅</string>
+    <string name="title_community">커뮤니티</string>
+    <string name="title_myPage">마이</string>
 </resources>

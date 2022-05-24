@@ -7,19 +7,32 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.fine_app.ui.home.HomeFragment"
+        android:name="com.fine_app.ui.Home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.fine_app.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_friendList"
+        android:name="com.fine_app.ui.FriendList.FriendListFragment"
+        android:label="@string/title_friendList"
+        tools:layout="@layout/fragment_friendlist" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.fine_app.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_chatList"
+        android:name="com.fine_app.ui.ChatList.ChatListFragment"
+        android:label="@string/title_chatList"
+        tools:layout="@layout/fragment_chatlist" />
+
+    <fragment
+        android:id="@+id/navigation_community"
+        android:name="com.fine_app.ui.Community.CommunityFragment"
+        android:label="@string/title_community"
+        tools:layout="@layout/fragment_community" />
+
+    <fragment
+        android:id="@+id/navigation_myPage"
+        android:name="com.fine_app.ui.MyPage.MyPageFragment"
+        android:label="@string/title_myPage"
+        tools:layout="@layout/fragment_mypage" />
+
 </navigation>
