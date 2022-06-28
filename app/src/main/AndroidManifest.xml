@@ -30,6 +30,12 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".ui.Community.PostDetail_Main"
+            android:exported="true"/>
+        <activity
+            android:name=".ui.Community.Posting"
+            android:exported="true"/>
     </application>
 
 </manifest>

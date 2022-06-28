@@ -1,41 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Users/dlack/AndroidStudioProjects/fine_app/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/dlack/AndroidStudioProjects/fine_app/app/src/main/res/layout/fragment_chatlist.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/dlack/AndroidStudioProjects/fine_app/app/src/main/res/layout/fragment_community.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/dlack/AndroidStudioProjects/fine_app/app/src/main/res/layout/fragment_friendList.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/dlack/AndroidStudioProjects/fine_app/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/dlack/AndroidStudioProjects/fine_app/app/src/main/res/layout/fragment_mypage.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/dlack/AndroidStudioProjects/fine_app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3537037037037037" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.259" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.259" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/drawable/ic_launcher_background.xml" value="0.259" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/drawable/ic_sprout.xml" value="0.1" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/drawable/keyword_border.xml" value="0.259" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/activity_mypage_post.xml" value="0.264" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/activity_mypage_profile.xml" value="0.264" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/fragment_chatlist.xml" value="0.25364583333333335" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/fragment_community.xml" value="0.25364583333333335" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/fragment_friendlist.xml" value="0.25364583333333335" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/fragment_mypage.xml" value="0.264" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/fragment_mypage2.xml" value="0.2" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/fragment_mypage3.xml" value="0.25364583333333335" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/list_item_mypage_post.xml" value="0.264" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/mypage_bookmark.xml" value="0.25364583333333335" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/mypage_group.xml" value="0.25364583333333335" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/mypage_setting.xml" value="0.25364583333333335" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/mypage_write.xml" value="0.25364583333333335" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/layout/mypage_write_layout.xml" value="0.4" />
-        <entry key="..\:/work/hanium/22_hf167/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.259" />
-      </map>
-    </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
