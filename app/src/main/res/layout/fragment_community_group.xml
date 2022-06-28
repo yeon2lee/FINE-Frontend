@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/whole_button"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_radio_button"
+            android:button="@null"
+            android:checked="true"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="전체"
+            android:textAlignment="center"
+            android:textColor="@drawable/selector_radio_text"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_ongoing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_radio_button"
+            android:button="@null"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="진행"
+            android:textAlignment="center"
+            android:textColor="@drawable/selector_radio_text"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_finished"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_radio_button"
+            android:button="@null"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="완료"
+            android:textAlignment="center"
+            android:textColor="@drawable/selector_radio_text"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
