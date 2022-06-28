@@ -33,6 +33,6 @@
         android:id="@+id/navigation_myPage"
         android:name="com.fine_app.ui.MyPage.MyPageFragment"
         android:label="@string/title_myPage"
-        tools:layout="@layout/fragment_mypage" />
+        tools:layout="@layout/fragment_mypage3" />
 
 </navigation>
