@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

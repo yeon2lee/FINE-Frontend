@@ -1,14 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
     compileSdk 32
-
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.fine_app"
-        minSdk 21
+        minSdk 28
         targetSdk 32
         versionCode 1
         versionName "1.0"

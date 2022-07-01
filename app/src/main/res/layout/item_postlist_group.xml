@@ -1,61 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"-->
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.fine_app.ui.community.PostViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/groupPost_title"
-            android:layout_width="280sp"
-            android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:padding="15dp"
-            android:text="제목제목제목제목제목제목제목제목"
-            android:textColor="#000000" />
 
-        <ImageView
-            android:id="@+id/groupPost_imageView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_home_black_24dp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/groupPost_participant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:text="2" />
+            <TextView
+                android:id="@+id/groupPost_title"
+                android:layout_width="280sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:padding="15dp"
+                android:text="@{viewModel.title}"
+                android:textColor="#000000" />
 
-        <TextView
-            android:id="@+id/groupPost_partition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:text="/" />
+            <ImageView
+                android:id="@+id/groupPost_imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_home_black_24dp" />
 
-        <TextView
-            android:id="@+id/groupPost_capacity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:text="4" />
+            <TextView
+                android:id="@+id/groupPost_participant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="2" />
+
+            <TextView
+                android:id="@+id/groupPost_partition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="/" />
+
+            <TextView
+                android:id="@+id/groupPost_capacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="4" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:background="#DDDDDD" />
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10sp"
-        android:background="#DDDDDD" />
-
-</LinearLayout>
+</layout>

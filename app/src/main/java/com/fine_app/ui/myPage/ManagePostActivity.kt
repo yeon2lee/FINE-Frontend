@@ -1,8 +1,7 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fine_app.databinding.ActivityMypagePostBinding
 

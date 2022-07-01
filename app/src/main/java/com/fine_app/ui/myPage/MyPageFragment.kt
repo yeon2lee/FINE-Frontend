@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.fine_app.databinding.FragmentFriendlistBinding
 import com.fine_app.databinding.FragmentMypageBinding
 
 class MyPageFragment : Fragment() {

@@ -17,9 +17,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/back_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
             android:background="#00FFFFFF"
             app:srcCompat="@drawable/car_ui_icon_arrow_back"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -34,6 +35,20 @@
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/fin_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="#00000000"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="완료"
+            android:textColor="#6DB33F"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     </RelativeLayout>
 
@@ -51,23 +66,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:background="#000000" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="마감 기한"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="150sp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date"
-            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/textView"
@@ -103,7 +101,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/inputTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -112,7 +110,8 @@
             android:hint="글 제목을 입력해주세요."
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:padding="10dp" />
+            android:padding="10dp"
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
 
         <TextView
             android:id="@+id/textView3"
@@ -125,7 +124,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/inputContents"
             android:layout_width="match_parent"
             android:layout_height="200sp"
             android:layout_margin="5dp"
@@ -134,7 +133,8 @@
             android:gravity="start"
             android:hint="내용을 입력해주세요."
             android:inputType="textPersonName"
-            android:padding="10dp" />
+            android:padding="10dp"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
 

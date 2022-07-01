@@ -1,4 +1,4 @@
-package com.fine_app.ui.ChatList
+package com.fine_app.ui.chatList
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fine_app">
         <activity
-            android:name=".ui.MyPage.UpdateProfileActivity"
+            android:name=".ui.myPage.UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MyPage.ManagePostActivity"
+            android:name=".ui.myPage.ManagePostActivity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -31,10 +31,10 @@
 
         </activity>
         <activity
-            android:name=".ui.Community.PostDetail_Main"
+            android:name=".ui.community.PostDetail_Main"
             android:exported="true"/>
         <activity
-            android:name=".ui.Community.Posting"
+            android:name=".ui.community.Posting"
             android:exported="true"/>
     </application>
 

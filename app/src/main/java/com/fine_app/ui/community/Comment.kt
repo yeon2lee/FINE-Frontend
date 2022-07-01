@@ -1,4 +1,4 @@
-package com.fine_app.ui.Community
+package com.fine_app.ui.community
 
 data class Comment(
     val nickname:String,

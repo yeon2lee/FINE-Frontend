@@ -1,4 +1,4 @@
-package com.fine_app.ui.Community
+package com.fine_app.ui.community
 
 import androidx.lifecycle.ViewModel
 import com.fine_app.R

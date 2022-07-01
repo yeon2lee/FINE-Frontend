@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00FFFFFF"
@@ -120,7 +120,8 @@
                 android:padding="3dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="invisible" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/editButton"
