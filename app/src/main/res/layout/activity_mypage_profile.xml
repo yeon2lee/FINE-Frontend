@@ -10,41 +10,80 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView2"
+        <ImageView
+            android:id="@+id/btnBefore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_before" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="프로필 설정"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="370dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
             android:layout_weight="1"
             android:text="프로필 사진"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/view7" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btnOk"
             android:layout_width="67dp"
             android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="20dp"
             android:layout_weight="1"
-            android:backgroundTint="#EAF7D5"
+            android:backgroundTint="#00ff0000"
             android:onClick="onClick"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:text="확인"
             android:textColor="#6DB33F"
-            android:textSize="12sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="356dp"
             android:layout_height="80dp"
-            android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2">
 
@@ -89,6 +128,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/profile5" />
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
