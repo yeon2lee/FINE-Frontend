@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceCreator {
-    private const val BASE_URL = "https://api.github.com/users/"
+    private const val BASE_URL = "http://54.209.17.39:8080/"
 
     // Retrofit 객체 생성
     val retrofit: Retrofit
