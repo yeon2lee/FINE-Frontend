@@ -3,6 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/edittext_posting.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/ic_bookmark.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/ic_comment.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/ic_group.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/ic_launcher_background.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/ic_post.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/ic_setting.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/ic_sprout.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/keyword_border.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/selector_radio_button.xml" value="0.243" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/selector_radio_text.xml" value="0.243" />
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/drawable/solid_button.xml" value="0.2015" />
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/activity_main.xml" value="0.221875" />
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/activity_mypage_post.xml" value="0.264" />
@@ -12,9 +26,10 @@
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/community_posting.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/fragment_community.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/fragment_community_group.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/fragment_community_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/fragment_community_main.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/fragment_friendlist.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/item_postlist_group.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/item_comment.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/item_postlist_group.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/item_postlist_main.xml" value="0.2" />
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/layout/list_item_mypage_post.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/Desktop/share/FINE-Frontend/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2265625" />

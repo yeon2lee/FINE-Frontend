@@ -1,21 +1,15 @@
 package com.fine_app.ui.community
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import com.fine_app.R
 import com.fine_app.databinding.CommunityPostingBinding
-import com.fine_app.ui.home.HomeFragment
-import androidx.fragment.app.FragmentManager as FragmentManager1
 
 
 class Posting : AppCompatActivity() {
     private lateinit var binding: CommunityPostingBinding
-    private lateinit var postModel:PostModel
+    ////private lateinit var postModel:PostModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +21,7 @@ class Posting : AppCompatActivity() {
         val spinner: Spinner = binding.spinner
         val items = arrayOf("인원 선택", 1, 2, 3, 4, 5, 6)
         var capacity="0"
-        postModel= PostModel()
+        ////postModel= PostModel()
 
 
         spinner.adapter= ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
@@ -62,10 +56,25 @@ class Posting : AppCompatActivity() {
 
          */
         finButton.setOnClickListener{
-
+            finish()
+/*
             val postviewmodel=PostViewModel()
 
-            postviewmodel.post =Post("닉네임", R.drawable.ic_launcher_foreground,title, content, "0", "0", capacity)
+            postviewmodel.post =
+                com.fine_app.Post(
+                    "글1",
+                    "사용자1",
+                    title,
+                    content,
+                    "10",
+                    "2022-06-24T15:09:24.964117",
+                    "2022-06-24T15:09:25.17818",
+                    false,
+                    false,
+                    capacity.toInt(),
+                    arrayListOf(Comment("댓글1", "안녕하세요", R.drawable.ic_launcher_foreground))
+                )
+                Post("닉네임", R.drawable.ic_launcher_foreground,title, content, "0", "0", capacity)
             Log.d("test", "글쓰기 종료")
             var ft: FragmentTransaction = supportFragmentManager!!.beginTransaction()
             ft.detach(CommunityMainFragment()).attach(CommunityMainFragment()).commit()
@@ -86,6 +95,8 @@ class Posting : AppCompatActivity() {
                 .commit()
 
              */
+
+ */
         }
     }
 }

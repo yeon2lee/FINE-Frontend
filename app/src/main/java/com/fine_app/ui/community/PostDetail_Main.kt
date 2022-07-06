@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.fine_app.Comment
 import com.fine_app.R
 import com.fine_app.databinding.CommunityMainPostBinding
+import com.fine_app.retrofit.RetrofitManager
 
 class PostDetail_Main : AppCompatActivity() {
     private lateinit var binding: CommunityMainPostBinding
@@ -24,7 +26,6 @@ class PostDetail_Main : AppCompatActivity() {
 
         binding = CommunityMainPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val goback_button=binding.backButton
         goback_button.setOnClickListener{
             finish()
@@ -54,14 +55,14 @@ class PostDetail_Main : AppCompatActivity() {
     }
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
 
-        private lateinit var comment:Comment
+        private lateinit var comment: Comment
         private val nickname: TextView =itemView.findViewById(R.id.nickname)
         private val text: TextView =itemView.findViewById(R.id.comment)
         private val image:ImageView=itemView.findViewById(R.id.profileImage)
         fun bind(comment:Comment){
             this.comment=comment
             nickname.text=this.comment.nickname
-            text.text=this.comment.comment
+            text.text=this.comment.text
             image.setImageResource(this.comment.profileID)
         }
 
