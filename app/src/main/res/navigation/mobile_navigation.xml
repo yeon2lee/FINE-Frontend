@@ -31,8 +31,8 @@
 
     <fragment
         android:id="@+id/navigation_myPage"
-        android:name="com.fine_app.ui.myPage.MyPageFragment"
+        android:name="com.fine_app.ui.MyPage.MyPageFragment"
         android:label="@string/title_myPage"
-        tools:layout="@layout/fragment_mypage3" />
+        tools:layout="@layout/fragment_mypage" />
 
 </navigation>

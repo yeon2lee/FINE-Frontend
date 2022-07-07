@@ -3,6 +3,7 @@
     package="com.fine_app">
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fine_app">
         <activity
-            android:name=".ui.myPage.UpdateProfileActivity"
+            android:name=".ui.MyPage.UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.myPage.ManagePostActivity"
+            android:name=".ui.MyPage.ManagePostActivity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
