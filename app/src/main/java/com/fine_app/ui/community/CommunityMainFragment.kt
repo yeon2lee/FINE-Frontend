@@ -9,94 +9,84 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.fine_app.Post
 import com.fine_app.R
 import com.fine_app.databinding.FragmentCommunityMainBinding
-import com.fine_app.databinding.ItemPostlistMainBinding
+import com.fine_app.retrofit.API
+import com.fine_app.retrofit.IRetrofit
+import com.fine_app.retrofit.RetrofitClient
+import retrofit2.Call
+import retrofit2.Response
 
 class CommunityMainFragment : Fragment() {
 
     private var _binding: FragmentCommunityMainBinding? = null
     private val binding get() = _binding!!
-    private lateinit var postModel:PostModel
-    //private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
+
     /*
     private val postViewModel: PostViewModel by lazy{
         ViewModelProvider(this).get(PostViewModel::class.java)
-    }*/
+    }
+
+     */
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        Log.d("test", "일반 시작")
         _binding = FragmentCommunityMainBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        postModel= PostModel()
+        //RetrofitManager.instance.viewMainCommunity()
+        recyclerView=binding.recyclerView
+        recyclerView.layoutManager= LinearLayoutManager(context)
 
-        //val view=inflater.inflate(R.layout.fragment_community_main, container, false)
-        //recyclerView=view.findViewById(R.id.recyclerView)
-        //recyclerView.layoutManager= LinearLayoutManager(context)
-
-        /*필터 테스트
-        val posts=postModel.posts
-        var adapter=MyAdapter(posts)
-        adapter.filter.filter("1")
-
-
-         */
-/*
-        //포스팅 정보받아오기
-        val nickname = requireArguments().getString("nickname")
-        val image = requireArguments().getInt("image")
-        val title = requireArguments().getString("title")
-        val content = requireArguments().getString("content")
-        val capacity = requireArguments().getString("capacity")
-        val postviewmodel=PostViewModel()
-        postviewmodel.post=Post(nickname.toString(), image,title.toString(), content.toString(), "0", "0", capacity.toString())
-*/
-        //recyclerView.adapter=adapter
-        binding.recyclerView.apply{
-            layoutManager=LinearLayoutManager(context)
-            adapter=MyAdapter(postModel.posts)
-        }
-
+        // API 호출
+        viewMainCommunity()
         return root
-        //return view
     }
-    inner class MyViewHolder(private val binding:ItemPostlistMainBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener{
-        init {binding.viewModel=PostViewModel() }
+    inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view), View.OnClickListener{
 
-        private lateinit var post:Post
-        //private val list_title: TextView =itemView.findViewById(R.id.mainpost_title)
-        private val list_title:TextView=binding.mainpostTitle
-        //private val list_comment: TextView =itemView.findViewById(R.id.mainpost_comment)
-        private val list_comment: TextView =binding.mainpostComment
+        private lateinit var post: Post
+        private val postTitle: TextView =itemView.findViewById(R.id.mainpost_title)
+        private val commentNum: TextView =itemView.findViewById(R.id.mainpost_comment)
         init{
-            list_title.setOnClickListener(this)
+            postTitle.setOnClickListener(this)
         }
         fun bind(post: Post) {
-            binding.apply {
-                viewModel?.post = post
-                executePendingBindings()
-            }
+            this.post=post
+            postTitle.text=this.post.title
+            commentNum.text=this.post.commentCount
         }
         override fun onClick(p0: View?) {
-            var PostDetail= Intent(getActivity(), PostDetail_Main::class.java)
-            PostDetail.putExtra("nickname", binding.viewModel?.nickname)
-            PostDetail.putExtra("profileID",binding.viewModel?.profileID)
-            PostDetail.putExtra("title", binding.viewModel?.title)
-            PostDetail.putExtra("content", binding.viewModel?.content)
-            PostDetail.putExtra("capacity", binding.viewModel?.capacity)
-            PostDetail.putExtra("participants", binding.viewModel?.participants)
-            startActivity(PostDetail)
+            //글 세부 API 호출
+            /*
+            RetrofitManager.instance.viewMainPosting("1", completion = {
+                it ->
+                Log.d("retrofit", "메인 글 세부 API 호출 // $it ")
+            })
+
+             */
+            viewMainPosting("postingId")
+            /*
+            var postDetail= Intent(getActivity(), PostDetail_Main::class.java)
+            postDetail.putExtra("nickname", post.nickname)
+            //postDetail.putExtra("profileID", post.profileID)
+            postDetail.putExtra("title", post.title)
+            postDetail.putExtra("content", post.content)
+            postDetail.putExtra("capacity", post.capacity)
+            //postDetail.putExtra("participants", post.participants)
+            startActivity(postDetail)
+
+             */
         }
     }
-    inner class MyAdapter(private val posts:List<Post>): RecyclerView.Adapter<MyViewHolder>(){ //, Filterable
+    inner class MyAdapter(val list:List<Post>): RecyclerView.Adapter<MyViewHolder>() {//, Filterable
 /*
-        val unFilteredList = posts //⑴
-        var filteredList = posts
+        val unFilteredList = list //⑴
+        var filteredList = list
 
         override fun getItemCount(): Int = filteredList.size
         override fun getFilter(): Filter {
@@ -108,7 +98,7 @@ class CommunityMainFragment : Fragment() {
                     } else {
                         var filteringList = ArrayList<Post>()
                         for (item in unFilteredList) {
-                            if (item.capacity == charString) filteringList.add(item)
+                            if (!item.groupCheck) filteringList.add(item) //그룹 글이 아니면 추가
                         }
                         filteringList
                     }
@@ -117,33 +107,81 @@ class CommunityMainFragment : Fragment() {
                     return filterResults
                 }
                 override fun publishResults(constraint: CharSequence?, results: FilterResults) {
-                    filteredList = results?.values as ArrayList<Post>
+                    filteredList = results.values as ArrayList<Post>
                     notifyDataSetChanged()
                 }
             }
-        }
 
 
-
- */
-        override fun getItemCount(): Int = posts.size
+        }*/
+        override fun getItemCount(): Int = list.size
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
-            //val view=layoutInflater.inflate(R.layout.item_postlist_main, parent, false)
-            //return MyViewHolder(view)
-            val binding= DataBindingUtil.inflate<ItemPostlistMainBinding>(layoutInflater,R.layout.item_postlist_main, parent, false )
-            return MyViewHolder(binding)
+            val view=layoutInflater.inflate(R.layout.item_postlist_main, parent, false)
+            return MyViewHolder(view)
             }
-
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            /*
-            val post=filteredList[position]
-            holder.bind(post)
-
-             */
-            val post=posts[position]
+            //val post=filteredList[position]
+            val post=list[position]
             holder.bind(post)
         }
+
+
+    }
+
+    private fun viewMainCommunity(){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val call = iRetrofit?.viewMainCommunity() ?:return
+
+        //enqueue 하는 순간 네트워킹
+        call.enqueue(object : retrofit2.Callback<List<Post>>{
+            //응답성공
+            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
+                Log.d("retrofit", "메인커뮤니티목록 - 응답 성공 / t : ${response.raw()}")
+                val adapter=MyAdapter(response.body()!!)
+                //adapter.filter.filter("1")
+                recyclerView.adapter=adapter
+            }
+            //응답실패
+            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                Log.d("retrofit", "메인커뮤니티목록 - 응답 실패 / t: $t")
+            }
+        })
+    }
+    private fun viewMainPosting(postingId:String?){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val term:String= postingId ?:""
+        val call = iRetrofit?.viewMainPosting(PostingID = term) ?:return
+
+        //enqueue 하는 순간 네트워킹
+        call.enqueue(object : retrofit2.Callback<Post>{
+            //응답성공
+            override fun onResponse(call: Call<Post>, response: Response<Post>) {
+                Log.d("retrofit", "메인 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
+                Log.d("retrofit", response.body().toString())
+                //completion(response.body().toString())
+
+                val postDetail= Intent(getActivity(), PostDetail_Main::class.java)
+                postDetail.putExtra("nickname", response.body()!!.nickname)
+                postDetail.putExtra("title", response.body()!!.title)
+                postDetail.putExtra("content", response.body()!!.content)
+                postDetail.putExtra("comments", response.body()!!.comments)
+                response.body()!!.comments
+                //postDetail.putExtra("capacity", response.body()!!.capacity)
+                startActivity(postDetail)
+            }
+            //응답실패
+            override fun onFailure(call: Call<Post>, t: Throwable) {
+                Log.d("retrofit", "메인 커뮤니티 세부 글 - 응답 실패 / t: $t")
+            }
+
+        })
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
 

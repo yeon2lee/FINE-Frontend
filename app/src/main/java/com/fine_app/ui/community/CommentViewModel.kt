@@ -1,6 +1,7 @@
 package com.fine_app.ui.community
 
 import androidx.lifecycle.ViewModel
+import com.fine_app.Comment
 import com.fine_app.R
 
 class CommentViewModel :ViewModel(){
