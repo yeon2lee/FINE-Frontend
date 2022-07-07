@@ -73,12 +73,8 @@ class MyPageFragment : Fragment() {
                     userData = response.body()!!
                     binding.tvNickname.setText(userData.nickname)
                     binding.tvIntro.setText(userData.intro)
-
-                    Toast.makeText(context,"(MypageFragment) 성공", Toast.LENGTH_SHORT).show()
-                    val data = response.body()?.nickname
-                    Toast.makeText(context, "(MypageFragment) ${data}님 반갑습니다!", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context, "(MypageFragment) 프로필 정보 불러오기 실패", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "프로필 정보 불러오기 실패", Toast.LENGTH_SHORT).show()
                 }
             }
 

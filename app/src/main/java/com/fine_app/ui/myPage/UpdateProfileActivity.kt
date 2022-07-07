@@ -47,19 +47,13 @@ class UpdateProfileActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
                 if (response.isSuccessful) {
                     userData = response.body()!!
-
-                    Toast.makeText(this@UpdateProfileActivity,"(UpdateProfileActivity) 성공", Toast.LENGTH_SHORT).show()
-                    val data = response.body()?.nickname
-                    val introduction = response.body()?.intro
-
-                    Toast.makeText(this@UpdateProfileActivity, "(UpdateProfileActivity) ${data}님 반갑습니다!", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@UpdateProfileActivity, "(UpdateProfileActivity) 프로필 정보 불러오기 실패", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@UpdateProfileActivity, "프로필 정보 불러오기 실패", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<Profile>, t: Throwable) {
-                Toast.makeText(this@UpdateProfileActivity, "(UpdateProfileActivity) 서버 연결 실패", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@UpdateProfileActivity, "서버 연결 실패", Toast.LENGTH_SHORT).show()
             }
 
         })

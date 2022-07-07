@@ -36,17 +36,15 @@ class ManagePostActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 if (response.isSuccessful) {
                     userData = response.body()!!
-
-                    Toast.makeText(this@ManagePostActivity,"(ManagePostActivity)" + response.body(), Toast.LENGTH_SHORT).show()
                 } else {
                     userData = listOf()
-                    Toast.makeText(this@ManagePostActivity, "(ManagePostActivity) 내가 쓴 글 불러오기 실패", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ManagePostActivity, "내가 쓴 글 불러오기 실패", Toast.LENGTH_SHORT).show()
                 }
                 setAdapter()
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-                Toast.makeText(this@ManagePostActivity, "(ManagePostActivity) 서버 연결 실패", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ManagePostActivity, "서버 연결 실패", Toast.LENGTH_SHORT).show()
             }
         })
 
