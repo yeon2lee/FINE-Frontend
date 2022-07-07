@@ -77,11 +77,12 @@ class Posting : AppCompatActivity() {
         }
         binding.finButton.setOnClickListener{ //등록
             val newpost=Posting(title, content, groupcheck)
-            addMainpost("memberID", newpost)
+            addMainpost("1", newpost)
             finish()
-            CommunityGroupFragment().onResume()
+            //CommunityGroupFragment().onResume()
         }
     }
+
 
     private fun addMainpost(memberID:String?, postInfo:Posting){
         val iRetrofit : IRetrofit? =

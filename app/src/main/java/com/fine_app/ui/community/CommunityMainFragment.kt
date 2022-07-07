@@ -19,6 +19,7 @@ import com.fine_app.databinding.FragmentCommunityMainBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
+import com.fine_app.ui.MyPage.ManagePostActivity
 import retrofit2.Call
 import retrofit2.Response
 
@@ -40,8 +41,6 @@ class CommunityMainFragment : Fragment() {
         _binding = FragmentCommunityMainBinding.inflate(inflater, container, false)
         val root: View = binding.root
         //RetrofitManager.instance.viewMainCommunity()
-        recyclerView=binding.recyclerView
-        recyclerView.layoutManager= LinearLayoutManager(context)
 
         // API 호출
         viewMainCommunity()
@@ -69,7 +68,7 @@ class CommunityMainFragment : Fragment() {
             })
 
              */
-            viewMainPosting("postingId")
+            viewMainPosting("1")
             /*
             var postDetail= Intent(getActivity(), PostDetail_Main::class.java)
             postDetail.putExtra("nickname", post.nickname)
@@ -141,6 +140,8 @@ class CommunityMainFragment : Fragment() {
                 Log.d("retrofit", "메인커뮤니티목록 - 응답 성공 / t : ${response.raw()}")
                 val adapter=MyAdapter(response.body()!!)
                 //adapter.filter.filter("1")
+                recyclerView=binding.recyclerView
+                recyclerView.layoutManager= LinearLayoutManager(context)
                 recyclerView.adapter=adapter
             }
             //응답실패
@@ -149,7 +150,7 @@ class CommunityMainFragment : Fragment() {
             }
         })
     }
-    private fun viewMainPosting(postingId:String?){
+    private fun viewMainPosting(postingId:String?){ // postingId 받아와야 할 듯
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:String= postingId ?:""
@@ -163,13 +164,13 @@ class CommunityMainFragment : Fragment() {
                 Log.d("retrofit", response.body().toString())
                 //completion(response.body().toString())
 
-                val postDetail= Intent(getActivity(), PostDetail_Main::class.java)
-                postDetail.putExtra("nickname", response.body()!!.nickname)
+                val postDetail= Intent(activity, PostDetail_Main::class.java)
+                postDetail.putExtra("nickname", "user")
                 postDetail.putExtra("title", response.body()!!.title)
                 postDetail.putExtra("content", response.body()!!.content)
                 postDetail.putExtra("comments", response.body()!!.comments)
                 response.body()!!.comments
-                //postDetail.putExtra("capacity", response.body()!!.capacity)
+                postDetail.putExtra("capacity", response.body()!!.capacity)
                 startActivity(postDetail)
             }
             //응답실패
@@ -179,6 +180,7 @@ class CommunityMainFragment : Fragment() {
 
         })
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
