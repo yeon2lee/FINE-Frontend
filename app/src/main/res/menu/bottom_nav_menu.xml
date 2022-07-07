@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<!--
         <item
             android:id="@+id/navigation_home"
             android:icon="@drawable/home_tb"
@@ -15,7 +15,7 @@
             android:id="@+id/navigation_chatList"
             android:icon="@drawable/chat_tb"
             android:title="@string/title_chatList" />
-
+-->
     <item
         android:id="@+id/navigation_community"
         android:icon="@drawable/community_tb"
