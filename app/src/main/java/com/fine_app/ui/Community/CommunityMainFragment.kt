@@ -32,7 +32,6 @@ class CommunityMainFragment : Fragment() {
             childFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, PostFragment_Main())
                 .commit()
-
         }
         return root
         */
@@ -112,7 +111,7 @@ class CommunityMainFragment : Fragment() {
     }
 
     //override fun onDestroyView() {
-     //   super.onDestroyView()
+    //   super.onDestroyView()
     //    _binding = null
     //}
 
