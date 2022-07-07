@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        <item
+            android:id="@+id/navigation_home"
+            android:icon="@drawable/home_tb"
+            android:title="@string/title_home" />
 
-    <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        <item
+            android:id="@+id/navigation_friendList"
+            android:icon="@drawable/friend_tb"
+            android:title="@string/title_friendList" />
 
-    <item
-        android:id="@+id/navigation_friendList"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_friendList" />
-
-    <item
-        android:id="@+id/navigation_chatList"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_chatList" />
-
+        <item
+            android:id="@+id/navigation_chatList"
+            android:icon="@drawable/chat_tb"
+            android:title="@string/title_chatList" />
+    -->
     <item
         android:id="@+id/navigation_community"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/community_tb"
         android:title="@string/title_community" />
 
     <item
         android:id="@+id/navigation_myPage"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/my_tb"
         android:title="@string/title_myPage" />
 
 </menu>
