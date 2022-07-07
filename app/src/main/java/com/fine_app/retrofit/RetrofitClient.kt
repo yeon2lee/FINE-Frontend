@@ -16,6 +16,7 @@ object RetrofitClient {
     private var retrofitClient: Retrofit?=null
 
     fun getClient(baseUrl:String):Retrofit?{
+
         Log.d("retrofitTest", "getClient() called")
 
         //로그용 코드
@@ -65,13 +66,11 @@ object RetrofitClient {
                .baseUrl(baseUrl)
                .addConverterFactory(GsonConverterFactory.create())
                //위에서 설정한 클라이언트로 레트로핏 클라이언트 설정
-               .client(client.build())
+               //.client(client.build())
                .build()
         }
         return retrofitClient
     }
-
-
     private val retrofit by lazy{
         Retrofit.Builder()
             .baseUrl(BASE_URL)

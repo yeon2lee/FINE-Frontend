@@ -27,6 +27,7 @@ class PostViewModel:ViewModel() {
 
     )
 }
+
 /*
 class PostViewModel:BaseObservable() {
     var post: Post?=null
@@ -73,4 +74,4 @@ class PostViewModel(private val postRepository: PostRepository):ViewModel(){
     }
 }
 
- */
+*/

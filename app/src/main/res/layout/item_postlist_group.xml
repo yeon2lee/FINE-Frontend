@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:padding="15dp"
-                android:text="제목"
+                android:text="그룹글제목"
                 android:textColor="#000000" />
 
             <ImageView

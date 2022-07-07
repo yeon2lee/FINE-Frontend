@@ -1,3 +1,4 @@
+/*
 package com.fine_app.retrofit
 
 import android.util.Log
@@ -22,7 +23,6 @@ class RetrofitManager {
             //응답성공
             override fun onResponse(call: Call<PostList>, response: Response<PostList>) {
                 Log.d("retrofit", "메인커뮤니티목록 - 응답 성공 / t : ${response.raw()}")
-
             }
             //응답실패
             override fun onFailure(call: Call<PostList>, t: Throwable) {
@@ -123,3 +123,5 @@ class RetrofitManager {
         })
     }
 }
+
+ */

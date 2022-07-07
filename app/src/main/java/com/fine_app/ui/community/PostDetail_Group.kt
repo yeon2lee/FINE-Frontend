@@ -29,17 +29,17 @@ class PostDetail_Group : AppCompatActivity() {
         val recyclerView:RecyclerView=binding.recyclerView
         recyclerView.layoutManager=LinearLayoutManager(this)
         val comments=commentViewModel.commentList
-        var adapter=MyAdapter(comments)
+        val adapter=MyAdapter(comments)
         recyclerView.adapter=adapter
 
         //포스트 테스트
-        val post_title=intent.getStringExtra("title")
-        val post_content=intent.getStringExtra("content")
+        val postTitle=intent.getStringExtra("title")
+        val postContent=intent.getStringExtra("content")
 
         val title: TextView =binding.postTitle
         val content: TextView =binding.postContent
-        title.text=post_title
-        content.text=post_content
+        title.text=postTitle
+        content.text=postContent
 
     }
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){

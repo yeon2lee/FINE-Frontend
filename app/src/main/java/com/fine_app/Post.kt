@@ -1,11 +1,7 @@
 package com.fine_app
 
 import com.google.gson.annotations.SerializedName
-
-
-data class PostList(
-    var posts:ArrayList<Post>
-)
+import java.io.Serializable
 
 data class Post(
     val PostingID:String,
@@ -20,12 +16,13 @@ data class Post(
     @SerializedName(value = "maxMember")
     val capacity:Int,
     val comments: ArrayList<Comment>
-)
+):Serializable
 data class Comment(
     @SerializedName(value = "comment_id")
     val nickname:String,
     val text:String,
-    val profileID: Int)
+    val profileID: Int
+    ):Serializable
 
 data class Member (
     val id: Long,
@@ -39,4 +36,10 @@ data class Member (
     val userResidence:String,
     val level:String,
     val report:Long
+)
+
+data class Posting(
+    val title:String,
+    val content:String,
+    val groupCheck : Boolean
 )

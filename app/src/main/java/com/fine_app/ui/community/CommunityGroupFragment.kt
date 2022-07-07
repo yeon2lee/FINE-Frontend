@@ -1,28 +1,28 @@
 package com.fine_app.ui.community
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fine_app.Post
 import com.fine_app.R
 import com.fine_app.databinding.FragmentCommunityGroupBinding
+import com.fine_app.retrofit.API
+import com.fine_app.retrofit.IRetrofit
+import com.fine_app.retrofit.RetrofitClient
+import retrofit2.Call
+import retrofit2.Response
 
 
 class CommunityGroupFragment : Fragment() {
     private var _binding: FragmentCommunityGroupBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var recyclerView: RecyclerView
-    private val postViewModel: PostViewModel by lazy{
-        ViewModelProvider(this).get(PostViewModel::class.java)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -31,7 +31,19 @@ class CommunityGroupFragment : Fragment() {
         val root: View = binding.root
         recyclerView=binding.recyclerView
         recyclerView.layoutManager= LinearLayoutManager(context)
+        val buttonList:RadioGroup=binding.radioGroup
+        buttonList.setOnCheckedChangeListener{_, checkedId ->
+            when(checkedId){
+                R.id.radioButton_all -> viewGroupCommunity()
+                R.id.radioButton_finished -> viewGroupCommunityClose()
+                R.id.radioButton_ongoing -> viewGroupCommunityProceed()
+            }
+        }
+        // API 호출
+        viewGroupCommunity()
 
+
+/*
         val posts=postViewModel.postList
         var adapter=MyAdapter(posts)
 
@@ -45,6 +57,9 @@ class CommunityGroupFragment : Fragment() {
             }
         }
         recyclerView.adapter=adapter
+
+ */
+
         return root
     }
 
@@ -76,15 +91,11 @@ class CommunityGroupFragment : Fragment() {
         }
 
         override fun onClick(p0: View?) {
-            val postDetail= Intent(getActivity(), PostDetail_Main::class.java)
-            postDetail.putExtra("title", post.title)
-            postDetail.putExtra("content", post.content)
-            postDetail.putExtra("capacity", post.capacity)
-            //postDetail.putExtra("participants", post.participants)
-            startActivity(postDetail)
+            viewGroupPosting("postingID")
         }
     }
-    inner class MyAdapter(private val list:List<Post>): RecyclerView.Adapter<MyViewHolder>(), Filterable {
+    inner class MyAdapter(private val list:List<Post>): RecyclerView.Adapter<MyViewHolder>(){//, Filterable
+/*
         val unFilteredList = list
         var returnList=list
 
@@ -123,13 +134,93 @@ class CommunityGroupFragment : Fragment() {
             }
         }
 
+ */
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             val view=layoutInflater.inflate(R.layout.item_postlist_group, parent, false)
             return MyViewHolder(view)
         }
+
+        override fun getItemCount(): Int = list.size
+
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            val post=returnList[position]
+            //val post=returnList[position]
+            val post=list[position]
             holder.bind(post)
         }
+    }
+    private fun viewGroupCommunity(){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val call = iRetrofit?.viewGroupCommunity() ?:return
+        call.enqueue(object : retrofit2.Callback<List<Post>>{
+            //응답성공
+            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
+                Log.d("retrofit", "그룹커뮤니티목록 - 응답 성공 / t : ${response.raw()}")
+                var adapter=MyAdapter(response.body()!!)
+                recyclerView.adapter=adapter
+            }
+            //응답실패
+            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                Log.d("retrofit", "그룹커뮤니티목록 - 응답 실패 / t: $t")
+            }
+        })
+    }
+    private fun viewGroupCommunityProceed(){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val call = iRetrofit?.viewGroupCommunityProceed() ?:return
+        call.enqueue(object : retrofit2.Callback<List<Post>>{
+            //응답성공
+            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
+                Log.d("retrofit", "그룹커뮤니티 진행 목록 - 응답 성공 / t : ${response.raw()}")
+                var adapter=MyAdapter(response.body()!!)
+                recyclerView.adapter=adapter
+            }
+            //응답실패
+            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                Log.d("retrofit", "그룹커뮤니티진행 목록 - 응답 실패 / t: $t")
+            }
+        })
+    }
+    private fun viewGroupCommunityClose(){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val call = iRetrofit?.viewGroupCommunityClose() ?:return
+        call.enqueue(object : retrofit2.Callback<List<Post>>{
+            //응답성공
+            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
+                Log.d("retrofit", "그룹커뮤니티 완료 목록 - 응답 성공 / t : ${response.raw()}")
+                var adapter=MyAdapter(response.body()!!)
+                recyclerView.adapter=adapter
+            }
+            //응답실패
+            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                Log.d("retrofit", "그룹커뮤니티 완료 목록 - 응답 실패 / t: $t")
+            }
+        })
+    }
+    private fun viewGroupPosting(postingId:String?){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val term:String= postingId ?:""
+        val call = iRetrofit?.viewGroupPosting(PostingID = term) ?:return
+
+        //enqueue 하는 순간 네트워킹
+        call.enqueue(object : retrofit2.Callback<Post>{
+            //응답성공
+            override fun onResponse(call: Call<Post>, response: Response<Post>) {
+                Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
+            }
+            //응답실패
+            override fun onFailure(call: Call<Post>, t: Throwable) {
+                Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 실패 / t: $t")
+            }
+
+        })
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
