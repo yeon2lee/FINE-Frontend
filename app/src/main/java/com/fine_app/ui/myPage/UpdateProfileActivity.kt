@@ -58,5 +58,6 @@ class UpdateProfileActivity : AppCompatActivity() {
 
         })
 
+        finish()
     }
 }
