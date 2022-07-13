@@ -26,9 +26,10 @@ class PostDetail_Group : AppCompatActivity() {
         binding = CommunityGroupPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 댓글
         val recyclerView:RecyclerView=binding.recyclerView
         recyclerView.layoutManager=LinearLayoutManager(this)
-        val comments=commentViewModel.commentList
+        val comments=intent.getSerializableExtra("comments") as ArrayList<Comment>
         val adapter=MyAdapter(comments)
         recyclerView.adapter=adapter
 
@@ -40,6 +41,7 @@ class PostDetail_Group : AppCompatActivity() {
         val content: TextView =binding.postContent
         title.text=postTitle
         content.text=postContent
+
 
     }
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){

@@ -28,6 +28,7 @@ class CommunityMainFragment : Fragment() {
     private var _binding: FragmentCommunityMainBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
+    private var pos = "1"
 
     /*
     private val postViewModel: PostViewModel by lazy{
@@ -68,7 +69,7 @@ class CommunityMainFragment : Fragment() {
             })
 
              */
-            viewMainPosting("1")
+            viewMainPosting(pos)
             /*
             var postDetail= Intent(getActivity(), PostDetail_Main::class.java)
             postDetail.putExtra("nickname", post.nickname)
@@ -165,7 +166,7 @@ class CommunityMainFragment : Fragment() {
                 //completion(response.body().toString())
 
                 val postDetail= Intent(activity, PostDetail_Main::class.java)
-                postDetail.putExtra("nickname", "user")
+                postDetail.putExtra("nickname", response.body()!!.nickname)
                 postDetail.putExtra("title", response.body()!!.title)
                 postDetail.putExtra("content", response.body()!!.content)
                 postDetail.putExtra("comments", response.body()!!.comments)
@@ -179,6 +180,11 @@ class CommunityMainFragment : Fragment() {
             }
 
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewMainCommunity()
     }
 
     override fun onDestroyView() {
