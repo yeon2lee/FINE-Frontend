@@ -1,5 +1,6 @@
 package com.fine_app.ui.community
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fine_app.Comment
 import com.fine_app.R
 import com.fine_app.databinding.CommunityMainPostBinding
+import com.fine_app.ui.MyPage.ManagePostActivity
+
 //import com.fine_app.retrofit.RetrofitManager
 
 class PostDetail_Main : AppCompatActivity() {
@@ -33,6 +36,12 @@ class PostDetail_Main : AppCompatActivity() {
         backButton.setOnClickListener{
             finish()
         }
+
+        binding.writerImage.setOnClickListener{
+            val userProfile = Intent(this, ShowUserProfileActivity::class.java)
+            startActivity(userProfile)
+        }
+
         //포스트 테스트
         val postTitle=intent.getStringExtra("title")
         val postContent=intent.getStringExtra("content")
@@ -56,6 +65,12 @@ class PostDetail_Main : AppCompatActivity() {
         val comments= intent.getSerializableExtra("comments") as ArrayList<Comment>
         val adapter=MyAdapter(comments)
         recyclerView.adapter=adapter
+
+        // 사용자 프로필 조회
+        binding.writerImage.setOnClickListener{
+            val userProfile = Intent(this, ShowUserProfileActivity::class.java)
+            startActivity(userProfile)
+        }
     }
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
 
@@ -67,10 +82,11 @@ class PostDetail_Main : AppCompatActivity() {
             this.comment=comment
             nickname.text=this.comment.nickname
             text.text=this.comment.text
-            image.setImageResource(this.comment.profileID)
+            //image.setImageResource(this.comment.profileID)
         }
 
     }
+
     inner class MyAdapter(var list:ArrayList<Comment>): RecyclerView.Adapter<MyViewHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             val inflater=LayoutInflater.from(parent.context)

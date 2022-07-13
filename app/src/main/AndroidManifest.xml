@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fine_app">
 
-    <uses-permission android:name="android.permission.INTERNET"/> <!-- 연결코드 -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fine_app"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.community.ShowUserProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.MyPage.UpdateProfileActivity"
             android:exported="false" />
@@ -31,14 +34,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".ui.community.PostDetail_Main"
-            android:exported="true"/>
+            android:exported="true" />
+        <activity
+            android:name=".ui.community.PostDetail_Group"
+            android:exported="true" />
         <activity
             android:name=".ui.community.Posting"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

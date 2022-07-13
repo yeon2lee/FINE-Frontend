@@ -1,5 +1,6 @@
 package com.fine_app.ui.community
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -29,8 +30,7 @@ class CommunityGroupFragment : Fragment() {
 
         _binding = FragmentCommunityGroupBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        recyclerView=binding.recyclerView
-        recyclerView.layoutManager= LinearLayoutManager(context)
+
         val buttonList:RadioGroup=binding.radioGroup
         buttonList.setOnCheckedChangeListener{_, checkedId ->
             when(checkedId){
@@ -91,7 +91,7 @@ class CommunityGroupFragment : Fragment() {
         }
 
         override fun onClick(p0: View?) {
-            viewGroupPosting("postingID")
+            viewGroupPosting("1")
         }
     }
     inner class MyAdapter(private val list:List<Post>): RecyclerView.Adapter<MyViewHolder>(){//, Filterable
@@ -158,6 +158,8 @@ class CommunityGroupFragment : Fragment() {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 Log.d("retrofit", "그룹커뮤니티목록 - 응답 성공 / t : ${response.raw()}")
                 var adapter=MyAdapter(response.body()!!)
+                recyclerView=binding.recyclerView
+                recyclerView.layoutManager= LinearLayoutManager(context)
                 recyclerView.adapter=adapter
             }
             //응답실패
@@ -211,6 +213,15 @@ class CommunityGroupFragment : Fragment() {
             //응답성공
             override fun onResponse(call: Call<Post>, response: Response<Post>) {
                 Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
+
+                val postDetail= Intent(activity, PostDetail_Group::class.java)
+                postDetail.putExtra("nickname", response.body()!!.nickname)
+                postDetail.putExtra("title", response.body()!!.title)
+                postDetail.putExtra("content", response.body()!!.content)
+                postDetail.putExtra("comments", response.body()!!.comments)
+                response.body()!!.comments
+                postDetail.putExtra("capacity", response.body()!!.capacity)
+                startActivity(postDetail)
             }
             //응답실패
             override fun onFailure(call: Call<Post>, t: Throwable) {
@@ -219,6 +230,12 @@ class CommunityGroupFragment : Fragment() {
 
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewGroupCommunity()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -3,6 +3,7 @@ package com.fine_app.retrofit
 
 import com.fine_app.Post
 import com.fine_app.Posting
+import com.fine_app.ui.MyPage.Profile
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -29,4 +30,7 @@ interface IRetrofit {
 
     @GET("/post/{postingId}") //글 세부 조회
     fun viewGroupPosting(@Path("postingId") PostingID:String):Call<Post>
+
+    @GET("profile/{memberId}") // 유저 프로필 조회
+    fun getUserProfile(@Path("memberId") memberId: Long): Call<Profile>
 }
