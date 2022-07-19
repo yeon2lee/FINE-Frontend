@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:padding="15dp">
+>
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15sp"
+        android:layout_margin="20sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,8 +21,11 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5sp"
             android:background="#00FFFFFF"
-            app:srcCompat="@drawable/car_ui_icon_arrow_back" />
+            app:srcCompat="@drawable/ic_before" />
 
         <TextView
             android:id="@+id/textView6"
@@ -35,134 +40,200 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/commentBox"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="#000000" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/writer_image"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-
-            <TextView
-                android:id="@+id/writer_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="10"
-                android:hint="(h)글쓴이닉네임"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/postTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="(h)카페에서 오늘 같이 공부하실 분!"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/postContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="(h)열심히 하실 분! \n신촌 근처 카페에서 2시부터 같이 공부하고 저녁 먹어요"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#000000" />
-
-        <TextView
-            android:id="@+id/wittenTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="(h)12/25 12:34"
-            android:textAlignment="viewEnd"
-            android:textColor="#615A55"
-            android:textColorHint="#615A55"
-            android:textSize="12sp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:orientation="horizontal">
+            android:layout_marginTop="10sp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/writer_image"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/profile1" />
+
+                <TextView
+                    android:id="@+id/writer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="10"
+                    android:hint="글쓴이닉네임"
+                    android:textColor="#6DB33F"
+                    android:textColorHint="#6DB33F"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
+                android:id="@+id/postTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="3"
-                android:hint="(h)마감기한: D-3 (12/28)"
-                android:padding="3dp"
+                android:hint="(h)카페에서 오늘 같이 공부하실 분!"
+                android:padding="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
-                android:textSize="12sp"
-                android:visibility="invisible" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/editButton"
-                android:layout_width="50sp"
-                android:layout_height="30sp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@drawable/solid_button"
-                android:backgroundTint="#6DB33F"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:padding="5dp"
-                android:text="수정"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/markButton"
-                android:layout_width="50sp"
-                android:layout_height="30sp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/solid_button"
-                android:backgroundTint="#6DB33F"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:padding="5dp"
-                android:text="북마크"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/postContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="(h)열심히 하실 분! \n신촌 근처 카페에서 2시부터 같이 공부하고 저녁 먹어요"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+
+            <TextView
+                android:id="@+id/wittenTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="(h)12/25 12:34"
+                android:textAlignment="viewEnd"
+                android:textColor="#615A55"
+                android:textColorHint="#615A55"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/deleteButton"
+                    android:layout_width="10sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/solid_button"
+                    android:backgroundTint="#6DB33F"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="5dp"
+                    android:text="삭제"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/editButton"
+                    android:layout_width="10sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/solid_button"
+                    android:backgroundTint="#6DB33F"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="5dp"
+                    android:text="수정"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/markButton"
+                    android:layout_width="10sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/solid_button"
+                    android:backgroundTint="#6DB33F"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="5dp"
+                    android:text="북마크"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_comment" />
+
         </LinearLayout>
+    </ScrollView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/commentBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DFDFDF"
+
+        android:orientation="horizontal"
+        android:padding="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView">
+
+        <EditText
+            android:id="@+id/putComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_weight="20"
+            android:background="@drawable/comment_bg"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:padding="10sp"
+            android:text="댓글을 입력하세요"
+            android:textColor="#DFDFDF"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/commentButton"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_comment"/>
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            app:srcCompat="@android:drawable/ic_menu_send" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

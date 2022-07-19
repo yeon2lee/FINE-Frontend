@@ -79,7 +79,7 @@ class MyPageFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Profile>, t: Throwable) {
-                Toast.makeText(context, "서버 연결 실패", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "서버 연결 실패", Toast.LENGTH_SHORT).show()
             }
 
         })

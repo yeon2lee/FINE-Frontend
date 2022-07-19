@@ -37,12 +37,15 @@
         </activity>
         <activity
             android:name=".ui.community.PostDetail_Main"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true" />
         <activity
             android:name=".ui.community.PostDetail_Group"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true" />
         <activity
             android:name=".ui.community.Posting"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true" />
     </application>
 
