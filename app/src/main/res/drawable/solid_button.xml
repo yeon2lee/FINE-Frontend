@@ -4,13 +4,13 @@
     <item android:state_pressed="false">
         <shape>
             <!-- 배경 -->
-            <solid android:color="@color/white" />
+            <solid android:color="#6DB33F" />
             <!-- 테두리 -->
             <stroke
                 android:width="2dp"
-                android:color="#DDDDDD" />
+                android:color="#6DB33F" />
             <corners
-                android:radius="10dp"/>
+                android:radius="9dp"/>
 
         </shape>
     </item>
@@ -19,14 +19,14 @@
     <item android:state_pressed="true">
         <shape>
             <!-- 배경 -->
-            <solid android:color="#477528" />
+            <solid android:color="#6DB33F" />
             <!-- 테두리 -->
             <stroke
                 android:width="2dp"
                 android:color="#DDDDDD" />
             <!-- 코너 둥근 정도 -->
             <corners
-                android:radius="10dp" />
+                android:radius="9dp" />
         </shape>
     </item>
 </selector>

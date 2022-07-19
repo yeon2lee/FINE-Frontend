@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Post(
-    val PostingID:String,
+    val PostingID:Long,
     val nickname: String,
     val title:String,
     val content: String,
@@ -17,11 +17,12 @@ data class Post(
     val capacity:Int,
     val comments: ArrayList<Comment>
 ):Serializable
+
 data class Comment(
-    @SerializedName(value = "comment_id")
-    val nickname:String,
-    val text:String,
-    val profileID: Int
+    val memberId:Long, //댓글 단 사람
+    val postingId:Long, //댓글 달린 글 아이디
+    val text:String, //댓글 내용
+    val commentId:Long
     ):Serializable
 
 data class Member (
@@ -42,4 +43,22 @@ data class Posting(
     val title:String,
     val content:String,
     val groupCheck : Boolean
+)
+
+data class GroupPosting(
+    val title:String,
+    val content:String,
+    val groupCheck : Boolean,
+    val maxMember:Int
+)
+
+data class BookMark(
+    val memberId:Long,
+    val PostingId:Long,
+    val BookmarkId : Long
+)
+
+data class Join(
+    val id:Long,
+    val accept_check:Boolean
 )

@@ -67,65 +67,6 @@
             android:layout_marginBottom="10dp"
             android:background="#000000" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="모집 형태"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioGroup
-                android:id="@+id/groupCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radioButton_normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5sp"
-                    android:checked="true"
-                    android:text="일반" />
-
-                <RadioButton
-                    android:id="@+id/radioButton_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5sp"
-                    android:text="그룹" />
-            </RadioGroup>
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="150sp"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:visibility="invisible"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="#DDDDDD" />
-
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -135,19 +76,15 @@
             android:textColor="#000000"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/inputTitle"
+        <TextView
+            android:id="@+id/viewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/edittext_posting"
-            android:ems="10"
-            android:hint="글 제목을 입력해주세요. (최대 20자)"
-            android:inputType="textPersonName"
-            android:maxLength="20"
-            android:minHeight="48dp"
-            android:padding="10dp"
-            tools:ignore="TextContrastCheck,TextContrastCheck" />
+            android:text="입력된 제목"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView3"

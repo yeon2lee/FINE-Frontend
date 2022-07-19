@@ -30,7 +30,6 @@ class CommunityGroupFragment : Fragment() {
 
         _binding = FragmentCommunityGroupBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         val buttonList:RadioGroup=binding.radioGroup
         buttonList.setOnCheckedChangeListener{_, checkedId ->
             when(checkedId){
@@ -41,38 +40,22 @@ class CommunityGroupFragment : Fragment() {
         }
         // API 호출
         viewGroupCommunity()
-
-
-/*
-        val posts=postViewModel.postList
-        var adapter=MyAdapter(posts)
-
-        val buttonList:RadioGroup=binding.radioGroup
-        adapter.filter.filter("all")
-        buttonList.setOnCheckedChangeListener{_, checkedId ->
-            when(checkedId){
-                R.id.radioButton_all -> adapter.filter.filter("all")
-                R.id.radioButton_finished -> adapter.filter.filter("finished")
-                R.id.radioButton_ongoing -> adapter.filter.filter("ongoing")
-            }
-        }
-        recyclerView.adapter=adapter
-
- */
-
         return root
     }
 
-    inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view), View.OnClickListener{
+    inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){ //, View.OnClickListener
         private lateinit var post: Post
         private val postTitle: TextView =itemView.findViewById(R.id.groupPost_title)
         private val participant: TextView =itemView.findViewById(R.id.groupPost_participant)
         private val capacity: TextView =itemView.findViewById(R.id.groupPost_capacity)
         private val partition: TextView=itemView.findViewById(R.id.groupPost_partition)
         private val image:ImageView=itemView.findViewById(R.id.groupPost_imageView)
+        /*
         init{
             postTitle.setOnClickListener(this)
         }
+
+         */
         fun bind(post: Post){
             this.post=post
             postTitle.text=this.post.title
@@ -83,59 +66,23 @@ class CommunityGroupFragment : Fragment() {
                 partition.text="모집 완료"
                 image.visibility=View.INVISIBLE
             }else{
-                //participant.text=this.post.participants
+                //participant.text=this.post.participants //todo 현재 그룹 참여 인원수 받아오기
                 capacity.text=this.post.capacity.toString()
                 partition.text="/"
                 image.visibility=View.VISIBLE
             }
-        }
-
-        override fun onClick(p0: View?) {
-            viewGroupPosting("1")
-        }
-    }
-    inner class MyAdapter(private val list:List<Post>): RecyclerView.Adapter<MyViewHolder>(){//, Filterable
-/*
-        val unFilteredList = list
-        var returnList=list
-
-        override fun getItemCount(): Int = returnList.size
-        override fun getFilter(): Filter {
-            return object : Filter() {
-                override fun performFiltering(constraint: CharSequence?): FilterResults {
-                    val charString = constraint.toString()
-                    if (charString.isEmpty()) {
-                        returnList = unFilteredList
-                    } else {
-                        var ongoingList = ArrayList<Post>()
-                        var finishedList=ArrayList<Post>()
-                        var groupList=ArrayList<Post>()
-                        for (item in unFilteredList) {
-                            if(item.groupCheck==true) {
-                                groupList.add(item)
-                                if (item.closingCheck) finishedList.add(item)  //모집완료
-                                else ongoingList.add(item) //모집중
-                            }
-                        }
-                        when (charString) {
-                            "ongoing" -> returnList = ongoingList
-                            "finished" -> returnList = finishedList
-                            "all" -> returnList=groupList
-                        }
-                    }
-                    val filterResults = FilterResults()
-                    filterResults.values = returnList
-                    return filterResults
-                }
-                override fun publishResults(constraint: CharSequence?, results: FilterResults) {
-                    returnList = results.values as ArrayList<Post>
-                    notifyDataSetChanged()
-                }
+            itemView.setOnClickListener{ //todo 리사이클러뷰 아이템 클릭 작동 확인
+                viewGroupPosting(this.post.PostingID)
             }
+        }
+/*
+        override fun onClick(p0: View?) {
+            viewGroupPosting(1)
         }
 
  */
-
+    }
+    inner class MyAdapter(private val list:List<Post>): RecyclerView.Adapter<MyViewHolder>(){//, Filterable
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             val view=layoutInflater.inflate(R.layout.item_postlist_group, parent, false)
             return MyViewHolder(view)
@@ -144,7 +91,6 @@ class CommunityGroupFragment : Fragment() {
         override fun getItemCount(): Int = list.size
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            //val post=returnList[position]
             val post=list[position]
             holder.bind(post)
         }
@@ -177,6 +123,8 @@ class CommunityGroupFragment : Fragment() {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 Log.d("retrofit", "그룹커뮤니티 진행 목록 - 응답 성공 / t : ${response.raw()}")
                 var adapter=MyAdapter(response.body()!!)
+                recyclerView=binding.recyclerView
+                recyclerView.layoutManager= LinearLayoutManager(context)
                 recyclerView.adapter=adapter
             }
             //응답실패
@@ -194,6 +142,8 @@ class CommunityGroupFragment : Fragment() {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 Log.d("retrofit", "그룹커뮤니티 완료 목록 - 응답 성공 / t : ${response.raw()}")
                 var adapter=MyAdapter(response.body()!!)
+                recyclerView=binding.recyclerView
+                recyclerView.layoutManager= LinearLayoutManager(context)
                 recyclerView.adapter=adapter
             }
             //응답실패
@@ -202,10 +152,10 @@ class CommunityGroupFragment : Fragment() {
             }
         })
     }
-    private fun viewGroupPosting(postingId:String?){
+    private fun viewGroupPosting(postingId:Long?){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val term:String= postingId ?:""
+        val term:Long= postingId ?:0
         val call = iRetrofit?.viewGroupPosting(PostingID = term) ?:return
 
         //enqueue 하는 순간 네트워킹
@@ -219,8 +169,10 @@ class CommunityGroupFragment : Fragment() {
                 postDetail.putExtra("title", response.body()!!.title)
                 postDetail.putExtra("content", response.body()!!.content)
                 postDetail.putExtra("comments", response.body()!!.comments)
-                response.body()!!.comments
                 postDetail.putExtra("capacity", response.body()!!.capacity)
+                postDetail.putExtra("capacity", response.body()!!.lastModifiedDate)
+                postDetail.putExtra("capacity", response.body()!!.closingCheck)
+                postDetail.putExtra("capacity", response.body()!!.PostingID)
                 startActivity(postDetail)
             }
             //응답실패

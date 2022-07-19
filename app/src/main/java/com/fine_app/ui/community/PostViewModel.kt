@@ -1,4 +1,4 @@
-package com.fine_app.ui.community
+/*package com.fine_app.ui.community
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -11,6 +11,7 @@ import com.fine_app.Post
 import com.fine_app.R
 //import com.fine_app.repository.PostRepository
 import kotlinx.coroutines.launch
+
 
 class PostViewModel:ViewModel() {
     val postList=listOf( //capacity가 1이면 일반, 아니면 그룹
@@ -27,6 +28,8 @@ class PostViewModel:ViewModel() {
 
     )
 }
+
+ */
 
 /*
 class PostViewModel:BaseObservable() {
