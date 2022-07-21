@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.fine_app.databinding.FragmentMypageBinding
+import com.fine_app.ui.myPage.ManageBookmarkActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,6 +46,13 @@ class MyPageFragment : Fragment() {
                 val intent = Intent(context, UpdateProfileActivity::class.java)
                 intent.putExtra("nickname", binding.tvNickname.text)
                 intent.putExtra("intro", binding.tvIntro.text)
+                startActivity(intent)
+            }
+        }
+
+        binding.tvManageBookmark.setOnClickListener() {
+            activity?.let{
+                val intent = Intent(context, ManageBookmarkActivity::class.java)
                 startActivity(intent)
             }
         }

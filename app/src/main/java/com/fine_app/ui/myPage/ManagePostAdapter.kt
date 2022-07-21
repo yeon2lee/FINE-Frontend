@@ -34,7 +34,6 @@ class ManagePostAdapter(private val myDataset: List<Post>):
         val formatter = DateTimeFormatter.ofPattern("M/d")
         val formatted = date.format(formatter)
         binding.mypagePostDateTv.text = formatted.toString()
-
         binding.mypagePostCommentTv.text = myDataset[position].comments.size.toString()
     }
 
