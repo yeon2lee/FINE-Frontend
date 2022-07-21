@@ -18,6 +18,7 @@ import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 class CommunityMainFragment : Fragment() {
 
@@ -38,25 +39,15 @@ class CommunityMainFragment : Fragment() {
         private lateinit var post: Post
         private val postTitle: TextView =itemView.findViewById(R.id.mainpost_title)
         private val commentNum: TextView =itemView.findViewById(R.id.mainpost_comment)
-        /*
-        init{
-            postTitle.setOnClickListener(this)
-        }
 
-         */
         fun bind(post: Post) {
             this.post=post
             postTitle.text=this.post.title
             commentNum.text=this.post.commentCount
-            itemView.setOnClickListener{ //todo 리사이클러뷰 아이템 클릭 작동 확인
+            itemView.setOnClickListener{
                 viewMainPosting(this.post.PostingID)
             }
         }
-        /*
-        override fun onClick(p0: View?) {
-            viewMainPosting(pos)
-        }
-        */
     }
     inner class MyAdapter(val list:List<Post>): RecyclerView.Adapter<MyViewHolder>() {
         override fun getItemCount(): Int = list.size
@@ -106,12 +97,15 @@ class CommunityMainFragment : Fragment() {
                 Log.d("retrofit", response.body().toString())
 
                 val postDetail= Intent(activity, PostDetail_Main::class.java)
-                postDetail.putExtra("nickname", response.body()!!.nickname)
-                postDetail.putExtra("title", response.body()!!.title)
-                postDetail.putExtra("content", response.body()!!.content)
-                postDetail.putExtra("comments", response.body()!!.comments)
-                postDetail.putExtra("capacity", response.body()!!.capacity)
-                postDetail.putExtra("postingID", response.body()!!.PostingID)
+                //postDetail.putExtra("nickname", response.body()!!.nickname)
+                postDetail.putExtra("title", response.body()?.title)
+                postDetail.putExtra("content", response.body()?.content)
+                postDetail.putExtra("comments", response.body()?.comments)
+                postDetail.putExtra("capacity", response.body()?.capacity)
+                postDetail.putExtra("createdDate", response.body()?.createdDate)
+                postDetail.putExtra("lastModifiedDate", response.body()?.lastModifiedDate)
+                postDetail.putExtra("memberId", response.body()?.memberId)
+                postDetail.putExtra("postingId", postingId)
                 startActivity(postDetail)
             }
             //응답실패

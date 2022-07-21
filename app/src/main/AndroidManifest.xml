@@ -47,6 +47,18 @@
             android:name=".ui.community.Posting"
             android:windowSoftInputMode="adjustResize"
             android:exported="true" />
+        <activity
+            android:name=".ui.community.PostingEdit"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
+        <activity
+            android:name=".ui.community.WaitingList"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
+        <activity
+            android:name=".ui.community.SearchList"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
     </application>
 
 </manifest>

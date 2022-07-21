@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class ShowUserProfileActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityShowUserProfileBinding
-    private var userId: Long = 0
+    private var userId: Long = intent.getLongExtra("memberId", 1)
     lateinit var userData: Profile
     private val binding get() = _binding!!
 
@@ -26,7 +26,6 @@ class ShowUserProfileActivity : AppCompatActivity() {
     }
 
     private fun getUserProfile() {
-        userId = 1
 
         val call: Call<Profile> = ServiceCreator.service.getMyProfile(userId)
 
