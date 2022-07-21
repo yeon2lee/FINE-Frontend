@@ -15,7 +15,7 @@
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toTopOf="@+id/commentBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -66,14 +66,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/commentBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line">
@@ -184,7 +185,7 @@
                     android:layout_weight="5" />
 
                 <TextView
-                    android:id="@+id/wittenTime"
+                    android:id="@+id/writtenTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
@@ -279,33 +280,33 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_comment" />
+                tools:listitem="@layout/item_comment"
+                android:nestedScrollingEnabled="false"/>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/commentBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#DFDFDF"
         android:orientation="horizontal"
         android:padding="5sp"
-        app:layout_constraintTop_toBottomOf="@id/scrollView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/putComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:layout_weight="20"
             android:background="@drawable/comment_bg"
             android:ems="10"
+            android:hint="댓글을 입력하세요"
             android:inputType="textPersonName"
             android:padding="10sp"
-            android:text="댓글을 입력하세요"
             android:textColor="#DFDFDF"
             android:textSize="14sp" />
 

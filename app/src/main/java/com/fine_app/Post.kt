@@ -5,6 +5,7 @@ import java.io.Serializable
 
 data class Post(
     val PostingID:Long,
+    val memberId: Long,
     val nickname: String,
     val title:String,
     val content: String,
@@ -16,6 +17,30 @@ data class Post(
     @SerializedName(value = "maxMember")
     val capacity:Int,
     val comments: ArrayList<Comment>
+):Serializable
+
+data class GroupPost(
+    val PostingId:Long,
+    val memberId: Long,
+    val nickname: String,
+    val title:String,
+    val content: String,
+    val commentCount:String,
+    val createdDate:String,
+    val lastModifiedDate:String,
+    val closingCheck:Boolean,
+    val groupCheck:Boolean,
+    @SerializedName(value = "maxMember")
+    val capacity:Int,
+    val comments: ArrayList<Comment>,
+    val recruitingList:ArrayList<Recruit>
+):Serializable
+
+data class Recruit(
+    val id:Long,
+    val memberId: Long,
+    val nickname: String,
+    val accept_check:Boolean
 ):Serializable
 
 data class Comment(
@@ -55,7 +80,7 @@ data class GroupPosting(
 data class BookMark(
     val memberId:Long,
     val PostingId:Long,
-    val BookmarkId : Long
+    val BookmarkId:Long
 )
 
 data class Join(

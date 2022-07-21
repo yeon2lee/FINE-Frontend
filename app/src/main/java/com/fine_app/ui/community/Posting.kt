@@ -5,12 +5,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.fine_app.GroupPosting
-import com.fine_app.Post
+import com.fine_app.*
 import com.fine_app.Posting
-import com.fine_app.R
 import com.fine_app.databinding.CommunityPostingBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
@@ -22,14 +21,15 @@ import retrofit2.Response
 class Posting : AppCompatActivity() {
     private lateinit var binding: CommunityPostingBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         binding = CommunityPostingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         lateinit var title:String
         lateinit var content:String
-        val memberID=1 as Long //todo 멤버아이디 불러오기
+        val memberID=11231231311 //todo 멤버아이디 불러오기
         var capacity=2
         val spinner: Spinner = binding.spinner
         val items = arrayOf("인원 선택", 2, 3, 4, 5, 6)
@@ -80,12 +80,13 @@ class Posting : AppCompatActivity() {
             finish()
         }
         binding.finButton.setOnClickListener{ //등록
-            if(groupcheck==false){
-                val newPost=Posting(title, content, groupcheck)
-                addMainPost(memberID, newPost)
-            }else{
+            if(groupcheck){
                 val newPost= GroupPosting(title, content, groupcheck, capacity)
                 addGroupPost(memberID, newPost)
+
+            }else{
+                val newPost=Posting(title, content, groupcheck)
+                addMainPost(memberID, newPost)
             }
             finish()
         }
@@ -102,9 +103,9 @@ class Posting : AppCompatActivity() {
             override fun onResponse(call: Call<Post>, response: Response<Post>) {
                 Log.d("retrofit", "글쓰기 - 응답 성공 / t : ${response.raw()}")
                 Log.d("retrofit", "id:  ${memberID}")
-                Log.d("retrofit", "id:  ${postInfo.title}")
-                Log.d("retrofit", "id:  ${postInfo.content}")
-                Log.d("retrofit", "id:  ${postInfo.groupCheck}")
+                Log.d("retrofit", "title:  ${postInfo.title}")
+                Log.d("retrofit", "content:  ${postInfo.content}")
+                Log.d("retrofit", "groupCheck:  ${postInfo.groupCheck}")
             }
             //응답실패
             override fun onFailure(call: Call<Post>, t: Throwable) {

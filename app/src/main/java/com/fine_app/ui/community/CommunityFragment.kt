@@ -42,12 +42,13 @@ class CommunityFragment : Fragment() {
         binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             //검색 버튼 눌렀을 때 호출
             override fun onQueryTextSubmit(p0: String): Boolean {
-
+                val postDetail= Intent(activity, SearchList::class.java)
+                postDetail.putExtra("text",p0)
+                startActivity(postDetail)
                 return true
             }
             //텍스트 입력과 동시에 호출
             override fun onQueryTextChange(p0: String): Boolean {
-
                 return true
             }
         })
