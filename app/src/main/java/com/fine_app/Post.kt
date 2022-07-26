@@ -36,6 +36,8 @@ data class GroupPost(
     val groupCheck:Boolean,
     @SerializedName(value = "maxMember")
     val capacity:Int,
+    @SerializedName(value = "writer_nickname")
+    val participants:Int,
     val comments: ArrayList<Comment>,
     val recruitingList:ArrayList<Recruit>
 ):Serializable

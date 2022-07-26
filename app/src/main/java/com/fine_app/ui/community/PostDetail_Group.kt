@@ -42,7 +42,6 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         }
-        //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         binding = CommunityGroupPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -55,7 +54,7 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
         val lastModifiedDate=intent.getStringExtra("lastModifiedDate")
         val closingCheck=intent.getBooleanExtra("closingCheck", false)
         val recruitingList= intent.getSerializableExtra("recruitingList") as ArrayList<Recruit>
-        //val participants=intent.getIntExtra("participants", 0)//todo 현재 참여인원 확인
+        val participants=intent.getIntExtra("participants", 0)
         //val postWriterImage=intent.getIntExtra("profileID", 0) //todo 사용자 이미지 표시
 
         val token=createdDate!!.split("-", "T", ":")
@@ -68,7 +67,7 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
         binding.postContent.text=postContent
         binding.writerName.text=postWriter
         binding.max.text=postCapacity.toString()
-        //binding.participants.text=participants
+        binding.participants.text=participants.toString()
         //binding.writerImage.setImageResource(postWriterImage)
 
         binding.backButton.setOnClickListener{ //글 세부페이지 종료
@@ -79,7 +78,7 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             userProfile.putExtra("memberId",writerID)
             startActivity(userProfile)
         }
-        val editButton=binding.editButton //수정 페이지로 이동
+        val editButton=binding.editButton
         val deleteButton=binding.deleteButton
         val manageButton=binding.manageButton
         val joinButton=binding.joinButton
