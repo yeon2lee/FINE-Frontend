@@ -5,15 +5,16 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface IRetrofit {
-    //일반 커뮤니티
+    //커뮤니티 공통
     @POST("/post/{memberId}") //글 작성
-    fun addMainPost(@Path("memberId")  memberId:Long, @Body postInfo:Posting):Call<Post>
-
-    @GET("/post/general") //글 목록 조회
-    fun viewMainCommunity() :Call<List<Post>>
+    fun addPost(@Path("memberId")  memberId:Long, @Body postInfo:Posting):Call<Post>
 
     @GET("/post/{postingId}") //글 세부 조회
-    fun viewMainPosting(@Path("postingId") postingId:Long):Call<Post>
+    fun viewPosting(@Path("postingId") postingId:Long):Call<Post>
+
+    //일반 커뮤니티
+    @GET("/post/general") //글 목록 조회
+    fun viewMainCommunity() :Call<List<Post>>
 
     @DELETE("/post/{postingId}") //글 삭제
     fun deletePosting(@Path("postingId") postingId:Long):Call<Long>
@@ -23,20 +24,14 @@ interface IRetrofit {
 
 
     //그룹커뮤니티
-    @POST("/post/{memberId}") //글 작성
-    fun addGroupPost(@Path("memberId")  memberId:Long, @Body postInfo:GroupPosting):Call<GroupPosting>
-
     @GET("/post/group") //글 전체 목록 조회
-    fun viewGroupCommunity() : Call<List<GroupPost>>
+    fun viewGroupCommunity() : Call<List<Post>>
 
     @GET("/post/group/proceed") //글 진행 목록 조회
-    fun viewGroupCommunityProceed() : Call<List<GroupPost>>
+    fun viewGroupCommunityProceed() : Call<List<Post>>
 
     @GET("/post/group/close") //글 완료 목록 조회
-    fun viewGroupCommunityClose() : Call<List<GroupPost>>
-
-    @GET("/post/{postingId}") //글 세부 조회
-    fun viewGroupPosting(@Path("postingId") postingId:Long):Call<GroupPost>
+    fun viewGroupCommunityClose() : Call<List<Post>>
 
     @POST("/post/{postingId}/{memberId}/join") //참여하기
     fun joinGroup(@Path("postingId") postingId:Long, @Path("memberId") memberId:Long, accept_check:Boolean) :Call<Join>
