@@ -14,7 +14,7 @@ class ShowUserProfileActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityShowUserProfileBinding
     private var userId: Long = intent.getLongExtra("memberId", 1)
     lateinit var userData: Profile
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +33,8 @@ class ShowUserProfileActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
                 if (response.isSuccessful) {
                     userData = response.body()!!
-                    binding.profileUserNicknameTv.setText(userData.nickname)
-                    binding.profileUserIntroTv.setText(userData.intro)
+                    binding.profileUserNicknameTv.text = userData.nickname
+                    binding.profileUserIntroTv.text = userData.intro
                 } else {
                     Toast.makeText(this@ShowUserProfileActivity, "프로필 정보 불러오기 실패", Toast.LENGTH_SHORT).show()
                 }

@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
-
         app:layout_constraintBottom_toTopOf="@+id/line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -280,8 +279,8 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_comment"
-                android:nestedScrollingEnabled="false"/>
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_comment" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -294,7 +293,8 @@
         android:padding="5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView">
 
         <EditText
             android:id="@+id/putComment"
@@ -307,7 +307,7 @@
             android:hint="댓글을 입력하세요"
             android:inputType="textPersonName"
             android:padding="10sp"
-            android:textColor="#DFDFDF"
+            android:textColor="#000000"
             android:textSize="14sp" />
 
         <ImageButton
