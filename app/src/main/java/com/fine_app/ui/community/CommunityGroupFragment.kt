@@ -61,7 +61,7 @@ class CommunityGroupFragment : Fragment() {
                 partition.text="모집 완료"
                 image.visibility=View.INVISIBLE
             }else{
-                //participant.text=this.post.participants //todo 현재 그룹 참여 인원수 받아오기
+                participant.text= this.post.participants.toString()
                 capacity.text=this.post.capacity.toString()
                 partition.text="/"
                 image.visibility=View.VISIBLE
@@ -155,11 +155,12 @@ class CommunityGroupFragment : Fragment() {
                 Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
 
                 val postDetail= Intent(activity, PostDetail_Group::class.java)
-                //postDetail.putExtra("nickname", response.body()!!.nickname)
+                postDetail.putExtra("nickname", response.body()!!.nickname)
                 postDetail.putExtra("title", response.body()!!.title)
                 postDetail.putExtra("content", response.body()!!.content)
                 postDetail.putExtra("comments", response.body()!!.comments)
                 postDetail.putExtra("capacity", response.body()!!.capacity)
+                postDetail.putExtra("participants", response.body()!!.participants)
                 postDetail.putExtra("lastModifiedDate", response.body()!!.lastModifiedDate)
                 postDetail.putExtra("closingCheck", response.body()!!.closingCheck)
                 postDetail.putExtra("recruitingList", response.body()!!.recruitingList)
