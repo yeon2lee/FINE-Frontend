@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
->
+    android:layout_alignParentBottom="true">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
-
         app:layout_constraintBottom_toTopOf="@+id/line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,8 +60,8 @@
         android:layout_marginLeft="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="20sp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/commentBox"
+        android:layout_marginBottom="65dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line">
@@ -70,7 +69,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10sp"
             android:orientation="vertical">
 
@@ -194,19 +193,21 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_comment"
-                android:nestedScrollingEnabled="false"/>
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_comment" />
 
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
+
 
     <LinearLayout
         android:id="@+id/commentBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#DFDFDF"
 
+        android:background="#DFDFDF"
         android:orientation="horizontal"
         android:padding="5sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -224,7 +225,7 @@
             android:hint="댓글을 입력하세요"
             android:inputType="textPersonName"
             android:padding="10sp"
-            android:textColor="#DFDFDF"
+            android:textColor="#000000"
             android:textSize="14sp" />
 
         <ImageButton
@@ -236,5 +237,6 @@
             android:background="@null"
             app:srcCompat="@android:drawable/ic_menu_send" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

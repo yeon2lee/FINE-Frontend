@@ -67,7 +67,7 @@ class CommunityGroupFragment : Fragment() {
                 image.visibility=View.VISIBLE
             }
             itemView.setOnClickListener{
-                viewGroupPosting(this.post.PostingId)
+                viewGroupPosting(this.post.postingId)
             }
         }
 
@@ -146,7 +146,7 @@ class CommunityGroupFragment : Fragment() {
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= postingId ?:0
-        val call = iRetrofit?.viewGroupPosting(PostingID = term) ?:return
+        val call = iRetrofit?.viewGroupPosting(postingId = term) ?:return
 
         //enqueue 하는 순간 네트워킹
         call.enqueue(object : retrofit2.Callback<GroupPost>{

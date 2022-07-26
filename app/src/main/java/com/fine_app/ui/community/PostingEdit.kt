@@ -26,7 +26,7 @@ class PostingEdit : AppCompatActivity() {
 
         val postTitle=intent.getStringExtra("title")
         val postContent=intent.getStringExtra("content")
-        val postingID=intent.getLongExtra("postingID",0)
+        val postingId=intent.getLongExtra("postingId",0)
 
         binding.viewTitle.text=postTitle // 타이틀은 수정 불가
         binding.inputContents.setText(postContent) //기존 내용으로 텍스트 설정
@@ -42,7 +42,7 @@ class PostingEdit : AppCompatActivity() {
             finish()
         }
         binding.finButton.setOnClickListener{ //등록
-            editPosting(postingID, content)
+            editPosting(postingId, content)
             finish()
         }
     }
@@ -51,7 +51,7 @@ class PostingEdit : AppCompatActivity() {
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= PostingID ?:0
-        val call = iRetrofit?.editPosting(PostingID = term, text) ?:return
+        val call = iRetrofit?.editPosting(postingId = term, text) ?:return
 
         call.enqueue(object : retrofit2.Callback<Post>{
             //응답성공

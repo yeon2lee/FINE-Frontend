@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,10 +28,11 @@ class SearchList : AppCompatActivity() {
 
         binding = CommunitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var text=intent.getStringExtra("text")
-        binding.searchView.setQuery(text, true)
-
-
+        val text=intent.getStringExtra("text")
+        if (text != "") {
+            binding.searchView.setQuery(text, false)
+            searchPosting(text!!)
+        }
         binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             //검색 버튼 눌렀을 때 호출
             override fun onQueryTextSubmit(p0: String): Boolean {
@@ -59,7 +58,7 @@ class SearchList : AppCompatActivity() {
         private val commentNum: TextView =itemView.findViewById(R.id.searchComment)
 
 
-        fun bind(post: Post, position: Int) {
+        fun bind(post: Post) {
             this.post=post
             title.text=this.post.title
             content.text=this.post.content
@@ -72,10 +71,10 @@ class SearchList : AppCompatActivity() {
 
             itemView.setOnClickListener{
                 if (this.post.groupCheck){ //그룹포스트
-                    viewGroupPosting(this.post.PostingID)
+                    viewGroupPosting(this.post.postingId)
 
                 }else{
-                    viewMainPosting(this.post.PostingID)
+                    viewMainPosting(this.post.postingId)
                 }
             }
         }
@@ -88,7 +87,7 @@ class SearchList : AppCompatActivity() {
         }
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             val post=list[position]
-            holder.bind(post, position)
+            holder.bind(post)
         }
     }
 
@@ -97,8 +96,7 @@ class SearchList : AppCompatActivity() {
     private fun searchPosting(title:String){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val term:String= title?:""
-        val call = iRetrofit?.searchPosting(title=term) ?:return
+        val call = iRetrofit?.searchPosting(title = title) ?:return
 
         call.enqueue(object : Callback<List<Post>> {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
@@ -117,10 +115,10 @@ class SearchList : AppCompatActivity() {
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= postingId ?:0
-        val call = iRetrofit?.viewGroupPosting(PostingID = term) ?:return
+        val call = iRetrofit?.viewGroupPosting(postingId = term) ?:return
 
         //enqueue 하는 순간 네트워킹
-        call.enqueue(object : retrofit2.Callback<GroupPost>{
+        call.enqueue(object : Callback<GroupPost>{
             //응답성공
             override fun onResponse(call: Call<GroupPost>, response: Response<GroupPost>) {
                 Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
@@ -149,10 +147,10 @@ class SearchList : AppCompatActivity() {
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= postingId ?:0
-        val call = iRetrofit?.viewMainPosting(PostingID = term) ?:return
+        val call = iRetrofit?.viewMainPosting(postingId = term) ?:return
 
         //enqueue 하는 순간 네트워킹
-        call.enqueue(object : retrofit2.Callback<Post>{
+        call.enqueue(object : Callback<Post>{
             //응답성공
             override fun onResponse(call: Call<Post>, response: Response<Post>) {
                 Log.d("retrofit", "메인 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")

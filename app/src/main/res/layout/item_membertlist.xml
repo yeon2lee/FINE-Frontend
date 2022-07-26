@@ -48,7 +48,7 @@
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:padding="5sp"
-            android:text="수락"
+            android:text="수락 취소"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
             android:textStyle="bold" />
