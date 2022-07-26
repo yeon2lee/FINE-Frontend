@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.fine_app.databinding.FragmentMypageBinding
+import com.fine_app.ui.myPage.ManageBookmarkActivity
+import com.fine_app.ui.myPage.SettingActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,6 +50,21 @@ class MyPageFragment : Fragment() {
                 startActivity(intent)
             }
         }
+
+        binding.tvManageBookmark.setOnClickListener() {
+            activity?.let{
+                val intent = Intent(context, ManageBookmarkActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        binding.tvSetting.setOnClickListener() {
+            activity?.let{
+                val intent = Intent(context, SettingActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
 
         return root
     }

@@ -1,11 +1,15 @@
 package com.fine_app.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.fine_app.databinding.FragmentHomeBinding
+import com.fine_app.ui.MyPage.*
+import com.fine_app.ui.myPage.SignUpActivity
+
 
 class HomeFragment : Fragment() {
 
