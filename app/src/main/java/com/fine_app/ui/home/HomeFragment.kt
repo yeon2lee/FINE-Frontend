@@ -28,12 +28,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.tvSignUp.setOnClickListener() {
-            activity?.let{
-                val intent = Intent(context, SignUpActivity::class.java)
-                startActivity(intent)
-            }
-        }
         return root
     }
 

@@ -14,6 +14,10 @@ interface IMypageService {
         @Body user:RequestAuthData
     ): Call<Profile>
 
+    // 회원 탈퇴
+    @GET("mypage/{memberId}")
+    fun userSecession(@Path("memberId") memberId: Long): Call<Profile>
+
     // 프로필 생성
     @GET("myPage/{memberId}")
     fun getMyProfile(@Path("memberId") memberId: Long): Call<Profile>
