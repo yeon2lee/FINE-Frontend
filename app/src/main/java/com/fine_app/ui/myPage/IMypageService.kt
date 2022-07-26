@@ -16,6 +16,10 @@ interface IMypageService {
     @GET("myPage/myPost/{memberId}")
     fun getMyPostList(@Path("memberId") memberId: Long): Call<List<Post>>
 
+    // 북마크 목록
+    @GET("myPage/bookmark/{memberId}")
+    fun getMyBookmarkList(@Path("memberId") memberId: Long): Call<List<Post>>
+
     // 프로필 수정
     @POST("myPage/editProfile/{memberId}")
     fun editProfile(
