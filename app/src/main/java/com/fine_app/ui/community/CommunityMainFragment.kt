@@ -42,11 +42,13 @@ class CommunityMainFragment : Fragment() {
         fun bind(post: Post) {
             this.post=post
             postTitle.text=this.post.title
+            Log.d("posting", " 댓글 수 : ${this.post.commentCount}")
             commentNum.text=this.post.commentCount
             itemView.setOnClickListener{
-                viewMainPosting(this.post.postingId)
+                viewPosting(this.post.postingId)
                 Log.d("posting", " 포스팅 postTitle : ${this.post.title}")
                 Log.d("posting", " 포스팅 아이디 : ${this.post.postingId}")
+                Log.d("posting", " 댓글 수 : ${this.post.commentCount}")
             }
         }
     }
@@ -81,11 +83,10 @@ class CommunityMainFragment : Fragment() {
             }
         })
     }
-    private fun viewMainPosting(postingId:Long?){
+    private fun viewPosting(postingId:Long){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val term:Long= postingId ?:0
-        val call = iRetrofit?.viewMainPosting(postingId = term) ?:return
+        val call = iRetrofit?.viewPosting(postingId = postingId ) ?:return
 
         call.enqueue(object : retrofit2.Callback<Post>{
 
@@ -94,15 +95,15 @@ class CommunityMainFragment : Fragment() {
                 Log.d("retrofit", response.body().toString())
 
                 val postDetail= Intent(activity, PostDetail_Main::class.java)
-                postDetail.putExtra("nickname", response.body()!!.nickname)
-                postDetail.putExtra("title", response.body()!!.title)
-                postDetail.putExtra("content", response.body()!!.content)
-                postDetail.putExtra("comments", response.body()!!.comments)
-                postDetail.putExtra("capacity", response.body()!!.capacity)
-                postDetail.putExtra("createdDate", response.body()!!.createdDate)
-                postDetail.putExtra("lastModifiedDate", response.body()!!.lastModifiedDate)
-                postDetail.putExtra("memberId", response.body()!!.memberId)
-                postDetail.putExtra("postingId", postingId)
+                postDetail.putExtra("nickname", response.body()?.nickname)
+                postDetail.putExtra("title", response.body()?.title)
+                postDetail.putExtra("content", response.body()?.content)
+                postDetail.putExtra("comments", response.body()?.comments)
+                postDetail.putExtra("capacity", response.body()?.capacity)
+                postDetail.putExtra("createdDate", response.body()?.createdDate)
+                postDetail.putExtra("lastModifiedDate", response.body()?.lastModifiedDate)
+                postDetail.putExtra("memberId", response.body()?.memberId)
+                postDetail.putExtra("postingId", 3)//postingId)
                 startActivity(postDetail)
             }
             //응답실패

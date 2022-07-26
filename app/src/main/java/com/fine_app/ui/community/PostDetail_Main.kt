@@ -24,14 +24,15 @@ import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 
 class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var binding: CommunityMainPostBinding
-    private val postingId=intent.getLongExtra("postingId", 1)
-    private val writerID:Long=intent.getLongExtra("memberId", 1)
-    private val myID:Long=1 //todo 내 id 가져오기
-    private val comments= intent.getSerializableExtra("comments") as ArrayList<Comment>
+    private var postingId by Delegates.notNull<Long>()
+    private var writerID by Delegates.notNull<Long>()
+    private var myID by Delegates.notNull<Long>()
+    private val comments= intent?.getSerializableExtra("comments") as ArrayList<Comment>
     val adapter=MyAdapter(comments)
     private var mark=false
     var bookMarkId:Long=0
@@ -46,6 +47,9 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
         //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         binding = CommunityMainPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        postingId=intent.getLongExtra("postingId", 1)
+        writerID=intent.getLongExtra("memberId", 1)
+        myID=1 //todo 내 id 가져오기
 
         //정보 받아옴
         val postTitle=intent.getStringExtra("title")

@@ -115,12 +115,12 @@ class SearchList : AppCompatActivity() {
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= postingId ?:0
-        val call = iRetrofit?.viewGroupPosting(postingId = term) ?:return
+        val call = iRetrofit?.viewPosting(postingId = term) ?:return
 
         //enqueue 하는 순간 네트워킹
-        call.enqueue(object : Callback<GroupPost>{
+        call.enqueue(object : Callback<Post>{
             //응답성공
-            override fun onResponse(call: Call<GroupPost>, response: Response<GroupPost>) {
+            override fun onResponse(call: Call<Post>, response: Response<Post>) {
                 Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
 
                 val postDetail= Intent(this@SearchList, PostDetail_Group::class.java)
@@ -137,7 +137,7 @@ class SearchList : AppCompatActivity() {
                 startActivity(postDetail)
             }
             //응답실패
-            override fun onFailure(call: Call<GroupPost>, t: Throwable) {
+            override fun onFailure(call: Call<Post>, t: Throwable) {
                 Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 실패 / t: $t")
             }
 
@@ -147,7 +147,7 @@ class SearchList : AppCompatActivity() {
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= postingId ?:0
-        val call = iRetrofit?.viewMainPosting(postingId = term) ?:return
+        val call = iRetrofit?.viewPosting(postingId = term) ?:return
 
         //enqueue 하는 순간 네트워킹
         call.enqueue(object : Callback<Post>{
@@ -157,7 +157,7 @@ class SearchList : AppCompatActivity() {
                 Log.d("retrofit", response.body().toString())
 
                 val postDetail= Intent(this@SearchList, PostDetail_Main::class.java)
-                //postDetail.putExtra("nickname", response.body()!!.nickname)
+                postDetail.putExtra("nickname", response.body()!!.nickname)
                 postDetail.putExtra("title", response.body()?.title)
                 postDetail.putExtra("content", response.body()?.content)
                 postDetail.putExtra("comments", response.body()?.comments)

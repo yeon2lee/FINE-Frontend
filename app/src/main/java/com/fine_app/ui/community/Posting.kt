@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.RadioGroup
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-import com.fine_app.GroupPosting
 import com.fine_app.Post
 import com.fine_app.Posting
 import com.fine_app.R
@@ -45,7 +44,7 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
                     spinner.visibility=View.INVISIBLE
                 }
                 R.id.radioButton_group -> {
-                    groupCheck=false
+                    groupCheck=true
                     spinner.visibility= View.VISIBLE
                 }
             }
@@ -85,14 +84,8 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
             dialog.show(this.supportFragmentManager, "ConfirmDialog")
         }
         binding.finButton.setOnClickListener{ //등록
-            if(groupCheck){
-                val newPost= GroupPosting(title, content, groupCheck, capacity)
-                addGroupPost(myID, newPost)
-
-            }else{
-                val newPost=Posting(title, content, groupCheck)
-                addMainPost(myID, newPost)
-            }
+            val newPost= Posting(title, content, groupCheck, capacity)
+            addPost(myID, newPost)
             finish()
         }
     }
@@ -101,11 +94,11 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
         finish()
     }
 
-    private fun addMainPost(memberId:Long?, postInfo:Posting){
+    private fun addPost(memberId:Long?, postInfo:Posting){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= memberId ?:0
-        val call = iRetrofit?.addMainPost(memberId = term, postInfo) ?:return
+        val call = iRetrofit?.addPost(memberId = term, postInfo) ?:return
 
         call.enqueue(object : retrofit2.Callback<Post>{
 
@@ -115,23 +108,6 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
 
             override fun onFailure(call: Call<Post>, t: Throwable) {
                 Log.d("retrofit", "글쓰기 - 응답 실패 / t: $t")
-            }
-        })
-    }
-    private fun addGroupPost(memberID:Long?, postInfo:GroupPosting){
-        val iRetrofit : IRetrofit? =
-            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val term:Long= memberID ?:0
-        val call = iRetrofit?.addGroupPost(memberId = term, postInfo) ?:return
-
-        call.enqueue(object : retrofit2.Callback<GroupPosting>{
-
-            override fun onResponse(call: Call<GroupPosting>, response: Response<GroupPosting>) {
-                Log.d("retrofit", "그룹 글쓰기 - 응답 성공 / t : ${response.raw()}")
-            }
-
-            override fun onFailure(call: Call<GroupPosting>, t: Throwable) {
-                Log.d("retrofit", "그룹 글쓰기 - 응답 실패 / t: $t")
             }
         })
     }

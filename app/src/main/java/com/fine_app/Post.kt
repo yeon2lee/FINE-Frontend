@@ -20,7 +20,10 @@ data class Post(
     val groupCheck:Boolean,
     @SerializedName(value = "maxMember")
     val capacity:Int,
-    val comments: ArrayList<Comment>
+    @SerializedName(value = "joinCount")
+    val participants:Int,
+    val comments: ArrayList<Comment>,
+    val recruitingList:ArrayList<Recruit>
 ):Serializable
 
 data class GroupPost(
@@ -36,7 +39,7 @@ data class GroupPost(
     val groupCheck:Boolean,
     @SerializedName(value = "maxMember")
     val capacity:Int,
-    @SerializedName(value = "writer_nickname")
+    @SerializedName(value = "joinCount")
     val participants:Int,
     val comments: ArrayList<Comment>,
     val recruitingList:ArrayList<Recruit>
@@ -75,12 +78,6 @@ data class Friend(
     val level : String,
 )
 data class Posting(
-    val title:String,
-    val content:String,
-    val groupCheck : Boolean
-)
-
-data class GroupPosting(
     val title:String,
     val content:String,
     val groupCheck : Boolean,
