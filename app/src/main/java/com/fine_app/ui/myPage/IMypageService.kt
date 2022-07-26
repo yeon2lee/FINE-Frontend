@@ -8,6 +8,12 @@ import retrofit2.http.Path
 
 // 서비스 인터페이스 생성
 interface IMypageService {
+    // 회원가입
+    @POST("signUp")
+    fun signUp(
+        @Body user:RequestAuthData
+    ): Call<Profile>
+
     // 프로필 생성
     @GET("myPage/{memberId}")
     fun getMyProfile(@Path("memberId") memberId: Long): Call<Profile>
