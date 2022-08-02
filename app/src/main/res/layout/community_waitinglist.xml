@@ -113,7 +113,7 @@
                 android:background="#DDDDDD" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/memberRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:nestedScrollingEnabled="false"
@@ -146,10 +146,11 @@
                 android:background="#DDDDDD" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/waitingRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:nestedScrollingEnabled="false"
-                tools:listitem="@layout/item_waitlist"/>
+                tools:listitem="@layout/item_waitlist" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

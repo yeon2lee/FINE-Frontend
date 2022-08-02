@@ -29,7 +29,6 @@ class CommunityMainFragment : Fragment() {
     ): View {
         _binding = FragmentCommunityMainBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        // API 호출
         viewMainCommunity()
         return root
     }
@@ -42,13 +41,12 @@ class CommunityMainFragment : Fragment() {
         fun bind(post: Post) {
             this.post=post
             postTitle.text=this.post.title
-            Log.d("posting", " 댓글 수 : ${this.post.commentCount}")
             commentNum.text=this.post.commentCount
             itemView.setOnClickListener{
-                viewPosting(this.post.postingId)
-                Log.d("posting", " 포스팅 postTitle : ${this.post.title}")
-                Log.d("posting", " 포스팅 아이디 : ${this.post.postingId}")
-                Log.d("posting", " 댓글 수 : ${this.post.commentCount}")
+                val postDetail= Intent(activity, PostDetail_Main::class.java)
+                postDetail.putExtra("postingId", this.post.postingId)
+                postDetail.putExtra("memberId", this.post.memberId)
+                startActivity(postDetail)
             }
         }
     }
@@ -72,7 +70,7 @@ class CommunityMainFragment : Fragment() {
 
         call.enqueue(object : retrofit2.Callback<List<Post>>{
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-                Log.d("retrofit", "메인커뮤니티목록 - 응답 성공 / t : ${response.raw()}")
+                Log.d("retrofit", "메인커뮤니티목록 - 응답 성공 / t : ${response.body().toString()}")
                 val adapter=MyAdapter(response.body()!!)
                 recyclerView=binding.recyclerView
                 recyclerView.layoutManager= LinearLayoutManager(context)
@@ -80,35 +78,6 @@ class CommunityMainFragment : Fragment() {
             }
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
                 Log.d("retrofit", "메인커뮤니티목록 - 응답 실패 / t: $t")
-            }
-        })
-    }
-    private fun viewPosting(postingId:Long){
-        val iRetrofit : IRetrofit? =
-            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val call = iRetrofit?.viewPosting(postingId = postingId ) ?:return
-
-        call.enqueue(object : retrofit2.Callback<Post>{
-
-            override fun onResponse(call: Call<Post>, response: Response<Post>) {
-                Log.d("retrofit", "메인 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
-                Log.d("retrofit", response.body().toString())
-
-                val postDetail= Intent(activity, PostDetail_Main::class.java)
-                postDetail.putExtra("nickname", response.body()?.nickname)
-                postDetail.putExtra("title", response.body()?.title)
-                postDetail.putExtra("content", response.body()?.content)
-                postDetail.putExtra("comments", response.body()?.comments)
-                postDetail.putExtra("capacity", response.body()?.capacity)
-                postDetail.putExtra("createdDate", response.body()?.createdDate)
-                postDetail.putExtra("lastModifiedDate", response.body()?.lastModifiedDate)
-                postDetail.putExtra("memberId", response.body()?.memberId)
-                postDetail.putExtra("postingId", 3)//postingId)
-                startActivity(postDetail)
-            }
-            //응답실패
-            override fun onFailure(call: Call<Post>, t: Throwable) {
-                Log.d("retrofit", "메인 커뮤니티 세부 글 - 응답 실패 / t: $t")
             }
         })
     }

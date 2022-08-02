@@ -88,6 +88,7 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
             addPost(myID, newPost)
             finish()
         }
+
     }
 
     override fun onYesButtonClick(num: Int, theme:Int) {
