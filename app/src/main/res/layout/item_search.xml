@@ -19,22 +19,10 @@
             android:layout_weight="15"
             android:hint="빅데이터 공모전 팀원 구해요"
             android:maxLength="20"
-            android:text="빅데이터 공모전 팀원 구해요"
             android:textColor="#000000"
             android:textColorHint="#000000"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/searchContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_weight="15"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="열심히 하실 분! 오프라인 온라인 모두 가능하지만 주로 오프라인 만남을 선호합니다. 지역 고려해서 참여해주세요~ 수상 목표로 몰입 있게 하고 싶은 분들 선호해요!!!!!!!!!!  활동기간은 5월~10월입니다"
-            android:textColor="#000000" />
 
     </LinearLayout>
 
@@ -48,31 +36,36 @@
             android:id="@+id/searchGroup"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="10"
+            android:layout_weight="5"
             android:hint="개인 커뮤니티"
-            android:text="개인 커뮤니티"
             android:textColor="#989898"
             android:textColorHint="#989898"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/searchDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:hint="07/31 14:39"
+            android:textColor="#989898" />
 
         <ImageView
             android:id="@+id/imageView13"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:layout_constraintEnd_toStartOf="@+id/mypage_post_comment_tv"
-            app:layout_constraintTop_toBottomOf="@+id/mypage_post_title_tv"
             app:srcCompat="@drawable/ic_comment" />
 
         <TextView
             android:id="@+id/searchComment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginRight="5sp"
             android:layout_weight="1"
-            android:text="0"
-            android:textColor="#989898"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mypage_post_title_tv" />
+            android:hint="0"
+            android:textColor="#989898" />
     </LinearLayout>
 
     <View
