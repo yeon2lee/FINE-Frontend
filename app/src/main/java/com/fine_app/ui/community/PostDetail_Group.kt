@@ -22,18 +22,26 @@ import com.fine_app.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var binding: CommunityGroupPostBinding
-    private val postingID=intent.getLongExtra("postingId", 1)
-    private val writerID:Long=intent.getLongExtra("memberId", 1)
-    private val myID:Long=1 //todo 내 id 가져오기
-    private val comments= intent.getSerializableExtra("comments") as ArrayList<Comment>
-    val adapter=MyAdapter(comments)
-    private var mark=false
-    var bookMarkId:Long=0 //todo 북마크 여부 임시
-    private var join=false //todo 참가하기 여부 임시
-    var recruitingId:Long=0
+    private lateinit var adapter: MyAdapter
+    private var postingID by Delegates.notNull<Long>()
+    private var writerID by Delegates.notNull<Long>()
+    private val myID:Long=1//todo 내 id 가져오기
+    private var postTitle by Delegates.notNull<String>()
+    private var postContent by Delegates.notNull<String>()
+    private var postWriter by Delegates.notNull<String>()
+    private var createdDate by Delegates.notNull<String>()
+    private var lastModifiedDate by Delegates.notNull<String>()
+    private var comments by Delegates.notNull<ArrayList<Comment>>()
+    private var postCapacity by Delegates.notNull<Int>()
+    private var closingCheck by Delegates.notNull<Boolean>()
+    private var recruitingList by Delegates.notNull<ArrayList<Recruit>>()
+    private var participants by Delegates.notNull<Int>()
+    private var bookMarkId:Long=0//todo 북마크 아이디
+    private var recruitingId:Long=0//todo 참가하기 아이디
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,135 +52,8 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
         }
         binding = CommunityGroupPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //정보 받아옴
-        val postTitle=intent.getStringExtra("title")
-        val postContent=intent.getStringExtra("content")
-        val postWriter=intent.getStringExtra("nickname")
-        val postCapacity=intent.getIntExtra("capacity", 0)
-        val createdDate=intent.getStringExtra("createdDate")
-        val lastModifiedDate=intent.getStringExtra("lastModifiedDate")
-        val closingCheck=intent.getBooleanExtra("closingCheck", false)
-        val recruitingList= intent.getSerializableExtra("recruitingList") as ArrayList<Recruit>
-        val participants=intent.getIntExtra("participants", 0)
-        //val postWriterImage=intent.getIntExtra("profileID", 0) //todo 사용자 이미지 표시
-
-        val token=createdDate!!.split("-", "T", ":")
-        val writtenTime=token[1]+"/"+token[2]+" "+token[3]+"/"+token[4]
-        val modifiedWrittenTime= "$writtenTime (수정됨)"
-        if(createdDate == lastModifiedDate) binding.writtenTime.text=writtenTime
-        else binding.writtenTime.text=modifiedWrittenTime
-
-        binding.postTitle.text=postTitle
-        binding.postContent.text=postContent
-        binding.writerName.text=postWriter
-        binding.max.text=postCapacity.toString()
-        binding.participants.text=participants.toString()
-        //binding.writerImage.setImageResource(postWriterImage)
-
-        binding.backButton.setOnClickListener{ //글 세부페이지 종료
-            finish()
-        }
-        binding.writerImage.setOnClickListener{ //작성자 프로필 조회
-            val userProfile = Intent(this, ShowUserProfileActivity::class.java)
-            userProfile.putExtra("memberId",writerID)
-            startActivity(userProfile)
-        }
-        val editButton=binding.editButton
-        val deleteButton=binding.deleteButton
-        val manageButton=binding.manageButton
-        val joinButton=binding.joinButton
-        val markButton=binding.markButton
-
-        if (closingCheck){
-            joinButton.visibility= INVISIBLE
-        }else{
-            joinButton.visibility= VISIBLE
-            joinButton.setOnClickListener {
-                if (join){//참여하기 취소
-                    val dialog = ConfirmDialog(this, "참여하시겠습니까?", 4, 0)
-                    dialog.isCancelable = false
-                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
-                    deleteBookMark(bookMarkId)
-                    joinButton.text="신청하기"
-                    join=false
-
-                } else{//참여하기 신청
-                    val dialog = ConfirmDialog(this, "참여하시겠습니까?", 0, 0)
-                    dialog.isCancelable = false
-                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
-                    joinButton.text="신청 취소"
-                    join=true
-                }
-            }
-        }
-
-        if(writerID != myID){ //내가 쓴 글이 아니면 수정 삭제 관리 불가
-            editButton.visibility= INVISIBLE
-            deleteButton.visibility= INVISIBLE
-            manageButton.visibility= INVISIBLE
-        }else{
-            markButton.visibility= INVISIBLE //내가 쓴 글이면 북마크 버튼 안 보임
-            joinButton.visibility= INVISIBLE //내가 쓴 글이면 참여버튼 안 보임
-            editButton.setOnClickListener{
-                val postDetail= Intent(this, PostingEdit::class.java)
-                postDetail.putExtra("postingID", postingID)
-                postDetail.putExtra("title", postTitle)
-                postDetail.putExtra("content", postContent)
-                startActivity(postDetail)
-                finish()
-            }
-            deleteButton.setOnClickListener{
-                val dialog = ConfirmDialog(this, "글을 삭제하시겠습니까?", 1,0)
-                dialog.isCancelable = false
-                dialog.show(this.supportFragmentManager, "ConfirmDialog")
-            }
-            manageButton.setOnClickListener{
-                val waitingList = Intent(this, WaitingList::class.java)
-                waitingList.putExtra("postingID", postingID)
-                waitingList.putExtra("recruitingList",recruitingList )
-                waitingList.putExtra("closingCheck",closingCheck )
-                startActivity(waitingList)
-                finish()
-            }
-            markButton.setOnClickListener{
-                if (mark){//북마크 취소
-                    val dialog = ConfirmDialog(this, "북마크를 취소하였습니다.", 2,1)
-                    dialog.isCancelable = false
-                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
-                    deleteBookMark(bookMarkId)
-                    markButton.text="북마크"
-                    mark=false
-
-                } else{//북마크 추가
-                    val dialog = ConfirmDialog(this, "북마크를 추가했습니다.", 3,1)
-                    dialog.isCancelable = false
-                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
-                    val newBookMark=BookMark(myID, postingID, bookMarkId)
-                    addBookMark(newBookMark)
-                    markButton.text="저장됨"
-                    mark=true
-                }
-            }
-        }
-//-----------------------------댓글------------------------------------------------------
-        val recyclerView:RecyclerView=binding.recyclerView
-        recyclerView.layoutManager=LinearLayoutManager(this)
-        recyclerView.adapter=adapter
-
-        val commentButton=binding.commentButton
-        commentButton.setOnClickListener{
-            var text=""
-            binding.putComment.addTextChangedListener(object: TextWatcher {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-                override fun afterTextChanged(p0: Editable?) {
-                    text=binding.putComment.text.toString()
-                }
-            })
-            val newComment=NewComment(myID, postingID, text)
-            addComment(newComment)
-        }
+        postingID=intent.getLongExtra("postingId", 1)
+        viewPosting(postingID, myID)
 
     }
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -211,12 +92,12 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
                         })
                         val newComment=NewComment(myID, postingID, text)
                         editComment(this.comment.commentId,newComment )
+                        binding.putComment.setText("")
                     }
                     else {
                         dialog.dismiss()
                         deleteComment(this.comment.commentId)
                     }
-                    adapter.notifyDataSetChanged()
                 }
                     .show()
                 true
@@ -236,11 +117,9 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
         }
         override fun getItemCount()=list.size
     }
-
-
     override fun onYesButtonClick(num: Int, theme:Int) {
         when (num) {
-            0 -> joinGroup(postingID,myID)
+            0 -> joinGroup(postingID,myID, AcceptCheck(false))
             1 -> deletePosting(postingID)
             4 -> cancelJoinGroup(recruitingId)
         }
@@ -248,7 +127,156 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
     }
 
     //---------------------------------API 연결-----------------------------------------------------
+    private fun attach(){
+        postingID=intent.getLongExtra("postingId", 1)
 
+        val token= createdDate.split("-", "T", ":")
+        val writtenTime=token[1]+"/"+token[2]+" "+token[3]+":"+token[4]
+        val modifiedWrittenTime= "$writtenTime (수정됨)"
+
+        if(createdDate == lastModifiedDate) binding.writtenTime.text=writtenTime
+        else binding.writtenTime.text=modifiedWrittenTime
+
+        binding.postTitle.text=postTitle
+        binding.postContent.text=postContent
+        binding.writerName.text=postWriter
+        binding.max.text=postCapacity.toString()
+        binding.participants.text=participants.toString()
+        //binding.writerImage.setImageResource(postWriterImage)
+
+        binding.backButton.setOnClickListener{ //글 세부페이지 종료
+            finish()
+        }
+        binding.writerImage.setOnClickListener{ //작성자 프로필 조회
+            val userProfile = Intent(this, ShowUserProfileActivity::class.java)
+            userProfile.putExtra("memberId",writerID)
+            startActivity(userProfile)
+        }
+        val editButton=binding.editButton
+        val deleteButton=binding.deleteButton
+        val manageButton=binding.manageButton
+        val joinButton=binding.joinButton
+        val markButton=binding.markButton
+
+        if (closingCheck){
+            joinButton.visibility= INVISIBLE
+        }else{
+            joinButton.visibility= VISIBLE
+            joinButton.setOnClickListener {
+                if (recruitingId!=0.toLong()){//참여하기 취소
+                    val dialog = ConfirmDialog(this, "참여를 취소하시겠습니까?", 4, 0)
+                    dialog.isCancelable = false
+                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
+
+                } else{//참여하기 신청
+                    val dialog = ConfirmDialog(this, "참여하시겠습니까?", 0, 0)
+                    dialog.isCancelable = false
+                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
+                }
+            }
+        }
+
+        if(writerID != myID){ //내가 쓴 글이 아니면 수정 삭제 관리 불가
+            editButton.visibility= INVISIBLE
+            deleteButton.visibility= INVISIBLE
+            manageButton.visibility= INVISIBLE
+            markButton.setOnClickListener{
+                if (bookMarkId!=0.toLong()){//북마크 취소
+                    val dialog = ConfirmDialog(this, "북마크를 취소하였습니다.", 2,1)
+                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
+                    deleteBookMark(bookMarkId)
+
+                } else{//북마크 추가
+                    val dialog = ConfirmDialog(this, "북마크를 추가했습니다.", 3,1)
+                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
+                    val newBookMark=BookMark(myID, postingID)
+                    addBookMark(newBookMark)
+                }
+            }
+        }else{
+            markButton.visibility= INVISIBLE //내가 쓴 글이면 북마크 버튼 안 보임
+            joinButton.visibility= INVISIBLE //내가 쓴 글이면 참여버튼 안 보임
+            editButton.setOnClickListener{
+                val postDetail= Intent(this, PostingEdit::class.java)
+                postDetail.putExtra("postingId", postingID)
+                postDetail.putExtra("title", postTitle)
+                postDetail.putExtra("content", postContent)
+                startActivity(postDetail)
+                onResume()
+            }
+            deleteButton.setOnClickListener{
+                val dialog = ConfirmDialog(this, "글을 삭제하시겠습니까?", 1,0)
+                dialog.isCancelable = false
+                dialog.show(this.supportFragmentManager, "ConfirmDialog")
+            }
+            manageButton.setOnClickListener{
+                val waitingList = Intent(this, WaitingList::class.java)
+                waitingList.putExtra("postingID", postingID)
+                waitingList.putExtra("myID", myID)
+                //waitingList.putExtra("recruitingList",recruitingList)
+                //waitingList.putExtra("closingCheck",closingCheck )
+                startActivity(waitingList)
+                onResume()
+            }
+
+        }
+//-----------------------------댓글------------------------------------------------------
+        val recyclerView:RecyclerView=binding.recyclerView
+        recyclerView.layoutManager=LinearLayoutManager(this)
+        recyclerView.adapter=adapter
+
+        var text=""
+        binding.putComment.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                text=binding.putComment.text.toString()
+            }
+        })
+
+        binding.commentButton.setOnClickListener{
+            val newComment=NewComment(myID, postingID, text)
+            addComment(newComment)
+            binding.putComment.setText("")
+        }
+    }
+    private fun viewPosting(postingId:Long, memberId: Long){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val call = iRetrofit?.viewPosting(postingId = postingId , memberId=memberId ) ?:return
+
+        call.enqueue(object :Callback<Post>{
+
+            override fun onResponse(call: Call<Post>, response: Response<Post>) {
+                Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
+                Log.d("retrofit", response.body().toString())
+                postTitle=response.body()!!.title
+                postContent=response.body()!!.content
+                postWriter=response.body()!!.nickname
+                writerID=response.body()!!.memberId
+                createdDate=response.body()!!.createdDate
+                lastModifiedDate=response.body()!!.lastModifiedDate
+                // postWriterImage=intent.getIntExtra("profileID", 0) //todo 사용자 이미지 표시
+                comments=response.body()!!.comments
+                adapter=MyAdapter(comments)
+                postCapacity=response.body()!!.capacity
+                closingCheck=response.body()!!.closingCheck
+                recruitingList=response.body()!!.recruitingList
+                participants=response.body()!!.participants
+                bookMarkId=response.body()!!.checkBookmarkId
+                recruitingId=response.body()!!.checkRecruitingId
+                if(bookMarkId==0.toLong()) binding.markButton.text="북마크"
+                else binding.markButton.text="저장됨"
+                if(recruitingId==0.toLong()) binding.joinButton.text="참여하기"
+                else binding.joinButton.text="참여 취소"
+                attach()
+            }
+            //응답실패
+            override fun onFailure(call: Call<Post>, t: Throwable) {
+                Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 실패 / t: $t")
+            }
+        })
+    }
     private fun deletePosting(PostingID:Long?){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
@@ -266,17 +294,17 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             }
         })
     }
-    private fun joinGroup(PostingID:Long?, memberId:Long){
+    private fun joinGroup(PostingID:Long?, memberId:Long, acceptCheck:AcceptCheck){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= PostingID ?:0
-        val call = iRetrofit?.joinGroup(postingId = term, memberId=memberId, false) ?:return
-
+        val call = iRetrofit?.joinGroup(postingId = term, memberId=memberId, acceptCheck = acceptCheck) ?:return
         call.enqueue(object : Callback<Join>{
             //응답성공
             override fun onResponse(call: Call<Join>, response: Response<Join>) {
                 Log.d("retrofit", "참여하기 - 응답 성공 / t : ${response.raw()}")
-                recruitingId=response.body()!!.id
+                Log.d("retrofit", "참여하기 - 응답 성공 / t : ${response.body().toString()}")
+                onResume()
             }
             //응답실패
             override fun onFailure(call: Call<Join>, t: Throwable) {
@@ -294,6 +322,7 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             //응답성공
             override fun onResponse(call: Call<Long>, response: Response<Long>) {
                 Log.d("retrofit", "참여하기 신청 취소 - 응답 성공 / t : ${response.raw()}")
+                onResume()
             }
             //응답실패
             override fun onFailure(call: Call<Long>, t: Throwable) {
@@ -304,16 +333,17 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
     private fun addBookMark(BookMark: BookMark){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val call = iRetrofit?.addBookMark(BookMark) ?:return
+        val call = iRetrofit?.addBookMark(BookMark= BookMark) ?:return
 
-        call.enqueue(object : Callback<BookMark>{
+        call.enqueue(object : Callback<MarkId>{
             //응답성공
-            override fun onResponse(call: Call<BookMark>, response: Response<BookMark>) {
-                Log.d("retrofit", "북마크 추가 - 응답 성공 / t : ${response.raw()}")
-                bookMarkId=response.body()!!.bookmarkId
+            override fun onResponse(call: Call<MarkId>, response: Response<MarkId>) {
+                Log.d("retrofit", "북마크 추가 - 응답 성공 / t : ${response.body().toString()}")
+                bookMarkId=response.body()!!.bookmark_id
+                onResume()
             }
             //응답실패
-            override fun onFailure(call: Call<BookMark>, t: Throwable) {
+            override fun onFailure(call: Call<MarkId>, t: Throwable) {
                 Log.d("retrofit", "북마크 추가 - 응답 실패 / t: $t")
             }
         })
@@ -322,12 +352,13 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= bookMarkId ?:0
-        val call = iRetrofit?.deleteBookMark(bookMarkId=term) ?:return
+        val call = iRetrofit?.deleteBookMark(bookmarkId=term) ?:return
 
         call.enqueue(object : Callback<Long>{
             //응답성공
             override fun onResponse(call: Call<Long>, response: Response<Long>) {
                 Log.d("retrofit", "북마크 삭제 - 응답 성공 / t : ${response.raw()}")
+                onResume()
             }
             //응답실패
             override fun onFailure(call: Call<Long>, t: Throwable) {
@@ -340,14 +371,14 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val call = iRetrofit?.addComment(comment) ?:return
 
-        call.enqueue(object : Callback<NewComment>{
+        call.enqueue(object : Callback<Comment>{
             //응답성공
-            override fun onResponse(call: Call<NewComment>, response: Response<NewComment>) {
+            override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
                 Log.d("retrofit", "댓글 추가 - 응답 성공 / t : ${response.raw()}")
-                adapter.notifyDataSetChanged()
+                onResume()
             }
             //응답실패
-            override fun onFailure(call: Call<NewComment>, t: Throwable) {
+            override fun onFailure(call: Call<Comment>, t: Throwable) {
                 Log.d("retrofit", "댓글 추가 - 응답 실패 / t: $t")
             }
         })
@@ -362,6 +393,7 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             //응답성공
             override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
                 Log.d("retrofit", "댓글 수정 - 응답 성공 / t : ${response.raw()}")
+                onResume()
             }
             //응답실패
             override fun onFailure(call: Call<Comment>, t: Throwable) {
@@ -379,11 +411,16 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             //응답성공
             override fun onResponse(call: Call<Long>, response: Response<Long>) {
                 Log.d("retrofit", "댓글 삭제 - 응답 성공 / t : ${response.raw()}")
+                onResume()
             }
             //응답실패
             override fun onFailure(call: Call<Long>, t: Throwable) {
                 Log.d("retrofit", "댓글 삭제 - 응답 실패 / t: $t")
             }
         })
+    }
+    override fun onResume() {
+        super.onResume()
+        viewPosting(intent.getLongExtra("postingId", 1), myID)
     }
 }
