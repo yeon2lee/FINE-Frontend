@@ -1,6 +1,7 @@
 package com.fine_app.retrofit
 
 import com.fine_app.*
+import com.fine_app.ui.MyPage.Profile
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -67,6 +68,9 @@ interface IRetrofit {
     fun deleteBookMark(@Path("bookmarkId") bookmarkId:Long):Call<Long>
 
     //친구
+    @GET("/mypage/{memberId}")
+    fun getMyProfile(@Path("memberId") memberId: Long): Call<Member>
+
     @GET("/followlist/{memberId}")
     fun viewFriendList(@Path("memberId") memberId:Long):Call<List<Friend>>
 

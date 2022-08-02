@@ -8,17 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fine_app.Friend
+import com.fine_app.Member
 import com.fine_app.R
 import com.fine_app.databinding.FragmentFriendlistBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
+import com.fine_app.ui.MyPage.Profile
+import com.fine_app.ui.MyPage.ServiceCreator
 import com.fine_app.ui.community.ShowUserProfileActivity
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class FriendListFragment : Fragment() {
@@ -29,6 +34,7 @@ class FriendListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentFriendlistBinding.inflate(inflater, container, false)
+        getMyProfile(myId)
         viewFriendList(myId)
         return binding.root
     }
@@ -65,12 +71,32 @@ class FriendListFragment : Fragment() {
         }
     }
 
+    private fun getMyProfile(myID:Long){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val call = iRetrofit?.getMyProfile(memberId=myID) ?:return
+
+        call.enqueue(object : Callback<Member>{
+
+            override fun onResponse(call: Call<Member>, response: Response<Member>) {
+                Log.d("retrofit", "내 정보 - 응답 성공 / t : ${response.body().toString()}")
+                binding.myName.text=response.body()!!.nickname
+                binding.myIntro.text=response.body()!!.intro
+                //todo 프로필 사진 연결
+                //todo 레벨 연결
+            }
+
+            override fun onFailure(call: Call<Member>, t: Throwable) {
+                Log.d("retrofit", "내 정보 - 응답 실패 / t: $t")
+            }
+        })
+    }
     private fun viewFriendList(memberId:Long){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val call = iRetrofit?.viewFriendList(memberId=memberId) ?:return
 
-        call.enqueue(object : retrofit2.Callback<List<Friend>>{
+        call.enqueue(object : Callback<List<Friend>>{
 
             override fun onResponse(call: Call<List<Friend>>, response: Response<List<Friend>>) {
                 Log.d("retrofit", "친구 목록 - 응답 성공 / t : ${response.raw()}")
