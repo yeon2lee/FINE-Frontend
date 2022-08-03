@@ -43,7 +43,7 @@ class CommunityGroupFragment : Fragment() {
         return root
     }
 
-    inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){ //, View.OnClickListener
+    inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
         private lateinit var post: Post
         private val postTitle: TextView =itemView.findViewById(R.id.groupPost_title)
         private val participant: TextView =itemView.findViewById(R.id.groupPost_participant)
@@ -67,7 +67,9 @@ class CommunityGroupFragment : Fragment() {
                 image.visibility=View.VISIBLE
             }
             itemView.setOnClickListener{
-                viewPosting(this.post.postingId)
+                val postDetail= Intent(activity, PostDetail_Group::class.java)
+                postDetail.putExtra("postingId", this.post.postingId)
+                startActivity(postDetail)
             }
         }
 
@@ -140,39 +142,6 @@ class CommunityGroupFragment : Fragment() {
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
                 Log.d("retrofit", "그룹커뮤니티 완료 목록 - 응답 실패 / t: $t")
             }
-        })
-    }
-    private fun viewPosting(postingId:Long?){
-        val iRetrofit : IRetrofit? =
-            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val term:Long= postingId ?:0
-        val call = iRetrofit?.viewPosting(postingId = term) ?:return
-
-        //enqueue 하는 순간 네트워킹
-        call.enqueue(object : retrofit2.Callback<Post>{
-            //응답성공
-            override fun onResponse(call: Call<Post>, response: Response<Post>) {
-                Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
-
-                val postDetail= Intent(activity, PostDetail_Group::class.java)
-                postDetail.putExtra("nickname", response.body()!!.nickname)
-                postDetail.putExtra("title", response.body()!!.title)
-                postDetail.putExtra("content", response.body()!!.content)
-                postDetail.putExtra("comments", response.body()!!.comments)
-                postDetail.putExtra("capacity", response.body()!!.capacity)
-                postDetail.putExtra("participants", response.body()!!.participants)
-                postDetail.putExtra("lastModifiedDate", response.body()!!.lastModifiedDate)
-                postDetail.putExtra("closingCheck", response.body()!!.closingCheck)
-                postDetail.putExtra("recruitingList", response.body()!!.recruitingList)
-                postDetail.putExtra("memberId", response.body()!!.memberId)
-                postDetail.putExtra("postingId", postingId)
-                startActivity(postDetail)
-            }
-            //응답실패
-            override fun onFailure(call: Call<Post>, t: Throwable) {
-                Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 실패 / t: $t")
-            }
-
         })
     }
 
