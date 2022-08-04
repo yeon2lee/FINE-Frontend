@@ -17,6 +17,7 @@ import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
 import com.fine_app.ui.myPage.AuthPhoneActivity
 import com.fine_app.ui.myPage.ManageBookmarkActivity
+import com.fine_app.ui.myPage.ManageGroupActivity
 import com.fine_app.ui.myPage.SettingActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -77,6 +78,13 @@ class MyPageFragment : Fragment() {
         binding.mypageProfileAuthPhoneTv.setOnClickListener {
             activity?.let{
                 val intent = Intent(context, AuthPhoneActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        binding.tvManageGroup.setOnClickListener {
+            activity?.let{
+                val intent = Intent(context, ManageGroupActivity::class.java)
                 startActivity(intent)
             }
         }

@@ -372,7 +372,7 @@
         app:srcCompat="@drawable/ic_group" />
 
     <TextView
-        android:id="@+id/textView44"
+        android:id="@+id/tvManageGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -427,7 +427,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/view9"
-        app:layout_constraintTop_toBottomOf="@+id/textView44"
+        app:layout_constraintTop_toBottomOf="@+id/tvManageGroup"
         app:srcCompat="@drawable/ic_setting" />
 
     <TextView
