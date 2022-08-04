@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.fine_app.R
 import com.fine_app.databinding.FragmentMypageBinding
 import com.fine_app.ui.myPage.ManageBookmarkActivity
 import com.fine_app.ui.myPage.SettingActivity
@@ -90,6 +91,22 @@ class MyPageFragment : Fragment() {
                     userData = response.body()!!
                     binding.tvNickname.setText(userData.nickname)
                     binding.tvIntro.setText(userData.intro)
+                    var imageResource = userData.userImageNum
+                    when (imageResource) {
+                        0 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile)
+                        1 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile1)
+                        2 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile2)
+                        3 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile3)
+                        4 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile4)
+                        5 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile5)
+                        6 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile6)
+                        else -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile)
+                    }
+                    binding.mypageProfileLevel.setText("새싹 " + userData.level + "단계")
+                    binding.mypageProfileFriendNumTv.setText(userData.roomCollectionList.size.toString())
+                    binding.mypageProfileKeyword1.setText("키워드" + userData.keyword1)
+                    binding.mypageProfileKeyword2.setText("키워드" + userData.keyword2)
+                    binding.mypageProfileKeyword3.setText("키워드" + userData.keyword3)
                 } else {
                     Toast.makeText(context, "프로필 정보 불러오기 실패", Toast.LENGTH_SHORT).show()
                 }

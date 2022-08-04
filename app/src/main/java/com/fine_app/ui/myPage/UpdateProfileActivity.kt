@@ -36,8 +36,13 @@ class UpdateProfileActivity : AppCompatActivity() {
 
     private fun editProfile() {
         val requestProfileData = RequestProfileData(
+            userImageNum = 1,
             nickname = binding.etNickname.text.toString(),
-            intro = binding.etInfo.text.toString()
+            intro = binding.etInfo.text.toString(),
+            keyword1 = "1",
+            keyword2 = "2",
+            keyword3 = "3"
+
         )
         userId = 1
 
