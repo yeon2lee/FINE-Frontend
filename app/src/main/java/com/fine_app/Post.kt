@@ -53,6 +53,7 @@ data class CommentMember(
 
 data class Member (
     val id: Long,
+    val userImageNum: Int,
     val nickname: String,
     val intro:String,
     val password:String,
