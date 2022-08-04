@@ -6,12 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.view.get
-import com.fine_app.R
 import com.fine_app.databinding.ActivityAuthPhoneBinding
-import com.fine_app.ui.MyPage.Post
-import com.fine_app.ui.MyPage.Profile
-import com.fine_app.ui.MyPage.RequestProfileData
 import com.fine_app.ui.MyPage.ServiceCreator
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,11 +17,11 @@ class AuthPhoneActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthPhoneBinding
     var phoneNumber = "01012345678"
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityAuthPhoneBinding.inflate(layoutInflater)
         val spinner: Spinner = binding.spinner3
         val items = arrayOf("010", "011", "017", "02")
 
         super.onCreate(savedInstanceState)
-        binding = ActivityAuthPhoneBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         spinner.adapter= ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
@@ -35,20 +30,29 @@ class AuthPhoneActivity : AppCompatActivity() {
             ) {
                 when (position) {
                     0 -> phoneNumber = "010"
-                    1 -> phoneNumber = "010"
-                    2 -> phoneNumber = "011"
-                    3 -> phoneNumber = "017"
-                    4 -> phoneNumber = "02"
+                    1 -> phoneNumber = "011"
+                    2 -> phoneNumber = "017"
+                    3 -> phoneNumber = "02"
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
 
+    fun onClick(v: View?) {
+        sendAuthMesssage()
+        binding.authPhoneMessage.setText("인증번호를 발송했습니다.")
+    }
+
+    fun btnClick(v: View?) {
+        verifyAuth()
+    }
+
     // todo 전화번호로 인증 번호 전송
     private fun sendAuthMesssage() {
         val userId = 1.toLong()
-        phoneNumber.plus(binding.authPhoneCertEt.text.toString())
+        phoneNumber = phoneNumber + binding.authPhoneNumberEt.text.toString()
+        Toast.makeText(this@AuthPhoneActivity, phoneNumber, Toast.LENGTH_SHORT).show()
 
         val call: Call<Long> = ServiceCreator.service.sendAuthMesssage(userId, phoneNumber)
 

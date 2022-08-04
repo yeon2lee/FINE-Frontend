@@ -70,7 +70,7 @@ class ShowUserProfileActivity : AppCompatActivity() {
                     }
 
                     // 내 프로필 보기
-                    if (userId.equals(1)) { // TODO: 내 아이디 불러오기
+                    if (userId.toInt() == 1) { // TODO: 내 아이디 불러오기
                         binding.profileUserFollowBtn.setVisibility(View.INVISIBLE)
                     } else {
                         binding.profileUserFollowBtn.setVisibility(View.VISIBLE)

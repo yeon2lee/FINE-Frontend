@@ -19,8 +19,11 @@ import com.fine_app.databinding.FragmentFriendlistBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
+import com.fine_app.ui.MyPage.ManagePostActivity
+import com.fine_app.ui.MyPage.MyPageFragment
 import com.fine_app.ui.MyPage.Profile
 import com.fine_app.ui.MyPage.ServiceCreator
+import com.fine_app.ui.community.PostDetail_Group
 import com.fine_app.ui.community.ShowUserProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,12 +33,20 @@ class FriendListFragment : Fragment() {
     private var _binding: FragmentFriendlistBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private val myId:Long=2 // TODO: 내 아이디 불러오기
+    private val myId:Long=1 // TODO: 내 아이디 불러오기
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentFriendlistBinding.inflate(inflater, container, false)
         getMyProfile(myId)
         viewFriendList(myId)
+
+        binding.myImage.setOnClickListener {
+            activity?.let{
+                val intent = Intent(context, ShowUserProfileActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
         return binding.root
     }
 
@@ -50,7 +61,9 @@ class FriendListFragment : Fragment() {
             this.friend=friend
             friendName.text=this.friend.nickname
             friendIntro.text=this.friend.intro
+            // todo 사용자 프로필
             friendProfileImage.setImageResource(R.drawable.profile1)
+            // todo 사용자 레벨
             friendLevelImage.setImageResource(R.drawable.ic_sprout)
 
             itemView.setOnClickListener{
@@ -62,7 +75,7 @@ class FriendListFragment : Fragment() {
     }
     inner class MyAdapter(private val list:List<Friend>): RecyclerView.Adapter<MyViewHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-            val view=layoutInflater.inflate(R.layout.item_postlist_group, parent, false)
+            val view=layoutInflater.inflate(R.layout.item_friendlist, parent, false)
             return MyViewHolder(view)
         }
         override fun getItemCount(): Int = list.size
@@ -74,13 +87,11 @@ class FriendListFragment : Fragment() {
     }
 
     private fun getMyProfile(myID:Long){
-        val iRetrofit : IRetrofit? =
-            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val call = iRetrofit?.getMyProfile(memberId=myID) ?:return
+        val call: Call<Profile> = ServiceCreator.service.getMyProfile(myID)
 
-        call.enqueue(object : Callback<Member>{
+        call.enqueue(object : Callback<Profile>{
 
-            override fun onResponse(call: Call<Member>, response: Response<Member>) {
+            override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
                 Log.d("retrofit", "내 정보 - 응답 성공 / t : ${response.body().toString()}")
                 binding.myName.text=response.body()!!.nickname
                 binding.myIntro.text=response.body()!!.intro
@@ -98,7 +109,7 @@ class FriendListFragment : Fragment() {
                 //todo 레벨 연결
             }
 
-            override fun onFailure(call: Call<Member>, t: Throwable) {
+            override fun onFailure(call: Call<Profile>, t: Throwable) {
                 Log.d("retrofit", "내 정보 - 응답 실패 / t: $t")
             }
         })

@@ -9,7 +9,7 @@ import retrofit2.http.Path
 // 서비스 인터페이스 생성
 interface IMypageService {
     // 회원가입
-    @POST("signUp")
+    @POST("signup")
     fun signUp(
         @Body user:RequestAuthData
     ): Call<Profile>

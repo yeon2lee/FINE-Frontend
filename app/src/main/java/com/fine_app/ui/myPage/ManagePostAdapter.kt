@@ -32,6 +32,7 @@ class ManagePostAdapter(private val myDataset: List<Post>):
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as MyViewHolder).binding
         binding.mypagePostTitleTv.text = myDataset[position].title
+        binding.mypagePostContentTv.text = myDataset[position].content
         if (myDataset[position].groupCheck) {
             binding.mypagePostCommunityTypeTv.text = "그룹 커뮤니티"
         } else {

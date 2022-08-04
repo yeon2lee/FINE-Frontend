@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.fine_app.databinding.ActivitySettingBinding
 import com.fine_app.ui.MyPage.Profile
 import com.fine_app.ui.MyPage.ServiceCreator
+import com.fine_app.ui.MyPage.UpdateProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +21,11 @@ class SettingActivity : AppCompatActivity() {
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.settingProfileTv.setOnClickListener {
+            val intent = Intent(this, UpdateProfileActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.tvSecession.setOnClickListener{
             userSecession()
         }
@@ -31,7 +37,7 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun userSecession() {
-        val call: Call<Profile> = ServiceCreator.service.userSecession(userId.toLong())
+        val call: Call<Profile> = ServiceCreator.service.userSecession(userId.toLong()) // todo 유저 아이디 불러오기
 
         call.enqueue(object : Callback<Profile> {
             override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
