@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Fine_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.myPage.AuthPhoneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.myPage.ManageGroupActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.myPage.SettingActivity"
             android:exported="false" />
         <activity

@@ -74,4 +74,12 @@ interface IRetrofit {
     @GET("/followlist/{memberId}")
     fun viewFriendList(@Path("memberId") memberId:Long):Call<List<Friend>>
 
+    // 팔로우
+    @POST("/follow/{friendId}/{memberId}")
+    fun followFriend(@Path("friendId") friendId:Long, @Path("memberId") memberId:Long): Call<List<Friend>>
+
+    // 팔로우 취소
+    @DELETE("follow/{followId}/delete")
+    fun cancelFollow(@Path("followId") followId:Long): Call<Long>
+
 }
