@@ -17,7 +17,7 @@ data class Post(
     val createdDate:String,
     val lastModifiedDate:String,
     val closingCheck:Boolean,
-    val groupCheck:Boolean,
+    val group_check:Boolean,
     val checkRecruitingId:Long,
     val checkBookmarkId:Long,
     val maxMember:Int,

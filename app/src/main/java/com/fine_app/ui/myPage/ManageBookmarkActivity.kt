@@ -69,7 +69,7 @@ class ManageBookmarkActivity : AppCompatActivity() {
         manageAdapter.setItemClickListener(object: ManagePostAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
                 var postDetail= Intent(this@ManageBookmarkActivity, PostDetail_Main::class.java)
-                if (userData[position].groupCheck) {
+                if (userData[position].group_check) {
                     postDetail= Intent(this@ManageBookmarkActivity, PostDetail_Group::class.java)
                 }
                 postDetail.putExtra("postingId", userData[position].postingId)

@@ -46,6 +46,7 @@ class AuthPhoneActivity : AppCompatActivity() {
 
     fun btnClick(v: View?) {
         verifyAuth()
+        finish()
     }
 
     // todo 전화번호로 인증 번호 전송
