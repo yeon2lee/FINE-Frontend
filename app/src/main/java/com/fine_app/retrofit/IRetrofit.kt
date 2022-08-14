@@ -70,7 +70,7 @@ interface IRetrofit {
 //    @GET("/mypage/{memberId}")
 //    fun getMyProfile(@Path("memberId") memberId: Long): Call<Member>
 
-    @GET("/followlist/{memberId}")
+    @GET("/followList/{memberId}")
     fun viewFriendList(@Path("memberId") memberId:Long):Call<List<Friend>>
 
     // 팔로우
@@ -78,7 +78,7 @@ interface IRetrofit {
     fun followFriend(@Path("friendId") friendId:Long, @Path("memberId") memberId:Long): Call<List<Friend>>
 
     // 팔로우 취소
-    @DELETE("follow/{followId}/delete")
-    fun cancelFollow(@Path("followId") followId:Long): Call<Long>
+    @DELETE("/follow/delete/{friendId}/{memberId}")
+    fun cancelFollow(@Path("friendId") friendId:Long, @Path("memberId") memberId:Long): Call<Long>
 
 }

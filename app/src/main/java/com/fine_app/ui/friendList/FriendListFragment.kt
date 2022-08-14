@@ -33,7 +33,7 @@ class FriendListFragment : Fragment() {
     private var _binding: FragmentFriendlistBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private val myId:Long=1 // TODO: 내 아이디 불러오기
+    private val myId:Long=2 // TODO: 내 아이디 불러오기
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentFriendlistBinding.inflate(inflater, container, false)
@@ -93,20 +93,22 @@ class FriendListFragment : Fragment() {
 
             override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
                 Log.d("retrofit", "내 정보 - 응답 성공 / t : ${response.body().toString()}")
-                binding.myName.text=response.body()!!.nickname
-                binding.myIntro.text=response.body()!!.intro
-                var imageResource = response.body()!!.userImageNum
-                when (imageResource) {
-                    0 -> binding.myImage.setImageResource(R.drawable.profile)
-                    1 -> binding.myImage.setImageResource(R.drawable.profile1)
-                    2 -> binding.myImage.setImageResource(R.drawable.profile2)
-                    3 -> binding.myImage.setImageResource(R.drawable.profile3)
-                    4 -> binding.myImage.setImageResource(R.drawable.profile4)
-                    5 -> binding.myImage.setImageResource(R.drawable.profile5)
-                    6 -> binding.myImage.setImageResource(R.drawable.profile6)
-                    else -> binding.myImage.setImageResource(R.drawable.profile)
+                if (response.body() != null) {
+                    binding.myName.text=response.body()!!.nickname
+                    binding.myIntro.text=response.body()!!.intro
+                    var imageResource = response.body()!!.userImageNum
+                    when (imageResource) {
+                        0 -> binding.myImage.setImageResource(R.drawable.profile)
+                        1 -> binding.myImage.setImageResource(R.drawable.profile1)
+                        2 -> binding.myImage.setImageResource(R.drawable.profile2)
+                        3 -> binding.myImage.setImageResource(R.drawable.profile3)
+                        4 -> binding.myImage.setImageResource(R.drawable.profile4)
+                        5 -> binding.myImage.setImageResource(R.drawable.profile5)
+                        6 -> binding.myImage.setImageResource(R.drawable.profile6)
+                        else -> binding.myImage.setImageResource(R.drawable.profile)
+                    }
+                    //todo 레벨 연결
                 }
-                //todo 레벨 연결
             }
 
             override fun onFailure(call: Call<Profile>, t: Throwable) {

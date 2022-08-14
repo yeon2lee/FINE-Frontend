@@ -19,6 +19,7 @@ data class Profile (
     val keyword1: String,
     val keyword2: String,
     val keyword3: String,
+    var follower: Int,
     val roomCollectionList: ArrayList<Friend>,
 )
 
