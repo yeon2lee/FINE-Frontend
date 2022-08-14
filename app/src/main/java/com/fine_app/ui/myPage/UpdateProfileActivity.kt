@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class UpdateProfileActivity : AppCompatActivity() {
     lateinit var _binding: ActivityMypageProfileBinding
-    var userId: Long = 0
+    var userId: Long = 2
     lateinit var userData: Profile
     var checked = arrayOfNulls<String>(3)
     var size = 0

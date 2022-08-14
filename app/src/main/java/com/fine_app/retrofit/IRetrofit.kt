@@ -73,6 +73,23 @@ interface IRetrofit {
     @GET("/followList/{memberId}")
     fun viewFriendList(@Path("memberId") memberId:Long):Call<List<Friend>>
 
+    @GET("/followlist/search/{memberId}")
+    fun searchFriend(@Path("memberId") memberId:Long, @Query("search") search:String) :Call<List<Friend>>
+
+    //메인
+    @GET("/main/popular")
+    fun viewPopularPosting():Call<List<Post>>
+
+    //채팅
+    @POST("/room/solo")
+    fun addPersonalChatRoom( @Query("myId") myId:Long, @Query("receiverId") receiverId:Long ):Call<CreateChatRoom>
+
+    @POST("/room/group")
+    fun addGroupChatRoom(@Query("myId") myId:Long, @Query("roomName") roomName:String, @Query("receiverList") receiverList:List<Long> ):Call<CreateChatRoom>
+
+    @GET("/rooms/my/{memberId}")
+    fun viewChatList(@Path("memberId") memberId:Long) :Call<List<ChatRoom>>
+    
     // 팔로우
     @POST("/follow/{friendId}/{memberId}")
     fun followFriend(@Path("friendId") friendId:Long, @Path("memberId") memberId:Long): Call<List<Friend>>
@@ -80,5 +97,4 @@ interface IRetrofit {
     // 팔로우 취소
     @DELETE("/follow/delete/{friendId}/{memberId}")
     fun cancelFollow(@Path("friendId") friendId:Long, @Path("memberId") memberId:Long): Call<Long>
-
 }

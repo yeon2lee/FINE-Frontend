@@ -7,8 +7,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.fine_app.databinding.ActivityMainBinding
+import com.fine_app.ui.home.FriendRecommendFragment
+import com.fine_app.ui.home.HomeFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
 

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,14 +38,12 @@ class FriendListFragment : Fragment() {
         _binding = FragmentFriendlistBinding.inflate(inflater, container, false)
         getMyProfile(myId)
         viewFriendList(myId)
-
         binding.myImage.setOnClickListener {
             activity?.let{
                 val intent = Intent(context, ShowUserProfileActivity::class.java)
                 startActivity(intent)
             }
         }
-
         return binding.root
     }
 

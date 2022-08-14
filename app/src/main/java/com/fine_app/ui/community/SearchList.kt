@@ -22,7 +22,7 @@ import retrofit2.Response
 class SearchList : AppCompatActivity() {
     private lateinit var binding: CommunitySearchBinding
     private lateinit var recyclerView: RecyclerView
-    private val myID:Long=1 //todo 내 id 가져오기
+    private val myID:Long=2 //todo 내 id 가져오기
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

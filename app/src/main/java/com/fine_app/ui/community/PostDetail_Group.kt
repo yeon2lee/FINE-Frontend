@@ -29,7 +29,7 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var adapter: MyAdapter
     private var postingID by Delegates.notNull<Long>()
     private var writerID by Delegates.notNull<Long>()
-    private val myID:Long=1//todo 내 id 가져오기
+    private val myID:Long=2//todo 내 id 가져오기
     private var postTitle by Delegates.notNull<String>()
     private var postContent by Delegates.notNull<String>()
     private var postWriter by Delegates.notNull<String>()
