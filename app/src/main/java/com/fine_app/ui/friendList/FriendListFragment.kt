@@ -18,6 +18,11 @@ import com.fine_app.databinding.FragmentFriendlistBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
+import com.fine_app.ui.MyPage.ManagePostActivity
+import com.fine_app.ui.MyPage.MyPageFragment
+import com.fine_app.ui.MyPage.Profile
+import com.fine_app.ui.MyPage.ServiceCreator
+import com.fine_app.ui.community.PostDetail_Group
 import com.fine_app.ui.community.ShowUserProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,9 +38,11 @@ class FriendListFragment : Fragment() {
         _binding = FragmentFriendlistBinding.inflate(inflater, container, false)
         getMyProfile(myId)
         viewFriendList(myId)
-        binding.findFriendButton.setOnClickListener{
-            val search= Intent(activity, SearchFriendList::class.java)
-            startActivity(search)
+        binding.myImage.setOnClickListener {
+            activity?.let{
+                val intent = Intent(context, ShowUserProfileActivity::class.java)
+                startActivity(intent)
+            }
         }
         return binding.root
     }
@@ -51,6 +58,10 @@ class FriendListFragment : Fragment() {
             this.friend=friend
             friendName.text=this.friend.nickname
             friendIntro.text=this.friend.intro
+            // todo 사용자 프로필
+            friendProfileImage.setImageResource(R.drawable.profile1)
+            // todo 사용자 레벨
+            friendLevelImage.setImageResource(R.drawable.ic_sprout)
 
             itemView.setOnClickListener{
                 val userProfile = Intent(activity, ShowUserProfileActivity::class.java)
@@ -73,21 +84,31 @@ class FriendListFragment : Fragment() {
     }
 
     private fun getMyProfile(myID:Long){
-        val iRetrofit : IRetrofit? =
-            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val call = iRetrofit?.getMyProfile(memberId=myID) ?:return
+        val call: Call<Profile> = ServiceCreator.service.getMyProfile(myID)
 
-        call.enqueue(object : Callback<Member>{
+        call.enqueue(object : Callback<Profile>{
 
-            override fun onResponse(call: Call<Member>, response: Response<Member>) {
+            override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
                 Log.d("retrofit", "내 정보 - 응답 성공 / t : ${response.body().toString()}")
-                binding.myName.text=response.body()!!.nickname
-                binding.myIntro.text=response.body()!!.intro
-                //todo 프로필 사진 연결
-                //todo 레벨 연결
+                if (response.body() != null) {
+                    binding.myName.text=response.body()!!.nickname
+                    binding.myIntro.text=response.body()!!.intro
+                    var imageResource = response.body()!!.userImageNum
+                    when (imageResource) {
+                        0 -> binding.myImage.setImageResource(R.drawable.profile)
+                        1 -> binding.myImage.setImageResource(R.drawable.profile1)
+                        2 -> binding.myImage.setImageResource(R.drawable.profile2)
+                        3 -> binding.myImage.setImageResource(R.drawable.profile3)
+                        4 -> binding.myImage.setImageResource(R.drawable.profile4)
+                        5 -> binding.myImage.setImageResource(R.drawable.profile5)
+                        6 -> binding.myImage.setImageResource(R.drawable.profile6)
+                        else -> binding.myImage.setImageResource(R.drawable.profile)
+                    }
+                    //todo 레벨 연결
+                }
             }
 
-            override fun onFailure(call: Call<Member>, t: Throwable) {
+            override fun onFailure(call: Call<Profile>, t: Throwable) {
                 Log.d("retrofit", "내 정보 - 응답 실패 / t: $t")
             }
         })

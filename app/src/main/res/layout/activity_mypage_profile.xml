@@ -88,42 +88,42 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/profile_setting_image1_iv"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profile1" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/profile_setting_image2_iv"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profile2" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/profile_setting_image3_iv"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profile3" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/profile_setting_image4_iv"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profile4" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/profile_setting_image5_iv"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profile6" />
 
             <ImageView
-                android:id="@+id/imageView14"
+                android:id="@+id/profile_setting_image6_iv"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -200,136 +200,179 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="214dp"
-        android:layout_marginStart="30dp">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="69dp">
-
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#A4CA83"
-                android:text="취미" />
-
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:backgroundTint="#A4CA83"
-                android:text="성별" />
-
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:backgroundTint="#A4CA83"
-                android:text="전공" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="95dp"
-            android:layout_marginTop="15dp">
-
-            <Button
-                android:id="@+id/button11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="코딩"
-                android:textColor="@color/black" />
-
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:backgroundTint="@color/white"
-                android:text="Java"
-                android:textColor="#615A55" />
-
-            <Button
-                android:id="@+id/button13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:backgroundTint="@color/white"
-                android:text="Python"
-                android:textColor="#615A55" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/white">
-
-            <Button
-                android:id="@+id/button14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Kotlin"
-                android:textColor="#615A55" />
-
-            <Button
-                android:id="@+id/button16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:backgroundTint="@color/white"
-                android:text="Typescript"
-                android:textColor="#615A55" />
-
-            <Button
-                android:id="@+id/button15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:backgroundTint="@color/white"
-                android:text="C++"
-                android:textColor="#615A55" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/button19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="C#"
-                android:textColor="#615A55" />
-
-            <Button
-                android:id="@+id/button18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Go"
-                android:textColor="#615A55" />
-
-            <Button
-                android:id="@+id/button17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Javascript"
-                android:textColor="#615A55" />
-        </TableRow>
-    </TableLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/profile_keyword1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/profile_keyword2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드2"
+            app:layout_constraintEnd_toStartOf="@+id/profile_keyword3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/profile_keyword1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/profile_keyword3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/profile_keyword4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드4"
+            app:layout_constraintBottom_toTopOf="@+id/profile_keyword10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_keyword1"
+            app:layout_constraintVertical_bias="0.17" />
+
+        <Button
+            android:id="@+id/profile_keyword5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드5"
+            app:layout_constraintBottom_toTopOf="@+id/profile_keyword11"
+            app:layout_constraintEnd_toStartOf="@+id/profile_keyword6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/profile_keyword4"
+            app:layout_constraintTop_toBottomOf="@+id/profile_keyword2"
+            app:layout_constraintVertical_bias="0.17" />
+
+        <Button
+            android:id="@+id/profile_keyword6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드6"
+            app:layout_constraintBottom_toTopOf="@+id/profile_keyword12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_keyword3"
+            app:layout_constraintVertical_bias="0.17" />
+
+        <Button
+            android:id="@+id/profile_keyword7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드7"
+            app:layout_constraintBottom_toTopOf="@+id/profile_keyword10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_keyword4"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Button
+            android:id="@+id/profile_keyword8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드8"
+            app:layout_constraintBottom_toTopOf="@+id/profile_keyword11"
+            app:layout_constraintEnd_toStartOf="@+id/profile_keyword9"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/profile_keyword7"
+            app:layout_constraintTop_toBottomOf="@+id/profile_keyword5"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Button
+            android:id="@+id/profile_keyword9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드9"
+            app:layout_constraintBottom_toTopOf="@+id/profile_keyword12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_keyword6"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Button
+            android:id="@+id/profile_keyword10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_keyword7" />
+
+        <Button
+            android:id="@+id/profile_keyword11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드11"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/profile_keyword12"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/profile_keyword10"
+            app:layout_constraintTop_toBottomOf="@+id/signup_keyword8" />
+
+        <Button
+            android:id="@+id/profile_keyword12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClick"
+            android:paddingHorizontal="25dp"
+            android:text="키워드12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_keyword9" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

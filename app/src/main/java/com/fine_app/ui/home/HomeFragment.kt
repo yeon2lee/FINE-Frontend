@@ -22,6 +22,9 @@ import com.fine_app.ui.community.PostDetail_Main
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.fine_app.ui.MyPage.*
+import com.fine_app.ui.myPage.SignUpActivity
+
 
 class HomeFragment : Fragment() {
 

@@ -65,6 +65,12 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
             text.text=this.comment.text
             //image.setImageResource(this.comment.profileID)
 
+            nickname.setOnClickListener { //댓글 작성자 프로필 조회
+                val userProfile = Intent(this@PostDetail_Main, ShowUserProfileActivity::class.java)
+                userProfile.putExtra("memberId",this.comment.member.memberId)
+                startActivity(userProfile)
+            }
+
             image.setOnClickListener{ //댓글 작성자 프로필 조회
                 val userProfile = Intent(this@PostDetail_Main, ShowUserProfileActivity::class.java)
                 userProfile.putExtra("memberId",this.comment.member.memberId)

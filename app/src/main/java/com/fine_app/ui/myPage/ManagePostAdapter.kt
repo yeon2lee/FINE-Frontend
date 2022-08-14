@@ -1,10 +1,19 @@
 package com.fine_app.ui.MyPage
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fine_app.R
 import com.fine_app.databinding.ListItemMypagePostBinding
+import com.fine_app.retrofit.API
+import com.fine_app.retrofit.IRetrofit
+import com.fine_app.retrofit.RetrofitClient
+import com.fine_app.ui.community.PostDetail_Main
+import retrofit2.Call
+import retrofit2.Response
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -23,10 +32,15 @@ class ManagePostAdapter(private val myDataset: List<Post>):
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as MyViewHolder).binding
         binding.mypagePostTitleTv.text = myDataset[position].title
+        binding.mypagePostContentTv.text = myDataset[position].content
         if (myDataset[position].group_check) {
             binding.mypagePostCommunityTypeTv.text = "그룹 커뮤니티"
         } else {
             binding.mypagePostCommunityTypeTv.text = "일반 커뮤니티"
+        }
+
+        binding.itemRoot.setOnClickListener{
+            itemClickListener.onClick(it, position)
         }
 
         val string = myDataset[position].createdDate
@@ -37,6 +51,16 @@ class ManagePostAdapter(private val myDataset: List<Post>):
 
         binding.mypagePostCommentTv.text = myDataset[position].comments.size.toString()
     }
+
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+
+    private lateinit var itemClickListener : OnItemClickListener
 
     override fun getItemCount(): Int = myDataset.size
 

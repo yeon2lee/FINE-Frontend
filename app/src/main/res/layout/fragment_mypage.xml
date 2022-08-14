@@ -41,7 +41,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/mypage_profile_image_iv"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="30dp"
@@ -49,6 +49,19 @@
         android:src="@drawable/profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+    <TextView
+        android:id="@+id/mypage_profile_keyword1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/keyword_border"
+        android:text="키워드1"
+        android:textColor="#6DB33F"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvIntro" />
 
     <TextView
         android:id="@+id/tvNickname"
@@ -59,18 +72,18 @@
         android:text="닉네임"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/mypage_profile_image_iv"
         app:layout_constraintTop_toBottomOf="@+id/view10" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/mypage_profile_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:text="새싹 3단계"
+        android:text="새싹 1단계"
         android:textSize="17sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/mypage_profile_image_iv"
         app:layout_constraintTop_toBottomOf="@+id/tvNickname" />
 
     <ImageView
@@ -79,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toEndOf="@+id/mypage_profile_level"
         app:layout_constraintTop_toBottomOf="@+id/tvNickname"
         app:srcCompat="@drawable/ic_sprout" />
 
@@ -91,20 +104,20 @@
         android:layout_marginTop="10dp"
         android:text="매칭 친구 수"
         android:textSize="17sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toEndOf="@+id/mypage_profile_image_iv"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_profile_level" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/mypage_profile_friend_num_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="4"
+        android:text="1"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_profile_level" />
 
     <TextView
         android:id="@+id/tvIntro"
@@ -115,44 +128,31 @@
         android:text="소개소개소개소개"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_profile_image_iv" />
 
     <TextView
-        android:id="@+id/btnKeyword"
+        android:id="@+id/mypage_profile_keyword2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/keyword_border"
-        android:text="키워드"
+        android:text="키워드2"
+
         android:textColor="#6DB33F"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mypage_profile_keyword3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mypage_profile_keyword1"
         app:layout_constraintTop_toBottomOf="@+id/tvIntro" />
 
     <TextView
-        android:id="@+id/textView24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/keyword_border"
-        android:text="키워드"
-        android:textColor="#6DB33F"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView25"
-        app:layout_constraintStart_toEndOf="@+id/btnKeyword"
-        app:layout_constraintTop_toBottomOf="@+id/tvIntro" />
-
-    <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/mypage_profile_keyword3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/keyword_border"
-        android:text="키워드"
+        android:text="키워드3"
         android:textColor="#6DB33F"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -166,7 +166,7 @@
         android:background="#DDDDDD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_profile_keyword2" />
 
     <TextView
         android:id="@+id/textView31"
@@ -211,10 +211,10 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="13dp"
         android:layout_weight="1"
-        android:text="010-1234-5678"
+        android:text="서울특별시 성북구"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView39"
-        app:layout_constraintTop_toBottomOf="@+id/textView41" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_profile_auth_phone_tv" />
 
     <TextView
         android:id="@+id/textView34"
@@ -236,7 +236,7 @@
         android:layout_marginTop="13dp"
         android:layout_marginEnd="30dp"
         android:layout_weight="1"
-        android:text="인증 완료"
+        android:text="인증 내역 없음"
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -252,7 +252,7 @@
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView41" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_profile_auth_phone_tv" />
 
     <TextView
         android:id="@+id/textView37"
@@ -276,7 +276,7 @@
         android:text="지역"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView41" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_profile_auth_phone_tv" />
 
     <TextView
         android:id="@+id/textView40"
@@ -285,7 +285,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="13dp"
         android:layout_weight="1"
-        android:text="서울특별시 성북구"
+        android:text="010-1234-5678"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView36"
         app:layout_constraintTop_toBottomOf="@+id/textView34" />
@@ -303,13 +303,13 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <TextView
-        android:id="@+id/textView41"
+        android:id="@+id/mypage_profile_auth_phone_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:text="(2022.3.27)"
+        android:text="인증하러 가기"
         android:textAlignment="textEnd"
-        android:textColor="#989898"
+        android:textColor="#6DB33F"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView33" />
@@ -372,7 +372,7 @@
         app:srcCompat="@drawable/ic_group" />
 
     <TextView
-        android:id="@+id/textView44"
+        android:id="@+id/tvManageGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -407,7 +407,7 @@
         app:srcCompat="@drawable/ic_bookmark" />
 
     <TextView
-        android:id="@+id/textView46"
+        android:id="@+id/tvManageBookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -427,11 +427,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/view9"
-        app:layout_constraintTop_toBottomOf="@+id/textView44"
+        app:layout_constraintTop_toBottomOf="@+id/tvManageGroup"
         app:srcCompat="@drawable/ic_setting" />
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/tvSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
