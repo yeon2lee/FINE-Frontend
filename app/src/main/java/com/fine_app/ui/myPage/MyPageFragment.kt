@@ -15,7 +15,7 @@ import retrofit2.Response
 class MyPageFragment : Fragment() {
 
     private var _binding: FragmentMypageBinding? = null
-    var userId: Long = 0
+    var userId: Long = 2
     lateinit var userData: Profile
 
     // This property is only valid between onCreateView and

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="3sp">
+
+        <ImageView
+            android:id="@+id/friend_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/profile1" />
+
+        <ImageView
+            android:id="@+id/friend_level"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="3sp"
+            android:layout_weight="0.4"
+            android:baselineAlignBottom="false"
+            app:srcCompat="@drawable/ic_sprout" />
+
+        <TextView
+            android:id="@+id/friend_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="7"
+            android:hint="팀원1"
+            android:textColor="#000000"
+            android:textColorHint="#000000" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.5" />
+
+    </LinearLayout>
+</layout>

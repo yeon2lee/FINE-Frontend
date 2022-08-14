@@ -11,7 +11,7 @@ import retrofit2.Response
 
 class ManagePostActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMypagePostBinding
-    var userId: Long = 0
+    var userId: Long = 2
     lateinit var userData: List<Post>
 
     override fun onCreate(savedInstanceState: Bundle?) {

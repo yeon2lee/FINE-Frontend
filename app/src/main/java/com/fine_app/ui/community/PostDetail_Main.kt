@@ -29,7 +29,7 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var adapter:MyAdapter
     private var postingId by Delegates.notNull<Long>()
     private var writerID by Delegates.notNull<Long>()
-    private var myID :Long=1
+    private var myID :Long=2
     private var postTitle by Delegates.notNull<String>()
     private var postContent by Delegates.notNull<String>()
     private var postWriter by Delegates.notNull<String>()
@@ -132,11 +132,12 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
         binding.postContent.text=postContent
         binding.writerName.text=postWriter
         //binding.writerImage.setImageResource(postWriterImage)
-
+        Log.d("dd", "attatch : ${writerID}")
         binding.writerImage.setOnClickListener{ //작성자 프로필 조회
             val userProfile = Intent(this, ShowUserProfileActivity::class.java)
-            userProfile.putExtra("memberId",writerID)
+            userProfile.putExtra("memberId","binding : ${writerID}")
             startActivity(userProfile)
+            Log.d("dd", "${writerID}")
         }
         //-----------------------------------------------------버튼 클릭-------------------------------------------------
         binding.backButton.setOnClickListener{ //글 세부페이지 종료
@@ -213,6 +214,7 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
                  postContent=response.body()!!.content
                  postWriter=response.body()!!.nickname
                  writerID=response.body()!!.memberId
+                Log.d("dd", "response : ${writerID}")
                  createdDate=response.body()!!.createdDate
                  lastModifiedDate=response.body()!!.lastModifiedDate
                 bookMarkId=response.body()!!.checkBookmarkId

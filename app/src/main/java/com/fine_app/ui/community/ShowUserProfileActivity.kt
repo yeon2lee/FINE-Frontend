@@ -14,13 +14,13 @@ import kotlin.properties.Delegates
 
 class ShowUserProfileActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityShowUserProfileBinding
-    private var userId by Delegates.notNull<Long>()
+    private var userId:Long=0
     lateinit var userData: Profile
     private val binding get() = _binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userId= intent.getLongExtra("memberId", 1)
+        userId= intent.getLongExtra("memberId", 1.toLong())
         getUserProfile()
 
         _binding = ActivityShowUserProfileBinding.inflate(layoutInflater)
@@ -30,7 +30,6 @@ class ShowUserProfileActivity : AppCompatActivity() {
     private fun getUserProfile() {
 
         val call: Call<Profile> = ServiceCreator.service.getMyProfile(userId)
-
         call.enqueue(object : Callback<Profile> {
             override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
                 if (response.isSuccessful) {

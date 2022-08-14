@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5sp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_before" />
+
+        <TextView
+            android:id="@+id/roomName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="한이음"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/memberNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginLeft="5sp"
+            android:layout_toEndOf="@+id/roomName"
+            android:text="5"
+            android:textColor="#999999"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5sp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/car_ui_icon_overflow_menu" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="65dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            tools:listitem="@layout/item_chatting_group" />
+    </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/sendBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="#DFDFDF"
+        android:orientation="horizontal"
+        android:padding="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/addButton"
+            android:layout_width="24dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            app:srcCompat="@drawable/car_ui_icon_add"
+            app:tint="#615A55" />
+
+        <EditText
+            android:id="@+id/putChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_weight="20"
+            android:background="@drawable/comment_bg"
+            android:ems="10"
+            android:hint="메세지를 입력하세요"
+            android:inputType="textPersonName"
+            android:padding="10sp"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            app:srcCompat="@android:drawable/ic_menu_send" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

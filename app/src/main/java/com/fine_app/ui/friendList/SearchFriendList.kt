@@ -3,18 +3,15 @@ package com.fine_app.ui.friendList
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fine_app.Friend
-import com.fine_app.Member
-import com.fine_app.R
-import com.fine_app.databinding.FragmentFriendlistBinding
+import com.fine_app.*
+import com.fine_app.databinding.FriendSearchBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
@@ -23,23 +20,32 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FriendListFragment : Fragment() {
-    private var _binding: FragmentFriendlistBinding? = null
-    private val binding get() = _binding!!
+class SearchFriendList : AppCompatActivity() {
+    private lateinit var binding: FriendSearchBinding
     private lateinit var recyclerView: RecyclerView
-    private val myId:Long=2 // TODO: 내 아이디 불러오기
+    private val myID:Long=2 //todo 내 id 가져오기
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentFriendlistBinding.inflate(inflater, container, false)
-        getMyProfile(myId)
-        viewFriendList(myId)
-        binding.findFriendButton.setOnClickListener{
-            val search= Intent(activity, SearchFriendList::class.java)
-            startActivity(search)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = FriendSearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String): Boolean {
+                searchFriend(p0)
+                return true
+            }
+            override fun onQueryTextChange(p0: String): Boolean {
+                searchFriend(p0)
+                return true
+            }
+        })
+        binding.cancelButton.setOnClickListener{
+            finish()
         }
-        return binding.root
-    }
 
+    }
     inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
         private lateinit var friend: Friend
         private val friendProfileImage:ImageView=itemView.findViewById(R.id.friend_image) //todo 친구 프로필 이미지
@@ -53,7 +59,7 @@ class FriendListFragment : Fragment() {
             friendIntro.text=this.friend.intro
 
             itemView.setOnClickListener{
-                val userProfile = Intent(activity, ShowUserProfileActivity::class.java)
+                val userProfile = Intent(this@SearchFriendList, ShowUserProfileActivity::class.java)
                 userProfile.putExtra("memberId",this.friend.friendId)
                 startActivity(userProfile)
             }
@@ -72,52 +78,25 @@ class FriendListFragment : Fragment() {
         }
     }
 
-    private fun getMyProfile(myID:Long){
+    //------------------------------API 연결------------------------------------
+
+    private fun searchFriend(search:String){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val call = iRetrofit?.getMyProfile(memberId=myID) ?:return
+        val call = iRetrofit?.searchFriend(memberId = myID, search = search) ?:return
 
-        call.enqueue(object : Callback<Member>{
-
-            override fun onResponse(call: Call<Member>, response: Response<Member>) {
-                Log.d("retrofit", "내 정보 - 응답 성공 / t : ${response.body().toString()}")
-                binding.myName.text=response.body()!!.nickname
-                binding.myIntro.text=response.body()!!.intro
-                //todo 프로필 사진 연결
-                //todo 레벨 연결
-            }
-
-            override fun onFailure(call: Call<Member>, t: Throwable) {
-                Log.d("retrofit", "내 정보 - 응답 실패 / t: $t")
-            }
-        })
-    }
-    private fun viewFriendList(memberId:Long){
-        val iRetrofit : IRetrofit? =
-            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val call = iRetrofit?.viewFriendList(memberId=memberId) ?:return
-
-        call.enqueue(object : Callback<List<Friend>>{
-
+        call.enqueue(object : Callback<List<Friend>> {
             override fun onResponse(call: Call<List<Friend>>, response: Response<List<Friend>>) {
-                Log.d("retrofit", "친구 목록 - 응답 성공 / t : ${response.raw()}")
+                Log.d("retrofit", "친구 검색 - 응답 성공 / t : ${response.body().toString()}")
                 val adapter=MyAdapter(response.body()!!)
                 recyclerView=binding.recyclerView
-                recyclerView.layoutManager= LinearLayoutManager(context)
+                recyclerView.layoutManager= LinearLayoutManager(this@SearchFriendList)
                 recyclerView.adapter=adapter
             }
-
             override fun onFailure(call: Call<List<Friend>>, t: Throwable) {
-                Log.d("retrofit", "친구 목록 - 응답 실패 / t: $t")
+                Log.d("retrofit", "친구 검색 - 응답 실패 / t: $t")
             }
         })
     }
-    override fun onResume() {
-        super.onResume()
-        viewFriendList(myId)
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }

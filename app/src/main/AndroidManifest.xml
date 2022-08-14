@@ -60,6 +60,22 @@
             android:name=".ui.community.SearchList"
             android:windowSoftInputMode="adjustResize"
             android:exported="true" />
+        <activity
+            android:name=".ui.friendList.SearchFriendList"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
+        <activity
+            android:name=".ui.chatList.CreateMainChatRoom"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
+        <activity
+            android:name=".ui.chatList.CreateGroupChatRoom"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
+        <activity
+            android:name=".ui.chatList.MainChatRoom"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
     </application>
 
 </manifest>

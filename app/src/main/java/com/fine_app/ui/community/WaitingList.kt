@@ -28,7 +28,7 @@ class WaitingList : AppCompatActivity() {
     var waitingList=ArrayList<Recruit>()
     var memberList=ArrayList<Recruit>()
     private var postingID by Delegates.notNull<Long>()
-    private val myID:Long=1 //todo 내 id 가져오기
+    private val myID:Long=2 //todo 내 id 가져오기
     private lateinit var recruitingList:ArrayList<Recruit>
 
     override fun onCreate(savedInstanceState: Bundle?) {

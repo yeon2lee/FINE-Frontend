@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="20sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/recommend_background"
+        android:orientation="horizontal"
+        android:padding="20sp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/round_background"
+                android:paddingLeft="3sp"
+                android:paddingRight="3sp"
+                android:text="마감 임박"
+                android:textColor="#6DB33F"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/recommendTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="20"
+                android:text="스프링 같이 공부하실 분"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/recommendContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="강의 정해서\n개강 전까지 같이 공부하실 분?\n연락주세요"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="남은 자리"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/recommendVacancy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="최대 인원"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/recommendCapacity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="5"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/recommendKeyWord1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_background"
+                    android:gravity="center"
+                    android:text="그룹"
+                    android:textColor="#6DB33F"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/recommendKeyWord2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_background"
+                    android:gravity="center"
+                    android:text="서울"
+                    android:textColor="#6DB33F"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/recommendKeyWord3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_background"
+                    android:gravity="center"
+                    android:text="컴퓨터"
+                    android:textColor="#6DB33F"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logos_spring_icon" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -4,20 +4,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="30sp"
-    tools:context=".ui.community.CommunityFragment">
+    tools:context=".ui.community.CommunityFragment" >
 
-    <TextView
-        android:id="@+id/text_notifications"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_margin="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/line2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="채팅 목록"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/line2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:padding="5sp"
+                android:text="참여 중"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_chatlist"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/ic_group"
+        app:backgroundTint="#C4C4C4"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_main"
+        app:layout_constraintEnd_toEndOf="@+id/fab_main"
+        app:layout_constraintStart_toStartOf="@+id/fab_main"
+        app:layout_constraintTop_toTopOf="@+id/fab_main" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_solo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/friend_tb"
+        app:backgroundTint="#C4C4C4"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_main"
+        app:layout_constraintEnd_toEndOf="@+id/fab_main"
+        app:layout_constraintStart_toStartOf="@+id/fab_main"
+        app:layout_constraintTop_toTopOf="@+id/fab_main" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="70dp"
+        android:clickable="true"
+        app:backgroundTint="#C4C4C4"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView"
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/car_ui_icon_add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
