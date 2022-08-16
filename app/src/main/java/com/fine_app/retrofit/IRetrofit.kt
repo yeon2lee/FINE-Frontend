@@ -82,14 +82,26 @@ interface IRetrofit {
 
     //채팅
     @POST("/room/solo")
-    fun addPersonalChatRoom( @Query("myId") myId:Long, @Query("receiverId") receiverId:Long ):Call<CreateChatRoom>
+    fun addPersonalChatRoom(@Body personalChat: PersonalChat):Call<CreateChatRoom>
 
     @POST("/room/group")
-    fun addGroupChatRoom(@Query("myId") myId:Long, @Query("roomName") roomName:String, @Query("receiverList") receiverList:List<Long> ):Call<CreateChatRoom>
+    fun addGroupChatRoom(@Body GroupChat: GroupChat):Call<CreateChatRoom>
 
-    @GET("/rooms/my/{memberId}")
-    fun viewChatList(@Path("memberId") memberId:Long) :Call<List<ChatRoom>>
-    
+    @GET("/rooms/chat/{memberId}") //하단바 클릭시 보이는 리스트
+    fun viewChatList(@Path("memberId") memberId:Long) :Call<List<ChatRoomList>>
+
+    @PUT("/room/name")
+    fun changeRoomName(@Body ChangeRoomName:ChangeRoomName) :Call<ChangeChatRoom>
+
+    @GET("/room/member/{roomId}") //채팅방 내 멤버 조회
+    fun viewMemberList(@Path("roomId") roomId:Long) :Call<ChatMember>
+
+    @GET("/rooms/login/{memberId}") //로그인시 불러오는 리스트
+    fun loadChatList(@Path("memberId") memberId:Long) :Call<List<Long>>
+
+    @GET("/room/{memberId}/{roomId}") //채팅 내역 조회
+    fun viewChatting(@Path("memberId") memberId:Long, @Path("roomId") roomId:Long ) :Call<Chat>
+
     // 팔로우
     @POST("/follow/{friendId}/{memberId}")
     fun followFriend(@Path("friendId") friendId:Long, @Path("memberId") memberId:Long): Call<List<Friend>>

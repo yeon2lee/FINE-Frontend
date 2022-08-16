@@ -3,25 +3,21 @@ package com.fine_app.ui.chatList
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils.split
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fine_app.ChatRoom
-import com.fine_app.Friend
-import com.fine_app.Post
-import com.fine_app.R
+import com.fine_app.*
 import com.fine_app.databinding.FragmentChatlistBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
-import com.fine_app.ui.friendList.SearchFriendList
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -64,15 +60,15 @@ class ChatListFragment : Fragment() {
         }
 
         binding.fabGroup.setOnClickListener {
-            val create= Intent(activity, CreateMainChatRoom::class.java)
+            val create= Intent(activity, CreateGroupChatRoom::class.java)
             startActivity(create)
         }
 
-
         mStompClient = Stomp.over(
-            Stomp.ConnectionProvider.OKHTTP, "ws://" + "10.0.2.2" + ":" + "8080" + "/ws-fine" + "/websocket"
+            Stomp.ConnectionProvider.OKHTTP, "ws://" + "54.209.17.39" + ":" + "8080" + "/ws-fine" + "/websocket"
         )
         resetSubscriptions()
+
         return root
     }
 
@@ -89,6 +85,7 @@ class ChatListFragment : Fragment() {
         }
         isFabOpen = !isFabOpen
     }
+
 
     fun disconnectStomp(view: View?) {
         mStompClient!!.disconnect()
@@ -116,14 +113,16 @@ class ChatListFragment : Fragment() {
                 }
             }
         compositeDisposable!!.add(dispLifecycle)
+
         val dispTopic =
             mStompClient!!.topic("/sub/message/$roomId") //note 어떤 방에 연결하겠다 -> topic 이 순간부터 수신 가능
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ topicMessage: StompMessage ->
+
                     Log.d(
                         TAG,
-                        "Received $topicMessage"
+                        "Received ${topicMessage.payload}" //note
                     )
                 }
                 ) { throwable: Throwable? ->
@@ -143,6 +142,8 @@ class ChatListFragment : Fragment() {
 
 
 
+
+
     private fun toast(text: String?) {
         Log.i(TAG, text!!)
         Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
@@ -155,25 +156,30 @@ class ChatListFragment : Fragment() {
         compositeDisposable = CompositeDisposable()
     }
 
+
+
     inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
 
-        private lateinit var chatroom: ChatRoom
-        private val roomImage: TextView =itemView.findViewById(R.id.friend_image)
+        private lateinit var chatroom: ChatRoomList
+        private val roomImage: ImageView =itemView.findViewById(R.id.friend_image)
         private val roomName: TextView =itemView.findViewById(R.id.friend_name)
         private val sendTime: TextView =itemView.findViewById(R.id.sendTime)
         private val recentChat: TextView =itemView.findViewById(R.id.recentChat)
 
-        fun bind(chatroom: ChatRoom) {
+        fun bind(chatroom: ChatRoomList) {
             this.chatroom=chatroom
             val token= this.chatroom.lastMessageTime.split("-", "T", ":")
             roomName.text=this.chatroom.roomName
-            sendTime.text=token[1]+"/"+token[2]+" "+token[3]+":"+token[4] //todo 오늘 날짜 받아와서 수정하기
+            sendTime.text=token[1]+"/"+token[2]+" "+token[3]+":"+token[4]
             recentChat.text=this.chatroom.latestMessage
             itemView.setOnClickListener{
+                val create= Intent(activity, ChatRoom::class.java)
+                create.putExtra("roomId" , this.chatroom.roomId)
+                startActivity(create)
             }
         }
     }
-    inner class MyAdapter(val list:List<ChatRoom>): RecyclerView.Adapter<MyViewHolder>() {
+    inner class MyAdapter(val list:List<ChatRoomList>): RecyclerView.Adapter<MyViewHolder>() {
         override fun getItemCount(): Int = list.size
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
@@ -190,17 +196,20 @@ class ChatListFragment : Fragment() {
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val call = iRetrofit?.viewChatList(memberId=myId) ?:return
 
-        call.enqueue(object : Callback<List<ChatRoom>> {
+        call.enqueue(object : Callback<List<ChatRoomList>> {
 
-            override fun onResponse(call: Call<List<ChatRoom>>, response: Response<List<ChatRoom>>) {
+            override fun onResponse(call: Call<List<ChatRoomList>>, response: Response<List<ChatRoomList>>) {
                 Log.d("retrofit", "채팅 목록 - 응답 성공 / t : ${response.raw()}")
-                val adapter=MyAdapter(response.body()!!)
-                recyclerView=binding.recyclerView
-                recyclerView.layoutManager= LinearLayoutManager(context)
-                recyclerView.adapter=adapter
+                if(response.body()!=null){
+                    val adapter=MyAdapter(response.body()!!)
+                    recyclerView=binding.recyclerView
+                    recyclerView.layoutManager= LinearLayoutManager(context)
+                    recyclerView.adapter=adapter
+                }
+
             }
 
-            override fun onFailure(call: Call<List<ChatRoom>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ChatRoomList>>, t: Throwable) {
                 Log.d("retrofit", "채팅 목록 - 응답 실패 / t: $t")
             }
         })

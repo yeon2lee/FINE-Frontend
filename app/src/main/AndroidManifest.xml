@@ -31,10 +31,10 @@
             android:name=".ui.community.ShowUserProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MyPage.UpdateProfileActivity"
+            android:name=".ui.myPage.UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MyPage.ManagePostActivity"
+            android:name=".ui.myPage.ManagePostActivity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -87,7 +87,11 @@
             android:windowSoftInputMode="adjustResize"
             android:exported="true" />
         <activity
-            android:name=".ui.chatList.MainChatRoom"
+            android:name=".ui.chatList.ChatRoom"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
+        <activity
+            android:name=".ui.chatList.CreateRoomName"
             android:windowSoftInputMode="adjustResize"
             android:exported="true" />
     </application>

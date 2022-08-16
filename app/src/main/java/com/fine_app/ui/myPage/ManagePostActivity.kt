@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,8 @@ import com.fine_app.databinding.ActivityMypagePostBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
+import com.fine_app.ui.myPage.ManagePostAdapter
+import com.fine_app.ui.myPage.ServiceCreator
 import com.fine_app.ui.community.PostDetail_Group
 import com.fine_app.ui.community.PostDetail_Main
 import retrofit2.Call

@@ -12,8 +12,8 @@ import com.fine_app.databinding.ActivityShowUserProfileBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
-import com.fine_app.ui.MyPage.Profile
-import com.fine_app.ui.MyPage.ServiceCreator
+import com.fine_app.ui.myPage.Profile
+import com.fine_app.ui.myPage.ServiceCreator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -36,8 +36,8 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
     private var createdDate by Delegates.notNull<String>()
     private var lastModifiedDate by Delegates.notNull<String>()
     private var comments by Delegates.notNull<ArrayList<Comment>>()
-    //val postWriterImage=intent.getIntExtra("profileID", 0) //todo 사용자 이미지 표시
-    private var bookMarkId:Long=0//todo 북마크 아이디
+
+    private var bookMarkId:Long=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +63,8 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
             this.comment=comment
             nickname.text=this.comment.member.nickname
             text.text=this.comment.text
-            //image.setImageResource(this.comment.profileID)
+            //image.setImageResource(this.comment.profileID) //todo 댓글 프로필사진 등록
+
 
             nickname.setOnClickListener { //댓글 작성자 프로필 조회
                 val userProfile = Intent(this@PostDetail_Main, ShowUserProfileActivity::class.java)
@@ -137,7 +138,16 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
         binding.postTitle.text=postTitle
         binding.postContent.text=postContent
         binding.writerName.text=postWriter
-        //binding.writerImage.setImageResource(postWriterImage)
+        when (intent.getIntExtra("profileID", 0)) {
+            0 -> binding.writerImage.setImageResource(R.drawable.profile)
+            1 -> binding.writerImage.setImageResource(R.drawable.profile1)
+            2 -> binding.writerImage.setImageResource(R.drawable.profile2)
+            3 -> binding.writerImage.setImageResource(R.drawable.profile3)
+            4 -> binding.writerImage.setImageResource(R.drawable.profile4)
+            5 -> binding.writerImage.setImageResource(R.drawable.profile5)
+            6 -> binding.writerImage.setImageResource(R.drawable.profile6)
+            else -> binding.writerImage.setImageResource(R.drawable.profile)
+        }
         Log.d("dd", "attatch : ${writerID}")
         binding.writerImage.setOnClickListener{ //작성자 프로필 조회
             val userProfile = Intent(this, ShowUserProfileActivity::class.java)
@@ -224,7 +234,16 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
                  createdDate=response.body()!!.createdDate
                  lastModifiedDate=response.body()!!.lastModifiedDate
                 bookMarkId=response.body()!!.checkBookmarkId
-                // postWriterImage=intent.getIntExtra("profileID", 0) //todo 사용자 이미지 표시
+                when (intent.getIntExtra("profileID", 0)) {
+                    0 -> binding.writerImage.setImageResource(R.drawable.profile)
+                    1 -> binding.writerImage.setImageResource(R.drawable.profile1)
+                    2 -> binding.writerImage.setImageResource(R.drawable.profile2)
+                    3 -> binding.writerImage.setImageResource(R.drawable.profile3)
+                    4 -> binding.writerImage.setImageResource(R.drawable.profile4)
+                    5 -> binding.writerImage.setImageResource(R.drawable.profile5)
+                    6 -> binding.writerImage.setImageResource(R.drawable.profile6)
+                    else -> binding.writerImage.setImageResource(R.drawable.profile)
+                }
                 comments=response.body()!!.comments
                 adapter=MyAdapter(comments)
                 if(bookMarkId == 0.toLong()) binding.markButton.text="북마크"

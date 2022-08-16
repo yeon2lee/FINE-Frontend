@@ -2,7 +2,6 @@ package com.fine_app
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.lang.reflect.Member
 
 data class Post(
     val postingId:Long,
@@ -53,6 +52,7 @@ data class CommentMember(
 
 data class Member (
     val id: Long,
+    val userID:Long,
     val userImageNum: Int,
     val nickname: String,
     val intro:String,
@@ -64,7 +64,12 @@ data class Member (
     val userPhoneNumber: String,
     val userResidence:String,
     val level:String,
-    val report:Long
+    val report:Long,
+    val createdDate:String,
+    val lastModifiedDate:String,
+    val keyword1:String,
+    val keyword2:String,
+    val keyword3:String,
 ):Serializable
 
 data class Friend(
@@ -72,6 +77,7 @@ data class Friend(
     val nickname: String,
     val intro: String,
     val level : String,
+    val imageNum: Int
 ):Serializable
 
 data class Posting(
@@ -115,15 +121,6 @@ data class Test(
     val content:String
 ):Serializable
 
-data class ChatMessage(
-    val type:String,
-    val roomId:Long,
-    val memberId:Long,
-    val nickName:String,
-    val message:String,
-    val unreadCount:Int
-) :Serializable
-
 data class CreateChatRoom(
     val roomId:Long,
     val soloCheck:Boolean,
@@ -131,9 +128,65 @@ data class CreateChatRoom(
     val latestMessage:String
 ):Serializable
 
-data class ChatRoom(
+data class ChatRoomList(
     val roomId:Long,
     val roomName:String,
     val lastMessageTime:String,
-    val latestMessage:String
+    val latestMessage:String,
+    val imageNum:Int,
+    val soloCheck:Boolean,
+    val memberCount:Int,
+    val unreadMessageCount:Int
+):Serializable
+
+data class ChangeChatRoom(
+    val roomName:String,
+    val member:Member,
+    val recentOutTime:String,
+    val presentPosition: Boolean,
+    val chatMemberId: Long
+):Serializable
+
+data class ChatMember(
+    val roomId:String,
+    val chatMemberList:List<ChangeChatRoom>
+):Serializable
+
+data class Chat(
+    val roomId:Long,
+    val soloCheck:Boolean,
+    val memberCount:Int,
+    val roomName:String,
+    val chatMessageList:List<ChatMessage>
+):Serializable
+
+data class ChatMessage(
+    val createdDate:String,
+    val lastModifiedDate:String,
+    val messageId:Long,
+    val sender:Member,
+    val message:String,
+    val unreadCount:Int
+) :Serializable
+
+data class PersonalChat(
+    val myId:Long,
+    val receiverId:Long
+):Serializable
+
+data class GroupChat(
+    val myId:Long,
+    val receiverList:List<Long>,
+    val roomName:String
+):Serializable
+
+data class ChangeRoomName(
+    val memberId:Long,
+    val roomId:Long,
+    val roomName: String
+):Serializable
+
+data class ChatRoom(
+    val roomId:Long,
+    val memberId: Long
 ):Serializable

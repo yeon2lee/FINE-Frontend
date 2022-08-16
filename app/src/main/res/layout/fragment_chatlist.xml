@@ -80,12 +80,13 @@
                 tools:listitem="@layout/item_chatlist"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:src="@drawable/ic_group"
+        android:src="@drawable/ic_baseline_people_24"
         app:backgroundTint="#C4C4C4"
         app:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/fab_main"
@@ -98,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:src="@drawable/friend_tb"
+        android:src="@drawable/ic_baseline_person_24"
         app:backgroundTint="#C4C4C4"
         app:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/fab_main"

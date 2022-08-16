@@ -7,7 +7,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.fine_app.databinding.ActivityAuthPhoneBinding
-import com.fine_app.ui.MyPage.ServiceCreator
+import com.fine_app.ui.myPage.ServiceCreator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

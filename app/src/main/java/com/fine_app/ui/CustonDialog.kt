@@ -53,6 +53,9 @@ class ConfirmDialog(
         if(this.theme==0){ //버튼 두 개
             binding.noButton.visibility=View.VISIBLE
             binding.okButton.visibility=View.VISIBLE
+        }else if(this.theme==100){//edit text
+            binding.noButton.visibility=View.VISIBLE
+            binding.okButton.visibility=View.VISIBLE
         }else{ //텍스트만
             binding.noButton.visibility=View.GONE
             binding.okButton.visibility=View.GONE

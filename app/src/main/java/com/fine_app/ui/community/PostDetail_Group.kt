@@ -27,6 +27,7 @@ import kotlin.properties.Delegates
 class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var binding: CommunityGroupPostBinding
     private lateinit var adapter: MyAdapter
+    private var postWriterImage by Delegates.notNull<Int>()
     private var postingID by Delegates.notNull<Long>()
     private var writerID by Delegates.notNull<Long>()
     private val myID:Long=2//todo 내 id 가져오기
@@ -40,8 +41,8 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
     private var closingCheck by Delegates.notNull<Boolean>()
     private var recruitingList by Delegates.notNull<ArrayList<Recruit>>()
     private var participants by Delegates.notNull<Int>()
-    private var bookMarkId:Long=0//todo 북마크 아이디
-    private var recruitingId:Long=0//todo 참가하기 아이디
+    private var bookMarkId:Long=0
+    private var recruitingId:Long=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -148,7 +149,16 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
         binding.writerName.text=postWriter
         binding.max.text=postCapacity.toString()
         binding.participants.text=participants.toString()
-        //binding.writerImage.setImageResource(postWriterImage)
+        when (postWriterImage) {
+            0 -> binding.writerImage.setImageResource(R.drawable.profile)
+            1 -> binding.writerImage.setImageResource(R.drawable.profile1)
+            2 -> binding.writerImage.setImageResource(R.drawable.profile2)
+            3 -> binding.writerImage.setImageResource(R.drawable.profile3)
+            4 -> binding.writerImage.setImageResource(R.drawable.profile4)
+            5 -> binding.writerImage.setImageResource(R.drawable.profile5)
+            6 -> binding.writerImage.setImageResource(R.drawable.profile6)
+            else -> binding.writerImage.setImageResource(R.drawable.profile)
+        }
 
         binding.backButton.setOnClickListener{ //글 세부페이지 종료
             finish()
@@ -262,7 +272,7 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
                 writerID=response.body()!!.memberId
                 createdDate=response.body()!!.createdDate
                 lastModifiedDate=response.body()!!.lastModifiedDate
-                // postWriterImage=intent.getIntExtra("profileID", 0) //todo 사용자 이미지 표시
+                postWriterImage=intent.getIntExtra("profileID", 0)
                 comments=response.body()!!.comments
                 adapter=MyAdapter(comments)
                 postCapacity=response.body()!!.capacity

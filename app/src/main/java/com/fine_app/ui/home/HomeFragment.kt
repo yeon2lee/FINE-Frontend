@@ -1,19 +1,18 @@
 package com.fine_app.ui.home
 
+import androidx.fragment.app.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fine_app.*
+import com.fine_app.Post
 import com.fine_app.databinding.FragmentHomeBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
@@ -22,8 +21,6 @@ import com.fine_app.ui.community.PostDetail_Main
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.fine_app.ui.MyPage.*
-import com.fine_app.ui.myPage.SignUpActivity
 
 
 class HomeFragment : Fragment() {
@@ -54,7 +51,7 @@ class HomeFragment : Fragment() {
         private val recommendVacancy: TextView =itemView.findViewById(R.id.recommendVacancy)
         //private val recommendKeyWord3: TextView =itemView.findViewById(R.id.recommendKeyWord3)
         //private val recommendKeyWord2: TextView =itemView.findViewById(R.id.recommendKeyWord2)
-        //private val recommendKeyWord1: TextView =itemView.findViewById(R.id.recommendKeyWord1)
+        private val recommendKeyWord1: TextView =itemView.findViewById(R.id.recommendKeyWord1)
 
         fun bind(post: Post) {
             this.post=post
@@ -62,6 +59,9 @@ class HomeFragment : Fragment() {
             recommendContent.text=this.post.content
             recommendCapacity.text=this.post.capacity.toString()
             recommendVacancy.text=(this.post.capacity - this.post.participants).toString()
+            if(this.post.groupCheck) recommendKeyWord1.text="그룹"
+            else recommendKeyWord1.text="개인"
+
 
             itemView.setOnClickListener{
                 val postDetail= Intent(activity, PostDetail_Main::class.java)

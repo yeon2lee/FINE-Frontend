@@ -11,9 +11,9 @@ import com.fine_app.databinding.ActivityManageBookmarkBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
-import com.fine_app.ui.MyPage.ManagePostAdapter
-import com.fine_app.ui.MyPage.Post
-import com.fine_app.ui.MyPage.ServiceCreator
+import com.fine_app.ui.myPage.ManagePostAdapter
+import com.fine_app.ui.myPage.ServiceCreator
+import com.fine_app.ui.myPage.Post
 import com.fine_app.ui.community.PostDetail_Group
 import com.fine_app.ui.community.PostDetail_Main
 import retrofit2.Call

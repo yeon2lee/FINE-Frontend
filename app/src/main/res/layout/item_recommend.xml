@@ -17,7 +17,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="2.5"
             android:orientation="vertical">
 
             <TextView
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="20"
-                android:text="스프링 같이 공부하실 분"
+                android:text="이번에 아이유 콘서트 신청 성공한 사람?"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -142,7 +142,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/round_background"
                     android:gravity="center"
-                    android:text="컴퓨터"
+                    android:text="취미"
                     android:textColor="#6DB33F"
                     android:textSize="10sp"
                     android:textStyle="bold" />

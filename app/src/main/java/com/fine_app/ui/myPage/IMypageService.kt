@@ -1,5 +1,7 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
+import com.fine_app.ui.myPage.RequestAuthData
+import com.fine_app.ui.myPage.RequestProfileData
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -11,7 +13,7 @@ interface IMypageService {
     // 회원가입
     @POST("signup")
     fun signUp(
-        @Body user:RequestAuthData
+        @Body user: RequestAuthData
     ): Call<Profile>
 
     // 회원 탈퇴
@@ -52,7 +54,7 @@ interface IMypageService {
     @POST("mypage/editProfile/{memberId}")
     fun editProfile(
         @Path("memberId") memberId: Long,
-        @Body user:RequestProfileData
+        @Body user: RequestProfileData
     ): Call<Profile>
 
     // 프로필 조회

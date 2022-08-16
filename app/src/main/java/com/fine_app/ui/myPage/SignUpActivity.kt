@@ -7,9 +7,9 @@ import android.view.View
 import android.widget.Toast
 import com.fine_app.R
 import com.fine_app.databinding.ActivitySignUpBinding
-import com.fine_app.ui.MyPage.Profile
-import com.fine_app.ui.MyPage.RequestAuthData
-import com.fine_app.ui.MyPage.ServiceCreator
+import com.fine_app.ui.myPage.Profile
+import com.fine_app.ui.myPage.RequestAuthData
+import com.fine_app.ui.myPage.ServiceCreator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

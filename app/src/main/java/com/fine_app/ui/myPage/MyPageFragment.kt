@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,17 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fine_app.Friend
 import com.fine_app.R
 import com.fine_app.databinding.FragmentMypageBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
-import com.fine_app.ui.myPage.AuthPhoneActivity
-import com.fine_app.ui.myPage.ManageBookmarkActivity
-import com.fine_app.ui.myPage.ManageGroupActivity
-import com.fine_app.ui.myPage.SettingActivity
+import com.fine_app.ui.myPage.ManagePostActivity
+import com.fine_app.ui.myPage.Profile
+import com.fine_app.ui.myPage.ServiceCreator
+import com.fine_app.ui.myPage.UpdateProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
