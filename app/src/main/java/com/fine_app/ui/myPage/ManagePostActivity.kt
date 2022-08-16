@@ -37,8 +37,6 @@ class ManagePostActivity : AppCompatActivity() {
     }
 
     private fun getMyPostList() {
-        userId = 1
-
         val call: Call<List<Post>> = ServiceCreator.service.getMyPostList(userId)
 
         call.enqueue(object : Callback<List<Post>> {
