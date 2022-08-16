@@ -22,7 +22,7 @@ import retrofit2.Response
 
 class ManageBookmarkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityManageBookmarkBinding
-    var userId: Long = 0
+    var userId: Long = 2
     lateinit var userData: List<Post>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +39,6 @@ class ManageBookmarkActivity : AppCompatActivity() {
     }
 
     private fun getMyBookmarkList() {
-        userId = 1
-
         val call: Call<List<Post>> = ServiceCreator.service.getMyBookmarkList(userId)
 
         call.enqueue(object : Callback<List<Post>> {
