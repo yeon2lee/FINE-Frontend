@@ -1,5 +1,6 @@
 package com.fine_app.ui.chatList
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fine_app.*
@@ -21,6 +23,7 @@ import com.fine_app.ui.community.ConfirmDialogInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.acl.Group
 import kotlin.properties.Delegates
 
 class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
@@ -28,92 +31,127 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var binding: ChattingCreateBinding
     private lateinit var recyclerView2: RecyclerView
     private lateinit var recyclerView: RecyclerView
+    private lateinit var roomName: String
     private val myId:Long=2 // TODO: 내 아이디 불러오기
-    private var receiverId by Delegates.notNull<Long>()
+    val selectionList=mutableListOf<Friend>()
+    val receiverId=mutableListOf<Long>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ChattingCreateBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         viewFriendList(myId)
-    }
-    inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
-        private lateinit var friend: Friend
-
-        fun bind(friend: Friend){
-            this.friend=friend
-
+        binding.backButton2.setOnClickListener {
+            finish()
+        }
+        binding.button.setOnClickListener{
+            val dialog = ConfirmDialog(this@CreateGroupChatRoom, "그룹 채팅방을 개설하시겠습니까?", 0, 100)
+            dialog.isCancelable = false
+            dialog.show(this@CreateGroupChatRoom.supportFragmentManager, "ConfirmDialog")
         }
     }
-    inner class MyAdapter(private val list:MutableList<Friend>): RecyclerView.Adapter<MyViewHolder2>(){
-        val selectionList=mutableListOf<Friend>()
-        val onItemClickListener:((MutableList<Friend>)->Unit) ?= null
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder2 {
+    inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
+        private lateinit var friend: Friend
+        private val friendProfile:ImageView=itemView.findViewById(R.id.friendProfile)
+        private val friendNickname:TextView=itemView.findViewById(R.id.friendNickname)
+        fun bind(friend: Friend){
+            this.friend=friend
+            friendNickname.text=this.friend.nickname
+            val imageResource = this.friend.imageNum
+            when (imageResource) {
+                0 -> friendProfile.setImageResource(R.drawable.profile)
+                1 -> friendProfile.setImageResource(R.drawable.profile1)
+                2 -> friendProfile.setImageResource(R.drawable.profile2)
+                3 -> friendProfile.setImageResource(R.drawable.profile3)
+                4 -> friendProfile.setImageResource(R.drawable.profile4)
+                5 -> friendProfile.setImageResource(R.drawable.profile5)
+                6 -> friendProfile.setImageResource(R.drawable.profile6)
+                else -> friendProfile.setImageResource(R.drawable.profile)
+            }
+        }
+    }
+    inner class MyAdapter(private val list:MutableList<Friend>): RecyclerView.Adapter<MyViewHolder>(){
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             val view=layoutInflater.inflate(R.layout.item_create_chat, parent, false)
-            return MyViewHolder2(view)
+            return MyViewHolder(view)
         }
         override fun getItemCount(): Int = list.size
 
-        override fun onBindViewHolder(holder: MyViewHolder2, position: Int) {
+        override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             val friend=list[position]
             holder.bind(friend)
         }
     }
     inner class MyViewHolder2(view:View): RecyclerView.ViewHolder(view){
         private lateinit var friend: Friend
-        private val friendProfileImage:ImageView=itemView.findViewById(R.id.friend_image) //todo 친구 프로필 이미지
+        private val friendProfileImage:ImageView=itemView.findViewById(R.id.friend_image)
         private val friendLevelImage:ImageView=itemView.findViewById(R.id.friend_level) //todo 레벨 이미지 정해야함
         private val friendName:TextView=itemView.findViewById(R.id.friend_name)
-        private val friendIntro:TextView=itemView.findViewById(R.id.friend_intro)
         private val checkBox:CheckBox=itemView.findViewById(R.id.checkBox)
-        val selectionList=mutableListOf<Friend>()
 
         fun bind(friend: Friend){
             this.friend=friend
             friendName.text=this.friend.nickname
-            friendIntro.text=this.friend.intro
-            checkBox.setOnClickListener(object : CompoundButton.OnCheckedChangeListener,
-                View.OnClickListener {
-                override fun onCheckedChanged(p0: CompoundButton?, isChecked: Boolean) {
-                    if(isChecked) selectionList.add(friend)
-                    else selectionList.remove(friend)
-                }
-                override fun onClick(p0: View?) {}
-            })
+            val imageResource = this.friend.imageNum
+            when (imageResource) {
+                0 -> friendProfileImage.setImageResource(R.drawable.profile)
+                1 -> friendProfileImage.setImageResource(R.drawable.profile1)
+                2 -> friendProfileImage.setImageResource(R.drawable.profile2)
+                3 -> friendProfileImage.setImageResource(R.drawable.profile3)
+                4 -> friendProfileImage.setImageResource(R.drawable.profile4)
+                5 -> friendProfileImage.setImageResource(R.drawable.profile5)
+                6 -> friendProfileImage.setImageResource(R.drawable.profile6)
+                else -> friendProfileImage.setImageResource(R.drawable.profile)
+            }
             itemView.setOnClickListener{
                 if(checkBox.isChecked){
-                    selectionList.remove(friend)
                     checkBox.isChecked=false
+                    if(selectionList.contains(this.friend)) {
+                        selectionList.remove(friend)
+                        receiverId.remove(friend.friendId)
+                    }
                 }
                 else{
-                    selectionList.add(friend)
+                    if(!selectionList.contains(this.friend))  {
+                        selectionList.add(friend)
+                        receiverId.add(friend.friendId)
+                    }
                     checkBox.isChecked=true
                 }
-                if(!selectionList.isEmpty()){
-                    recyclerView2=binding.recyclerView
-                    recyclerView2.layoutManager= LinearLayoutManager(this@CreateGroupChatRoom, LinearLayoutManager.HORIZONTAL, false)
-                    recyclerView2.adapter=MyAdapter(selectionList)
-                }
+                recyclerView=binding.recyclerView
+                recyclerView.layoutManager= LinearLayoutManager(this@CreateGroupChatRoom, LinearLayoutManager.HORIZONTAL, false)
+                recyclerView.visibility=View.VISIBLE
+                recyclerView.adapter=MyAdapter(selectionList)
             }
+            checkBox.setOnCheckedChangeListener(object:CompoundButton.OnCheckedChangeListener{
+                override fun onCheckedChanged(p0: CompoundButton?, isChecked: Boolean) {
+                    if(isChecked){
+                        if(!selectionList.contains(this@MyViewHolder2.friend))  {
+                            selectionList.add(friend)
+                            receiverId.add(friend.friendId)
+                        }
+                    }else{
+                        if(selectionList.contains(this@MyViewHolder2.friend)) {
+                            selectionList.remove(friend)
+                            receiverId.remove(friend.friendId)
+                        }
+                    }
+                    recyclerView=binding.recyclerView
+                    recyclerView.layoutManager= LinearLayoutManager(this@CreateGroupChatRoom, LinearLayoutManager.HORIZONTAL, false)
+                    recyclerView.visibility=View.VISIBLE
+                    recyclerView.adapter=MyAdapter(selectionList)
+                }
+            })
+
         }
     }
     inner class MyAdapter2(private val list:MutableList<Friend>): RecyclerView.Adapter<MyViewHolder2>(){
-       val selectionList=mutableListOf<Friend>()
-       val onItemClickListener:((MutableList<Friend>)->Unit) ?= null
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder2 {
+            Log.d("retrofit", "그룹 채팅 추가 친구 목록 - 어댑터 / t :")
             val view=layoutInflater.inflate(R.layout.item_chatting_friendlist, parent, false)
-            view.setOnClickListener(object:View.OnClickListener{
-                override fun onClick(p0: View?) {
-                    val id=p0?.tag
-                    if(selectionList.contains(id)) selectionList.remove(id)
-                    else selectionList.add(id as Friend)
-                    notifyDataSetChanged()
-                    onItemClickListener?.let{it(selectionList)}
-                }
-            })
             return MyViewHolder2(view)
         }
         override fun getItemCount(): Int = list.size
@@ -131,34 +169,47 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
         call.enqueue(object : Callback<List<Friend>> {
 
             override fun onResponse(call: Call<List<Friend>>, response: Response<List<Friend>>) {
-                Log.d("retrofit", "친구 목록 - 응답 성공 / t : ${response.raw()}")
-                recyclerView2=binding.recyclerView
+                Log.d("retrofit", "그룹 채팅 추가 친구 목록 - 응답 성공 / t : ${response.raw()}")
+                recyclerView2=binding.recyclerView2
                 recyclerView2.layoutManager= LinearLayoutManager(this@CreateGroupChatRoom)
                 recyclerView2.adapter=MyAdapter2(response.body()!!.toMutableList())
             }
 
             override fun onFailure(call: Call<List<Friend>>, t: Throwable) {
-                Log.d("retrofit", "친구 목록 - 응답 실패 / t: $t")
+                Log.d("retrofit", "그룹 채팅 추가 친구 목록 - 응답 실패 / t: $t")
             }
         })
     }
 
     override fun onYesButtonClick(num: Int, theme: Int) {
-        addPersonalChatRoom(receiverId)
+        val create= Intent(this@CreateGroupChatRoom, CreateRoomName::class.java)
+        startActivityForResult(create, 100)
+
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d("retrofit", "인텐트 종료")
+        if (resultCode == RESULT_OK) {
+            roomName = data?.getStringExtra("text")!!
+            addGroupChatRoom(GroupChat(myId,receiverId.toList(), roomName))
+            Log.d("ff", "리스트: ${receiverId}")
+            Log.d("ff", "방 이름: ${roomName}")
+            finish()
+        }
     }
 
-    private fun addPersonalChatRoom(receiverId:Long){
+    private fun addGroupChatRoom(Info:GroupChat){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val call = iRetrofit?.addPersonalChatRoom(myId = myId, receiverId=receiverId) ?:return
+        val call = iRetrofit?.addGroupChatRoom(Info) ?:return
 
         call.enqueue(object : Callback<CreateChatRoom> {
             override fun onResponse(call: Call<CreateChatRoom>, response: Response<CreateChatRoom>) {
-                Log.d("retrofit", "개인 채팅방 생성 - 응답 성공 / t : ${response.raw()}")
+                Log.d("retrofit", "그룹 채팅방 생성 - 응답 성공 / t : ${response.raw()}")
                 finish()
             }
             override fun onFailure(call: Call<CreateChatRoom>, t: Throwable) {
-                Log.d("retrofit", "개인 채팅방 생성 - 응답 실패 / t: $t")
+                Log.d("retrofit", "그룹 채팅방 생성 - 응답 실패 / t: $t")
             }
         })
     }

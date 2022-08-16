@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

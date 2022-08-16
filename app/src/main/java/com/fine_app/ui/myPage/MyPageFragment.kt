@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fine_app.Friend
 import com.fine_app.R
 import com.fine_app.databinding.FragmentMypageBinding

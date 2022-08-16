@@ -15,13 +15,14 @@ import com.fine_app.Friend
 import com.fine_app.Member
 import com.fine_app.R
 import com.fine_app.databinding.FragmentFriendlistBinding
+import com.fine_app.databinding.FriendSearchBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
-import com.fine_app.ui.MyPage.ManagePostActivity
-import com.fine_app.ui.MyPage.MyPageFragment
-import com.fine_app.ui.MyPage.Profile
-import com.fine_app.ui.MyPage.ServiceCreator
+import com.fine_app.ui.myPage.ManagePostActivity
+import com.fine_app.ui.myPage.MyPageFragment
+import com.fine_app.ui.myPage.Profile
+import com.fine_app.ui.myPage.ServiceCreator
 import com.fine_app.ui.community.PostDetail_Group
 import com.fine_app.ui.community.ShowUserProfileActivity
 import retrofit2.Call
@@ -44,12 +45,16 @@ class FriendListFragment : Fragment() {
                 startActivity(intent)
             }
         }
+        binding.findFriendButton.setOnClickListener {
+            val intent = Intent(context, SearchFriendList::class.java)
+            startActivity(intent)
+        }
         return binding.root
     }
 
     inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
         private lateinit var friend: Friend
-        private val friendProfileImage:ImageView=itemView.findViewById(R.id.friend_image) //todo 친구 프로필 이미지
+        private val friendProfileImage:ImageView=itemView.findViewById(R.id.friend_image)
         private val friendLevelImage:ImageView=itemView.findViewById(R.id.friend_level) //todo 레벨 이미지 정해야함
         private val friendName:TextView=itemView.findViewById(R.id.friend_name)
         private val friendIntro:TextView=itemView.findViewById(R.id.friend_intro)
@@ -58,8 +63,17 @@ class FriendListFragment : Fragment() {
             this.friend=friend
             friendName.text=this.friend.nickname
             friendIntro.text=this.friend.intro
-            // todo 사용자 프로필
-            friendProfileImage.setImageResource(R.drawable.profile1)
+
+            when (this.friend.imageNum) {
+                0 -> friendProfileImage.setImageResource(R.drawable.profile)
+                1 -> friendProfileImage.setImageResource(R.drawable.profile1)
+                2 -> friendProfileImage.setImageResource(R.drawable.profile2)
+                3 -> friendProfileImage.setImageResource(R.drawable.profile3)
+                4 -> friendProfileImage.setImageResource(R.drawable.profile4)
+                5 -> friendProfileImage.setImageResource(R.drawable.profile5)
+                6 -> friendProfileImage.setImageResource(R.drawable.profile6)
+                else -> friendProfileImage.setImageResource(R.drawable.profile)
+            }
             // todo 사용자 레벨
             friendLevelImage.setImageResource(R.drawable.ic_sprout)
 

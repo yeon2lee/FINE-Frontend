@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import com.fine_app.Comment
 import com.fine_app.Recruit

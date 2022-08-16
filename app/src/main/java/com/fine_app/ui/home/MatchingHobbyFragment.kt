@@ -14,7 +14,9 @@ import com.fine_app.R
 import com.fine_app.Test
 import com.fine_app.databinding.FragmentMatchingBinding
 
-class MatchingAreaFragment : Fragment() {
+
+
+class MatchingHobbyFragment : Fragment() {
     private var _binding: FragmentMatchingBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
@@ -25,10 +27,10 @@ class MatchingAreaFragment : Fragment() {
 
 
         //테스트용 데이터
-        val post1= Test("한이음", "안녕하세요\n만나서 반갑습니다아!")
-        val post2= Test("한이음2", "2호선 카페투어 하실 분~!")
-        val post3= Test("한이음3", "서울 신림쪽 살고 있어용 카페 같이 다녀요!")
-        val post4= Test("한이음4", "ISTJ \ns대 컴퓨터공학과 입니다!! ")
+        val post1= Test("한이음", "만나서 반가워요~! 잇팁입니당")
+        val post2= Test("한이음2", "안녕하세요\n코딩 메이트 구해요!")
+        val post3= Test("한이음3", "안녕하세요\n만나서 반갑습니다아아아ㅏ")
+        val post4= Test("한이음4", "운동메이트 하실분~~")
         val testList=ArrayList<Test>()
         testList.add(post1)
         testList.add(post2)

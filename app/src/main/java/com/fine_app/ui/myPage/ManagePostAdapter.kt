@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import android.content.Intent
 import android.util.Log

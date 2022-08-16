@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 data class RequestProfileData(
     val userImageNum: Int,

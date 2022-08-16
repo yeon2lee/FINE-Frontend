@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/friend_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="62dp"
         app:srcCompat="@drawable/profile1" />
 
     <LinearLayout
@@ -53,10 +53,11 @@
         android:id="@+id/matching_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:layout_marginBottom="20sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="10sp"
         android:ellipsize="end"
         android:gravity="left"
+        android:lines="3"
         android:maxLines="3"
         android:text="소개\n소개"
         android:textColor="#000000"
@@ -65,8 +66,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:layout_marginBottom="20sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginBottom="15sp"
         android:orientation="horizontal">
 
         <TextView

@@ -1,4 +1,4 @@
-package com.fine_app.ui.MyPage
+package com.fine_app.ui.myPage
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import com.fine_app.R
 import com.fine_app.databinding.ActivityMypageProfileBinding
+import com.fine_app.ui.myPage.ServiceCreator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

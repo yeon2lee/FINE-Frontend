@@ -32,6 +32,7 @@
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/drawable/comment_bg.xml" value="0.2525" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/drawable/edittext_posting.xml" value="0.259" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/drawable/ic.xml" value="0.259" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/drawable/ic_baseline_menu_open_24.xml" value="0.1965" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/drawable/ic_before.xml" value="0.2525" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.259" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/drawable/ic_group.xml" value="0.259" />
@@ -56,15 +57,20 @@
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/activity_mypage_profile.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/activity_show_user_profile.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/chatting_create.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/chatting_create_roomName.xml" value="0.2" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/chatting_group.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/chatting_main.xml" value="0.2" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/chatting_room.xml" value="0.1" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/chatting_room_name.xml" value="0.176" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/chatting_setting.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/chatting_setting_.xml" value="0.18958333333333333" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/community_group_post.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/community_main_post.xml" value="0.2" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/community_posting.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/community_posting_edit.xml" value="0.4" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/community_search.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/community_waitinglist.xml" value="0.264" />
-        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/dialog_layout.xml" value="0.4" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/dialog_layout.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/fragment_chatlist.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/fragment_community.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/fragment_community_group.xml" value="0.2" />
@@ -93,11 +99,15 @@
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/item_membertlist.xml" value="0.4" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/item_postlist_group.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/item_postlist_main.xml" value="0.264" />
-        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/item_recommend.xml" value="0.2" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/item_recommend.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/item_search.xml" value="0.4" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/item_sidebar.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/item_waitlist.xml" value="0.4" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/list_item_mypage_post.xml" value="0.4" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/sidebar.xml" value="0.264" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/layout/sidebar_header.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/menu/bottom_nav_menu.xml" value="0.264" />
+        <entry key="..\:/Users/user/Desktop/new/app/src/main/res/menu/sidebarlayout.xml" value="0.2" />
         <entry key="..\:/work/hanium/test4/tmp/app/src/main/res/layout/activity_main.xml" value="0.1125" />
         <entry key="..\:/work/hanium/test4/tmp/app/src/main/res/layout/activity_mypage_post.xml" value="0.1125" />
         <entry key="..\:/work/hanium/test4/tmp/app/src/main/res/layout/activity_mypage_profile.xml" value="0.25364583333333335" />

@@ -37,7 +37,6 @@ class SearchFriendList : AppCompatActivity() {
                 return true
             }
             override fun onQueryTextChange(p0: String): Boolean {
-                searchFriend(p0)
                 return true
             }
         })
@@ -48,7 +47,7 @@ class SearchFriendList : AppCompatActivity() {
     }
     inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
         private lateinit var friend: Friend
-        private val friendProfileImage:ImageView=itemView.findViewById(R.id.friend_image) //todo 친구 프로필 이미지
+        private val friendProfileImage:ImageView=itemView.findViewById(R.id.friend_image)
         private val friendLevelImage:ImageView=itemView.findViewById(R.id.friend_level) //todo 레벨 이미지 정해야함
         private val friendName:TextView=itemView.findViewById(R.id.friend_name)
         private val friendIntro:TextView=itemView.findViewById(R.id.friend_intro)
@@ -57,6 +56,16 @@ class SearchFriendList : AppCompatActivity() {
             this.friend=friend
             friendName.text=this.friend.nickname
             friendIntro.text=this.friend.intro
+            when (this.friend.imageNum) {
+                0 -> friendProfileImage.setImageResource(R.drawable.profile)
+                1 -> friendProfileImage.setImageResource(R.drawable.profile1)
+                2 -> friendProfileImage.setImageResource(R.drawable.profile2)
+                3 -> friendProfileImage.setImageResource(R.drawable.profile3)
+                4 -> friendProfileImage.setImageResource(R.drawable.profile4)
+                5 -> friendProfileImage.setImageResource(R.drawable.profile5)
+                6 -> friendProfileImage.setImageResource(R.drawable.profile6)
+                else -> friendProfileImage.setImageResource(R.drawable.profile)
+            }
 
             itemView.setOnClickListener{
                 val userProfile = Intent(this@SearchFriendList, ShowUserProfileActivity::class.java)
@@ -88,10 +97,12 @@ class SearchFriendList : AppCompatActivity() {
         call.enqueue(object : Callback<List<Friend>> {
             override fun onResponse(call: Call<List<Friend>>, response: Response<List<Friend>>) {
                 Log.d("retrofit", "친구 검색 - 응답 성공 / t : ${response.body().toString()}")
-                val adapter=MyAdapter(response.body()!!)
-                recyclerView=binding.recyclerView
-                recyclerView.layoutManager= LinearLayoutManager(this@SearchFriendList)
-                recyclerView.adapter=adapter
+                if(response.body()!=null){
+                    val adapter=MyAdapter(response.body()!!)
+                    recyclerView=binding.recyclerView
+                    recyclerView.layoutManager= LinearLayoutManager(this@SearchFriendList)
+                    recyclerView.adapter=adapter
+                }
             }
             override fun onFailure(call: Call<List<Friend>>, t: Throwable) {
                 Log.d("retrofit", "친구 검색 - 응답 실패 / t: $t")

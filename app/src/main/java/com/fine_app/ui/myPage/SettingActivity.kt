@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.fine_app.databinding.ActivitySettingBinding
-import com.fine_app.ui.MyPage.Profile
-import com.fine_app.ui.MyPage.ServiceCreator
-import com.fine_app.ui.MyPage.UpdateProfileActivity
+import com.fine_app.ui.myPage.Profile
+import com.fine_app.ui.myPage.ServiceCreator
+import com.fine_app.ui.myPage.UpdateProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

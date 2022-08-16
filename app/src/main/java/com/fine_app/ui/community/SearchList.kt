@@ -112,7 +112,7 @@ class SearchList : AppCompatActivity() {
 
         call.enqueue(object : Callback<List<Post>> {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-                Log.d("retrofit", "커뮤니티 글 검색 - 응답 성공 / t : ${response.body().toString()}")
+                Log.d("retrofit", "커뮤니티 글 검색 - 응답 성공 / t : ${response.raw()}")
                 val adapter=MyAdapter(response.body()!!)
                 recyclerView=binding.recyclerView
                 recyclerView.layoutManager= LinearLayoutManager(this@SearchList)
