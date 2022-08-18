@@ -23,6 +23,7 @@ import com.fine_app.databinding.ChattingRoomBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
+import com.fine_app.ui.community.ShowUserProfileActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.JsonObject
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -48,7 +49,7 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
     private lateinit var navigationView: NavigationView
     lateinit var drawerLayout: DrawerLayout
     private var roomId by Delegates.notNull<Long>()
-    private val memberId = 2L
+    private val memberId:Long = 2
 
     private var mStompClient: StompClient? = null
     private var compositeDisposable: CompositeDisposable? = null
@@ -93,7 +94,7 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
         })
         binding.sendButton.setOnClickListener{
             sendText(text)
-            text=""
+            binding.putChat.setText("")
         }
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -104,15 +105,19 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
         binding.menuButton.setOnClickListener {
             viewMemberList()
         }
-        //navigationView = findViewById(R.id.nav_view)
-        //navigationView.setNavigationItemSelectedListener(this)
 
+        binding.sideBar.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        exit()
-        disconnectStomp()
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawers()
+            Toast.makeText(this,"back btn clicked",Toast.LENGTH_SHORT).show()
+        }else {
+            exit()
+            disconnectStomp()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -126,11 +131,12 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
         }
     }
 
-
     // 드로어 내 아이템 클릭 이벤트 처리하는 함수
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Log.d("drawer", "아이템 클릭 아아")
         when(item.itemId){
             R.id.menu_item1-> {
+
                 val create= Intent(this, CreateRoomName::class.java)
                 startActivityForResult(create, 100)
             }
@@ -163,6 +169,12 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
                 5 -> profileImage.setImageResource(R.drawable.profile5)
                 6 -> profileImage.setImageResource(R.drawable.profile6)
                 else -> profileImage.setImageResource(R.drawable.profile)
+            }
+
+            profileImage.setOnClickListener{ //작성자 프로필 조회
+                val userProfile = Intent(this@ChatRoom, ShowUserProfileActivity::class.java)
+                userProfile.putExtra("memberId",this.chat.sender.id)
+                startActivity(userProfile)
             }
         }
     }
@@ -231,6 +243,11 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
                 5 -> friendImage.setImageResource(R.drawable.profile5)
                 6 -> friendImage.setImageResource(R.drawable.profile6)
                 else -> friendImage.setImageResource(R.drawable.profile)
+            }
+            friendImage.setOnClickListener{ //작성자 프로필 조회
+                val userProfile = Intent(this@ChatRoom, ShowUserProfileActivity::class.java)
+                userProfile.putExtra("memberId",this.friend.member.id)
+                startActivity(userProfile)
             }
         }
     }
@@ -389,6 +406,7 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
                     recyclerView2.layoutManager= LinearLayoutManager(this@ChatRoom)
                     recyclerView2.adapter=SideAdapter(response.body()!!.chatMemberList)
                     drawerLayout.openDrawer(GravityCompat.END)
+
                 }
             }
 
@@ -428,11 +446,11 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
     private fun PutRoomName(Info:ChangeRoomName){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
-        val call = iRetrofit?.changeRoomName(Info) ?:return
-
+        val call = iRetrofit?.changeRoomName(Info=Info) ?:return
+        Log.d("name", "${Info}")
         call.enqueue(object : Callback<ChangeChatRoom> {
             override fun onResponse(call: Call<ChangeChatRoom>, response: Response<ChangeChatRoom>) {
-                Log.d("retrofit", "채팅방 이름 변경 - 응답 성공 / t : ${response.raw()}")
+                Log.d("retrofit", "채팅방 이름 변경 - 응답 성공 / t : ${response.body()!!.toString()}")
             }
             override fun onFailure(call: Call<ChangeChatRoom>, t: Throwable) {
                 Log.d("retrofit", "채팅방 이름 변경  - 응답 실패 / t: $t")

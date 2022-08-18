@@ -91,7 +91,7 @@ interface IRetrofit {
     fun viewChatList(@Path("memberId") memberId:Long) :Call<List<ChatRoomList>>
 
     @PUT("/room/name")
-    fun changeRoomName(@Body ChangeRoomName:ChangeRoomName) :Call<ChangeChatRoom>
+    fun changeRoomName(@Body Info:ChangeRoomName) :Call<ChangeChatRoom>
 
     @GET("/room/member/{roomId}") //채팅방 내 멤버 조회
     fun viewMemberList(@Path("roomId") roomId:Long) :Call<ChatMember>

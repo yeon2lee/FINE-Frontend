@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,11 +57,14 @@ class MatchingAreaFragment : Fragment() {
         private lateinit var test: Test
         private val nickname: TextView =itemView.findViewById(R.id.matching_name)
         private val intro: TextView =itemView.findViewById(R.id.matching_intro)
+        private val image: ImageView =itemView.findViewById(R.id.friend_image)
         fun bind(test: Test) {
             this.test=test
             nickname.text=this.test.name
             intro.text=this.test.content
-
+            if(this.test.name=="한이음2") image.setImageResource(R.drawable.profile4)
+            else if(this.test.name=="한이음3") image.setImageResource(R.drawable.profile2)
+            else if(this.test.name=="한이음4") image.setImageResource(R.drawable.profile3)
             itemView.setOnClickListener{
             }
         }
