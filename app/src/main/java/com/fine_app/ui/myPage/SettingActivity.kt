@@ -26,12 +26,13 @@ class SettingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.tvSecession.setOnClickListener{
-            userSecession()
-        }
-
         binding.tvUserSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.tvSecession.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }

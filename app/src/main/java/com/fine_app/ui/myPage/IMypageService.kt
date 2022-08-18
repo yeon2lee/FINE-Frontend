@@ -10,6 +10,10 @@ import retrofit2.http.Path
 
 // 서비스 인터페이스 생성
 interface IMypageService {
+    // 로그인
+    @GET("login")
+    fun login(@Body user:RequestLoginData): Call<Profile>
+
     // 회원가입
     @POST("signup")
     fun signUp(
@@ -39,7 +43,7 @@ interface IMypageService {
     fun getMyProfile(@Path("memberId") memberId: Long): Call<Profile>
 
     // 내가 쓴 글 목록
-    @GET("mypage/myPost/{memberId}")
+    @GET("mypage/post/{memberId}")
     fun getMyPostList(@Path("memberId") memberId: Long): Call<List<Post>>
 
     // 북마크 목록
@@ -47,11 +51,11 @@ interface IMypageService {
     fun getMyBookmarkList(@Path("memberId") memberId: Long): Call<List<Post>>
 
     // 그룹 신청글 목록
-    @GET("mypage/myGroupPost/{memberId}")
+    @GET("mypage/post/group/{memberId}")
     fun getMyGroupList(@Path("memberId") memberId: Long): Call<List<Post>>
 
     // 프로필 수정
-    @POST("mypage/editProfile/{memberId}")
+    @POST("mypage/profile/{memberId}")
     fun editProfile(
         @Path("memberId") memberId: Long,
         @Body user: RequestProfileData
