@@ -1,13 +1,10 @@
 package com.fine_app.ui.myPage
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.fine_app.databinding.ActivityLoginBinding
-import com.fine_app.ui.MyPage.Profile
-import com.fine_app.ui.MyPage.RequestAuthData
-import com.fine_app.ui.MyPage.RequestLoginData
-import com.fine_app.ui.MyPage.ServiceCreator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +20,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginOkBtn.setOnClickListener {
             login()
+        }
+
+        binding.loginSignupTv.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -156,7 +156,6 @@ class UpdateProfileActivity : AppCompatActivity() {
             keyword3 = checked[2].toString()
 
         )
-        userId = 1
 
         val call: Call<Profile> = ServiceCreator.service.editProfile(userId, requestProfileData)
 
