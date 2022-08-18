@@ -88,9 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#E0ECD4"
+        android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="지역"
+        android:text="키워드1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -101,9 +101,9 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="22dp"
-        android:backgroundTint="#E0ECD4"
+        android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="전공"
+        android:text="키워드2"
         app:layout_constraintEnd_toStartOf="@+id/signup_keyword3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/signup_keyword1"
@@ -115,9 +115,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
-        android:backgroundTint="#BED7A4"
+        android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="취미"
+        android:text="키워드3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -129,7 +129,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="여행"
+        android:text="키워드4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_keyword1" />
 
@@ -142,7 +142,7 @@
         android:layout_marginEnd="22dp"
         android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="드라이브"
+        android:text="키워드5"
         app:layout_constraintEnd_toStartOf="@+id/signup_keyword6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/signup_keyword4"
@@ -156,7 +156,7 @@
         android:layout_marginEnd="50dp"
         android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="언어"
+        android:text="키워드6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_keyword3" />
 
@@ -168,7 +168,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="독서"
+        android:text="키워드7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_keyword4" />
 
@@ -181,7 +181,7 @@
         android:layout_marginEnd="22dp"
         android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="어학"
+        android:text="키워드8"
         app:layout_constraintEnd_toStartOf="@+id/signup_keyword9"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/signup_keyword7"
@@ -195,7 +195,7 @@
         android:layout_marginEnd="50dp"
         android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="쇼핑"
+        android:text="키워드9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_keyword6" />
 
@@ -207,7 +207,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="베이킹"
+        android:text="키워드10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_keyword7" />
 
@@ -220,7 +220,7 @@
         android:layout_marginEnd="22dp"
         android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="사주"
+        android:text="키워드11"
         app:layout_constraintEnd_toStartOf="@+id/signup_keyword12"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/signup_keyword10"
@@ -234,7 +234,7 @@
         android:layout_marginEnd="50dp"
         android:backgroundTint="@color/white"
         android:onClick="onClick"
-        android:text="DIY"
+        android:text="키워드12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_keyword9" />
 

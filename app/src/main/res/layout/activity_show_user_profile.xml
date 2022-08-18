@@ -125,7 +125,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/keyword_border"
-        android:text="제주도"
+        android:text="키워드1"
         android:textColor="#6DB33F"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/keyword_border"
-        android:text="컴퓨터공학"
+        android:text="키워드2"
         android:textColor="#6DB33F"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/profile_user_keyword3"
@@ -152,7 +152,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/keyword_border"
-        android:text="베이킹"
+        android:text="키워드3"
         android:textColor="#6DB33F"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +187,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
-        android:text="대학인증 내역 없음"
+        android:text="한국대학교"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView31"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -211,7 +211,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="13dp"
         android:layout_weight="1"
-        android:text="지역인증 내역 없음"
+        android:text="010-1234-5678"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView39"
         app:layout_constraintTop_toBottomOf="@+id/mypage_profile_auth_phone_tv" />
@@ -222,9 +222,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
         android:layout_weight="1"
-        android:text="인증하러 가기"
+        android:text="(2022.2.30)"
         android:textAlignment="textEnd"
-        android:textColor="#6DB33F"
+        android:textColor="#989898"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView42" />
@@ -255,12 +255,13 @@
         app:layout_constraintTop_toBottomOf="@+id/mypage_profile_auth_phone_tv" />
 
     <TextView
-        android:id="@+id/mypage_profile_auth_location_tv"
+        android:id="@+id/textView37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:text="인증하러 가기"
-        android:textColor="#6DB33F"
+        android:text="(2022.3.22)"
+        android:textAlignment="textEnd"
+        android:textColor="#989898"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView38" />
@@ -284,7 +285,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="13dp"
         android:layout_weight="1"
-        android:text="010-1234-5678"
+        android:text="서울특별시 성북구"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView36"
         app:layout_constraintTop_toBottomOf="@+id/textView34" />
@@ -295,7 +296,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
-        android:text="인증 내역 없음"
+        android:text="인증 완료"
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -322,7 +323,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mypage_profile_auth_location_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
     <View
         android:id="@+id/view"
@@ -333,6 +334,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mypage_profile_auth_location_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

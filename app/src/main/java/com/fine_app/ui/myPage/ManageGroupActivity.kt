@@ -19,7 +19,7 @@ import retrofit2.Response
 
 class ManageGroupActivity : AppCompatActivity() {
     private lateinit var binding: ActivityManageGroupBinding
-    var userId: Long = 2
+    var userId: Long = 0
     lateinit var userData: List<Post>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +32,8 @@ class ManageGroupActivity : AppCompatActivity() {
     }
 
     private fun getMyGroupList() {
+        userId = 1
+
         val call: Call<List<Post>> = ServiceCreator.service.getMyGroupList(userId)
 
         call.enqueue(object : Callback<List<Post>> {

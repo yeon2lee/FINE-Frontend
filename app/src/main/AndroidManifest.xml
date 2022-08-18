@@ -3,8 +3,6 @@
     package="com.fine_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,15 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fine_app"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".ui.myPage.AuthUniversityActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.myPage.AuthLocationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.myPage.LoginActivity"
-            android:exported="false" />
         <activity
             android:name=".ui.myPage.AuthPhoneActivity"
             android:exported="false" />
@@ -83,20 +72,20 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.community.SearchList"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
         <activity
             android:name=".ui.friendList.SearchFriendList"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
         <activity
             android:name=".ui.chatList.CreateMainChatRoom"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
         <activity
             android:name=".ui.chatList.CreateGroupChatRoom"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
         <activity
             android:name=".ui.chatList.ChatRoom"
             android:windowSoftInputMode="adjustResize"

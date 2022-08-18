@@ -65,6 +65,9 @@ class CreateRoomName: AppCompatActivity(){
             setResult(RESULT_OK, intent)
             finish()
         }
+        binding.backButton2.setOnClickListener {
+            finish()
+        }
         setContentView(binding.root)
     }
 }

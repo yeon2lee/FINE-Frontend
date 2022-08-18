@@ -16,10 +16,6 @@ interface IMypageService {
         @Body user: RequestAuthData
     ): Call<Profile>
 
-    // 로그인
-    @GET("login")
-    fun login(@Body user:RequestLoginData): Call<Profile>
-
     // 회원 탈퇴
     @GET("mypage/{memberId}")
     fun userSecession(@Path("memberId") memberId: Long): Call<Profile>
@@ -43,7 +39,7 @@ interface IMypageService {
     fun getMyProfile(@Path("memberId") memberId: Long): Call<Profile>
 
     // 내가 쓴 글 목록
-    @GET("mypage/post/{memberId}")
+    @GET("mypage/myPost/{memberId}")
     fun getMyPostList(@Path("memberId") memberId: Long): Call<List<Post>>
 
     // 북마크 목록
@@ -51,11 +47,11 @@ interface IMypageService {
     fun getMyBookmarkList(@Path("memberId") memberId: Long): Call<List<Post>>
 
     // 그룹 신청글 목록
-    @GET("mypage/post/group/{memberId}")
+    @GET("mypage/myGroupPost/{memberId}")
     fun getMyGroupList(@Path("memberId") memberId: Long): Call<List<Post>>
 
     // 프로필 수정
-    @POST("mypage/profile/{memberId}")
+    @POST("mypage/editProfile/{memberId}")
     fun editProfile(
         @Path("memberId") memberId: Long,
         @Body user: RequestProfileData
