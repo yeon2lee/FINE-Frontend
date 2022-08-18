@@ -13,8 +13,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:backgroundTint="#6DB33F"
+        android:drawableLeft="@drawable/location"
         android:onClick="onClick"
-        android:text="현재 위치"
+        android:text=" 현재 위치"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view22" />
@@ -55,7 +56,7 @@
         android:layout_marginTop="50dp"
         android:backgroundTint="#6DB33F"
         android:onClick="btnClick"
-        android:text="이 위치로 인증하기"
+        android:text="이 지역으로 인증하기"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/auth_location" />
@@ -113,10 +114,11 @@
         android:layout_width="334dp"
         android:layout_height="47dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
+        android:focusableInTouchMode="false"
+        android:hint="현재 위치를 클릭해주세요"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/auth_present_location_bt"
-        android:focusableInTouchMode="false"/>
+        app:layout_constraintTop_toBottomOf="@+id/auth_present_location_bt" />
 </androidx.constraintlayout.widget.ConstraintLayout>
