@@ -20,7 +20,7 @@ data class Post(
     val checkBookmarkId:Long,
     @SerializedName(value = "maxMember")
     val capacity:Int,
-    @SerializedName(value = "headCount")
+    @SerializedName(value = "joinCount")
     val participants:Int,
     val comments: ArrayList<Comment>,
     val recruitingList:ArrayList<Recruit>,
@@ -189,4 +189,11 @@ data class ChangeRoomName(
 data class ChatRoom(
     val roomId:Long,
     val memberId: Long
+):Serializable
+
+data class SendChat(
+    val memberId:Long,
+    val nickname:Long,
+    val message:String,
+    val unreadCount:Int
 ):Serializable

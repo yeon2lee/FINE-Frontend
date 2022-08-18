@@ -36,11 +36,4 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/item_sidebar"/>
 
-    <Button
-        android:id="@+id/changeName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:backgroundTint="#C4C4C4"
-        android:text="채팅방 이름 변경" />
 </LinearLayout>
