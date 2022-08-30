@@ -10,8 +10,9 @@ data class RequestProfileData(
 )
 
 data class RequestAuthData(
-    val id: String,
+    val userId: String,
     val password: String,
+    val nickname: String,
     val keyword1: String,
     val keyword2: String,
     val keyword3: String
