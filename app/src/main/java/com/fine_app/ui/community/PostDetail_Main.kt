@@ -1,6 +1,7 @@
 package com.fine_app.ui.community
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -29,7 +30,8 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var adapter:MyAdapter
     private var postingId by Delegates.notNull<Long>()
     private var writerID by Delegates.notNull<Long>()
-    private var myID :Long=2 //todo 내 아이디 가져오기
+    private var myID by Delegates.notNull<Long>()
+    lateinit var userInfo: SharedPreferences
     private var postTitle by Delegates.notNull<String>()
     private var postContent by Delegates.notNull<String>()
     private var postWriter by Delegates.notNull<String>()
@@ -48,6 +50,8 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
         }
         binding = CommunityMainPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        myID = userInfo.getString("userInfo", "2")!!.toLong()
         postingId=intent.getLongExtra("postingId", 1)
         writerID=intent.getLongExtra("memberId", 1)
         viewPosting(postingId, myID)

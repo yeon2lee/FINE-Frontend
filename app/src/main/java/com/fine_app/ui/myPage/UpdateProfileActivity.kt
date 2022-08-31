@@ -1,5 +1,6 @@
 package com.fine_app.ui.myPage
 
+import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,10 +12,12 @@ import com.fine_app.ui.myPage.ServiceCreator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 class UpdateProfileActivity : AppCompatActivity() {
     lateinit var _binding: ActivityMypageProfileBinding
-    var userId: Long = 2
+    lateinit var userInfo: SharedPreferences
+    var userId by Delegates.notNull<Long>()
     lateinit var userData: Profile
     var checked = arrayOfNulls<String>(3)
     var size = 0
@@ -27,6 +30,9 @@ class UpdateProfileActivity : AppCompatActivity() {
         _binding = ActivityMypageProfileBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        userId = userInfo.getString("userInfo", "2")!!.toLong()
 
         binding.etNickname.setText(intent.getStringExtra("nickname"))
         binding.etInfo.setText(intent.getStringExtra("intro"))

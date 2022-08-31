@@ -1,6 +1,7 @@
 package com.fine_app.ui.community
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,17 +19,21 @@ import com.fine_app.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 class SearchList : AppCompatActivity() {
     private lateinit var binding: CommunitySearchBinding
     private lateinit var recyclerView: RecyclerView
-    private val myID:Long=2 //todo 내 id 가져오기
+    private var myID by Delegates.notNull<Long>()
+    lateinit var userInfo: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = CommunitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        myID = userInfo.getString("userInfo", "2")!!.toLong()
         val text=intent.getStringExtra("text")
         if (text != "") {
             binding.searchView.setQuery(text, false)

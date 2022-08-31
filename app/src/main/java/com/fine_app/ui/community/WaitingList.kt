@@ -1,6 +1,7 @@
 package com.fine_app.ui.community
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,11 +29,14 @@ class WaitingList : AppCompatActivity() {
     var waitingList=ArrayList<Recruit>()
     var memberList=ArrayList<Recruit>()
     private var postingID by Delegates.notNull<Long>()
-    private val myID:Long=2 //todo 내 id 가져오기
+    private var myID by Delegates.notNull<Long>()
+    lateinit var userInfo: SharedPreferences
     private lateinit var recruitingList:ArrayList<Recruit>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        myID = userInfo.getString("userInfo", "2")!!.toLong()
 
         binding = CommunityWaitinglistBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -1,6 +1,7 @@
 package com.fine_app.ui.chatList
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -51,7 +52,8 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
     private lateinit var navigationView: NavigationView
     lateinit var drawerLayout: DrawerLayout
     private var roomId by Delegates.notNull<Long>()
-    private val memberId:Long = 2
+    private var memberId by Delegates.notNull<Long>()
+    lateinit var userInfo: SharedPreferences
 
     private var mStompClient: StompClient? = null
     private var compositeDisposable: CompositeDisposable? = null
@@ -61,6 +63,8 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
         super.onCreate(savedInstanceState)
         binding = ChattingRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        memberId = userInfo.getString("userInfo", "2")!!.toLong()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window: Window = window
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)

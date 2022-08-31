@@ -3,6 +3,7 @@ package com.fine_app.ui.myPage
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
@@ -15,10 +16,16 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.fine_app.databinding.ActivityAuthLocationBinding
 import com.google.android.gms.location.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
+import kotlin.properties.Delegates
 
 class AuthLocationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthLocationBinding
+    lateinit var userInfo: SharedPreferences
+    var userId by Delegates.notNull<Long>()
 
     private var mFusedLocationProviderClient: FusedLocationProviderClient? = null // 현재 위치를 가져오기 위한 변수
     lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
@@ -33,6 +40,9 @@ class AuthLocationActivity : AppCompatActivity() {
         binding = ActivityAuthLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        userId = userInfo.getString("userInfo", "2")!!.toLong()
+
         mLocationRequest =  LocationRequest.create().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
@@ -45,10 +55,33 @@ class AuthLocationActivity : AppCompatActivity() {
         }
 
         binding.authLocationOk.setOnClickListener {
-            // todo: DB에 유저 인증정보 등록
+            verifyLocationAuth()
             finish()
         }
     }
+
+    private fun verifyLocationAuth() {
+        val residence = binding.authLocation.text.toString()
+        val call: Call<Long> = ServiceCreator.service.verifyAuth(userId, residence)
+
+        call.enqueue(object : Callback<Long> {
+            override fun onResponse(call: Call<Long>, response: Response<Long>) {
+                if (response.isSuccessful) {
+
+                    //Toast.makeText(this@AuthLocationActivity, "인증 성공", Toast.LENGTH_SHORT).show()
+                } else {
+                    //Toast.makeText(this@AuthLocationActivity, "인증 실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Long>, t: Throwable) {
+                Toast.makeText(this@AuthLocationActivity, "서버 연결 실패", Toast.LENGTH_SHORT).show()
+
+            }
+        })
+        finish()
+    }
+
 
     private fun startLocationUpdates() {
         //FusedLocationProviderClient의 인스턴스를 생성.

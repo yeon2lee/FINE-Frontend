@@ -1,5 +1,6 @@
 package com.fine_app.ui.myPage
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,12 +13,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.widget.Spinner
+import kotlin.properties.Delegates
 
 class AuthPhoneActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthPhoneBinding
+    lateinit var userInfo: SharedPreferences
+    var userId by Delegates.notNull<Long>()
+
     var phoneNumber = "01012345678"
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityAuthPhoneBinding.inflate(layoutInflater)
+
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        userId = userInfo.getString("userInfo", "2")!!.toLong()
+
         val spinner: Spinner = binding.spinner3
         val items = arrayOf("010", "011", "017", "02")
 
@@ -49,9 +58,8 @@ class AuthPhoneActivity : AppCompatActivity() {
         finish()
     }
 
-    // todo 전화번호로 인증 번호 전송
+    // 전화번호로 인증 번호 전송
     private fun sendAuthMesssage() {
-        val userId = 1.toLong()
         phoneNumber = phoneNumber + binding.authPhoneNumberEt.text.toString()
         Toast.makeText(this@AuthPhoneActivity, phoneNumber, Toast.LENGTH_SHORT).show()
 
@@ -74,15 +82,15 @@ class AuthPhoneActivity : AppCompatActivity() {
 
     }
 
-    // todo 인증 번호 확인
+    // 인증 번호 확인
     private fun verifyAuth() {
-        val userId = 1.toLong()
         val token = binding.authPhoneCertEt.text.toString()
         val call: Call<Long> = ServiceCreator.service.verifyAuth(userId, token)
 
         call.enqueue(object : Callback<Long> {
             override fun onResponse(call: Call<Long>, response: Response<Long>) {
                 if (response.isSuccessful) {
+
                     //Toast.makeText(this@AuthPhoneActivity, "인증 성공", Toast.LENGTH_SHORT).show()
 
                 } else {
@@ -95,5 +103,6 @@ class AuthPhoneActivity : AppCompatActivity() {
 
             }
         })
+        finish()
     }
 }

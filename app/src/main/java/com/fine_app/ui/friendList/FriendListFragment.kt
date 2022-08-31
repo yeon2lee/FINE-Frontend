@@ -1,6 +1,7 @@
 package com.fine_app.ui.friendList
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,15 +25,20 @@ import com.fine_app.ui.community.ShowUserProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 class FriendListFragment : Fragment() {
     private var _binding: FragmentFriendlistBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private val myId:Long=2 // TODO: 내 아이디 불러오기
+    private var myId by Delegates.notNull<Long>()
+    lateinit var userInfo: SharedPreferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentFriendlistBinding.inflate(inflater, container, false)
+        userInfo = this.getActivity()!!.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        myId = userInfo.getString("userInfo", "2")!!.toLong()
+
         getMyProfile(myId)
         viewFriendList(myId)
         binding.myImage.setOnClickListener {

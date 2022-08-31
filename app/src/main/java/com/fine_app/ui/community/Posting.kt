@@ -1,5 +1,6 @@
 package com.fine_app.ui.community
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,19 +20,23 @@ import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 
 class Posting : AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var binding: CommunityPostingBinding
+    private var myID by Delegates.notNull<Long>()
+    lateinit var userInfo: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CommunityPostingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        myID = userInfo.getString("userInfo", "2")!!.toLong()
 
         lateinit var title:String
         lateinit var content:String
-        val myID:Long=1 //todo 내 아이디 불러오기
         var capacity=2
         val spinner: Spinner = binding.spinner
         val items = arrayOf("인원 선택", 2, 3, 4, 5, 6)

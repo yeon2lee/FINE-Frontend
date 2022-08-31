@@ -90,8 +90,9 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun signUp() {
         val requestAuthData = RequestAuthData(
-            id = binding.etUserId.text.toString(),
+            userId = binding.etUserId.text.toString(),
             password = binding.etUserPwd.text.toString(),
+            nickname = binding.etUserId.text.toString(),
             keyword1 = checked[0].toString(),
             keyword2 = checked[1].toString(),
             keyword3 = checked[2].toString(),

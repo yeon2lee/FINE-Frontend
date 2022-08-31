@@ -1,5 +1,6 @@
 package com.fine_app.ui.community
 
+import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,14 +22,18 @@ import kotlin.properties.Delegates
 
 class ShowUserProfileActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityShowUserProfileBinding
-    private var userId:Long=0
+    private var myId by Delegates.notNull<Long>()
+    private var userId by Delegates.notNull<Long>()
+    lateinit var userInfo: SharedPreferences
     lateinit var userData: Profile
     lateinit var friendList: List<Friend>
     private val binding get() = _binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userId= intent.getLongExtra("memberId", 1.toLong())
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        myId = userInfo.getString("userInfo", "2")!!.toLong()
+        userId= intent.getLongExtra("memberId", 2.toLong())
         getUserProfile()
 
         _binding = ActivityShowUserProfileBinding.inflate(layoutInflater)
@@ -36,12 +41,12 @@ class ShowUserProfileActivity : AppCompatActivity() {
 
         binding.profileUserFollowBtn.setOnClickListener {
             if (binding.profileUserFollowBtn.text.toString().equals("팔로우")) {
-                followFriend(userId, 2) // TODO: 내 아이디 불러오기
+                followFriend(userId, myId) // TODO: 내 아이디 불러오기
                 binding.profileUserFollowBtn.setBackgroundColor(Color.parseColor("#FFFFFF"))
                 binding.profileUserFollowBtn.setText("팔로우 취소")
                 binding.profileUserFollowBtn.setTextColor(Color.parseColor("#615A55"))
             } else { // 팔로우 취소
-                cancelFollow(userId, 2) // TODO: 내 아이디 불러오기
+                cancelFollow(userId, myId) // TODO: 내 아이디 불러오기
                 binding.profileUserFollowBtn.setBackgroundColor(Color.parseColor("#6DB33F"))
                 binding.profileUserFollowBtn.setText("팔로우")
                 binding.profileUserFollowBtn.setTextColor(Color.parseColor("#FFFFFF"))
@@ -71,14 +76,14 @@ class ShowUserProfileActivity : AppCompatActivity() {
                     }
 
                     // 내 프로필일 경우
-                    if (userId.toInt() == 2) { // TODO: 내 아이디 불러오기
+                    if (userId == myId) { // TODO: 내 아이디 불러오기
                         binding.profileUserFollowBtn.setVisibility(View.INVISIBLE)
                     } else {
                         binding.profileUserFollowBtn.setVisibility(View.VISIBLE)
                     }
 
                     // 친구 팔로우 상태 표시
-                    viewFriendList(2.toLong()) // TODO: 내 아이디 불러오기
+                    viewFriendList(myId) // TODO: 내 아이디 불러오기
                 } else {
                     Toast.makeText(this@ShowUserProfileActivity, "프로필 정보 불러오기 실패", Toast.LENGTH_SHORT).show()
                 }

@@ -59,7 +59,9 @@ class SettingActivity : AppCompatActivity() {
                     Toast.makeText(this@SettingActivity, "로그아웃 성공", Toast.LENGTH_SHORT).show()
                     userInfo.edit().putString("userInfo", "0")
                 } else {
-                    Toast.makeText(this@SettingActivity, "로그아웃 실패", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@SettingActivity, "로그아웃 실패", Toast.LENGTH_SHORT).show()
+                    userInfo.edit().putString("userInfo", "0")
+
                 }
             }
 

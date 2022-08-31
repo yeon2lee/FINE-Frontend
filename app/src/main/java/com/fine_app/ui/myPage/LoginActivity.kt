@@ -3,15 +3,9 @@ package com.fine_app.ui.myPage
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.Request
-import com.android.volley.toolbox.Volley
 import com.fine_app.databinding.ActivityLoginBinding
-import com.android.volley.toolbox.JsonObjectRequest
-import com.google.gson.Gson
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -57,7 +51,9 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                     userData = response.body()!!
                     userInfo.edit().putString("userInfo", userData.id.toString()).apply()
+                    finish()
                 } else {
+                    Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
                     // 로그인 실패
                 }
             }
@@ -69,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
         })
 
 
-        finish()
+
     }
 
 }

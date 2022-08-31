@@ -1,5 +1,6 @@
 package com.fine_app.ui.chatList
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -26,13 +27,16 @@ class CreateMainChatRoom: AppCompatActivity(), ConfirmDialogInterface {
 
     private lateinit var binding:  ChattingCreateBinding
     private lateinit var recyclerView2: RecyclerView
-    private val myId:Long=2 // TODO: 내 아이디 불러오기
+    private var myId by Delegates.notNull<Long>()
+    lateinit var userInfo: SharedPreferences
     private var receiverId by Delegates.notNull<Long>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ChattingCreateBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        myId = userInfo.getString("userInfo", "2")!!.toLong()
         viewFriendList(myId)
         binding.searchFriend.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener,
             SearchView.OnQueryTextListener {

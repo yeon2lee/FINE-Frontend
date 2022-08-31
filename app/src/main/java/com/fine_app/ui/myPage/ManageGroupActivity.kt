@@ -1,6 +1,7 @@
 package com.fine_app.ui.myPage
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,13 +17,18 @@ import com.fine_app.ui.community.PostDetail_Main
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 class ManageGroupActivity : AppCompatActivity() {
     private lateinit var binding: ActivityManageGroupBinding
-    var userId: Long = 2
+    lateinit var userInfo: SharedPreferences
+    var userId by Delegates.notNull<Long>()
     lateinit var userData: List<Post>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        userId = userInfo.getString("userInfo", "2")!!.toLong()
+
         binding = ActivityManageGroupBinding.inflate(layoutInflater)
         getMyGroupList()
         setContentView(binding.root)

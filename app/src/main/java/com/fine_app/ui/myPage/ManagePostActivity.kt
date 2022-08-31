@@ -1,6 +1,7 @@
 package com.fine_app.ui.myPage
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,10 +19,12 @@ import com.fine_app.ui.community.PostDetail_Main
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 class ManagePostActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMypagePostBinding
-    var userId: Long = 2
+    lateinit var userInfo: SharedPreferences
+    var userId by Delegates.notNull<Long>()
     lateinit var userData: List<Post>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +32,9 @@ class ManagePostActivity : AppCompatActivity() {
 
         binding = ActivityMypagePostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
+        userId = userInfo.getString("userInfo", "2")!!.toLong()
 
         getMyPostList()
 
@@ -38,7 +44,7 @@ class ManagePostActivity : AppCompatActivity() {
 
     }
 
-    private fun getMyPostList() {=
+    private fun getMyPostList() {
         val call: Call<List<Post>> = ServiceCreator.service.getMyPostList(userId)
 
         call.enqueue(object : Callback<List<Post>> {
