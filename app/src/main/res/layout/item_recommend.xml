@@ -28,7 +28,7 @@
                 android:background="@drawable/round_background"
                 android:paddingLeft="3sp"
                 android:paddingRight="3sp"
-                android:text="마감 임박"
+                android:text="HOT!"
                 android:textColor="#6DB33F"
                 android:textSize="10sp"
                 android:textStyle="bold" />
@@ -37,7 +37,7 @@
                 android:id="@+id/recommendTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="20"
+                android:lines="1"
                 android:text="이번에 아이유 콘서트 신청 성공한 사람?"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10sp"
                 android:ellipsize="end"
+                android:lines="3"
                 android:maxLines="3"
                 android:text="강의 정해서\n개강 전까지 같이 공부하실 분?\n연락주세요"
                 android:textColor="#FFFFFF"
@@ -56,6 +57,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/capacityBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10sp"
@@ -63,42 +65,41 @@
 
                 <TextView
                     android:id="@+id/textView19"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:text="남은 자리"
                     android:textSize="10sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/recommendVacancy"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginRight="10sp"
                     android:text="1"
                     android:textSize="10sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView18"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:text="최대 인원"
                     android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/recommendCapacity"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="5sp"
                     android:text="5"
                     android:textSize="10sp" />
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3" />
+                    android:layout_weight="6" />
 
             </LinearLayout>
 
@@ -150,18 +151,10 @@
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="3" />
             </LinearLayout>
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView15"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/logos_spring_icon" />
 
     </LinearLayout>
 

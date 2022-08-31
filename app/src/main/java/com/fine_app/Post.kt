@@ -9,6 +9,7 @@ data class Post(
     val memberId: Long,
     @SerializedName(value = "writerNickname")
     val nickname: String,
+    val userImageNum: Int,
     val title:String,
     val content: String,
     val commentCount:String,
@@ -35,7 +36,8 @@ data class Recruit(
 data class RecruitMember(
     val memberId:Long,
     val nickname:String,
-    val level:String
+    val level:String,
+    val userImageNum: Int
 ):Serializable
 
 data class Comment(
@@ -47,7 +49,8 @@ data class Comment(
 data class CommentMember(
     val memberId: Long,
     val nickname:String,
-    val level:String
+    val level:String,
+    val userImageNum: Int
 ):Serializable
 
 data class Member (
@@ -177,7 +180,8 @@ data class PersonalChat(
 data class GroupChat(
     val myId:Long,
     val receiverList:List<Long>,
-    val roomName:String
+    val roomName:String,
+    val imageNum: Int
 ):Serializable
 
 data class ChangeRoomName(
@@ -193,7 +197,9 @@ data class ChatRoom(
 
 data class SendChat(
     val memberId:Long,
-    val nickname:Long,
+    val nickname:String,
+    val imageNum:Int,
     val message:String,
-    val unreadCount:Int
+    val unreadCount:Int,
+    val createdTime:String
 ):Serializable

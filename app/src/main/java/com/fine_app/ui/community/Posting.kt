@@ -31,7 +31,7 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
 
         lateinit var title:String
         lateinit var content:String
-        val myID:Long=2 //todo 내 아이디 불러오기
+        val myID:Long=1 //todo 내 아이디 불러오기
         var capacity=2
         val spinner: Spinner = binding.spinner
         val items = arrayOf("인원 선택", 2, 3, 4, 5, 6)

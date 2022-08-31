@@ -32,7 +32,7 @@ class FriendRecommendFragment : Fragment() {
 
         viewPager.adapter = viewpagerFragmentAdapter
 
-        val tabTitles = listOf("지역", "전공", "취미")
+        val tabTitles = listOf("나와 딱 맞는 친구", "지역", "전공", "취미", "전체")
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position -> tab.text = tabTitles[position] }.attach()
 

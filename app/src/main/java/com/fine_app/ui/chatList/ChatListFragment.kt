@@ -40,8 +40,8 @@ class ChatListFragment : Fragment() {
     private var mStompClient: StompClient? = null
     private var compositeDisposable: CompositeDisposable? = null
 
-    private val roomId = 2L
-    private val myId = 2L
+    private val roomId:Long = 2
+    private val myId:Long = 2
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -165,6 +165,8 @@ class ChatListFragment : Fragment() {
         private val roomName: TextView =itemView.findViewById(R.id.friend_name)
         private val sendTime: TextView =itemView.findViewById(R.id.sendTime)
         private val recentChat: TextView =itemView.findViewById(R.id.recentChat)
+        private val capacity: TextView =itemView.findViewById(R.id.chatRoomCapacity)
+        private val unreadCount:TextView=itemView.findViewById(R.id.unreadCount)
 
         fun bind(chatroom: ChatRoomList) {
             this.chatroom=chatroom
@@ -172,6 +174,26 @@ class ChatListFragment : Fragment() {
             roomName.text=this.chatroom.roomName
             sendTime.text=token[1]+"/"+token[2]+" "+token[3]+":"+token[4]
             recentChat.text=this.chatroom.latestMessage
+            if(this.chatroom.soloCheck){
+                capacity.visibility=View.INVISIBLE
+            }else{
+                capacity.text=this.chatroom.memberCount.toString()
+            }
+            if(this.chatroom.unreadMessageCount==0) {
+               unreadCount.visibility=View.INVISIBLE
+            }else{
+                unreadCount.text=this.chatroom.unreadMessageCount.toString()
+            }
+            when (this.chatroom.imageNum) {
+                0 -> roomImage.setImageResource(R.drawable.profile1)
+                1 -> roomImage.setImageResource(R.drawable.profile1)
+                2 -> roomImage.setImageResource(R.drawable.profile2)
+                3 -> roomImage.setImageResource(R.drawable.profile3)
+                4 -> roomImage.setImageResource(R.drawable.profile4)
+                5 -> roomImage.setImageResource(R.drawable.profile5)
+                6 -> roomImage.setImageResource(R.drawable.profile6)
+                else -> roomImage.setImageResource(R.drawable.profile1)
+            }
             itemView.setOnClickListener{
                 val create= Intent(activity, ChatRoom::class.java)
                 create.putExtra("roomId" , this.chatroom.roomId)

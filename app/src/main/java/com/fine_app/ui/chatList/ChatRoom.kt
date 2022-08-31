@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils.split
 import android.text.TextWatcher
 import android.util.Log
 import android.view.*
@@ -37,6 +38,7 @@ import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 import ua.naiksoftware.stomp.dto.StompMessage
+import java.lang.System.exit
 import kotlin.properties.Delegates
 
 class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedListener {
@@ -44,7 +46,7 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
 
     private lateinit var binding: ChattingRoomBinding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerView2: RecyclerView
+    private lateinit var recyclerView2: RecyclerView //사이드바
     private var soloCheck=true
     private lateinit var navigationView: NavigationView
     lateinit var drawerLayout: DrawerLayout
@@ -53,6 +55,7 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
 
     private var mStompClient: StompClient? = null
     private var compositeDisposable: CompositeDisposable? = null
+    val oldMessage = ArrayList<SendChat>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,7 +146,7 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
         }
         return false
     }
-
+/*
     inner class OtherViewHolder(view:View): RecyclerView.ViewHolder(view){
         private lateinit var chat: ChatMessage
         private val nickname: TextView =itemView.findViewById(R.id.sender_name)
@@ -161,14 +164,14 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
             nickname.text=this.chat.sender.nickname
             var imageResource = this.chat.sender.userImageNum
             when (imageResource) {
-                0 -> profileImage.setImageResource(R.drawable.profile)
+                0 -> profileImage.setImageResource(R.drawable.profile1)
                 1 -> profileImage.setImageResource(R.drawable.profile1)
                 2 -> profileImage.setImageResource(R.drawable.profile2)
                 3 -> profileImage.setImageResource(R.drawable.profile3)
                 4 -> profileImage.setImageResource(R.drawable.profile4)
                 5 -> profileImage.setImageResource(R.drawable.profile5)
                 6 -> profileImage.setImageResource(R.drawable.profile6)
-                else -> profileImage.setImageResource(R.drawable.profile)
+                else -> profileImage.setImageResource(R.drawable.profile1)
             }
 
             profileImage.setOnClickListener{ //작성자 프로필 조회
@@ -217,6 +220,81 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
         }
     }
 
+
+ */
+
+    inner class OtherViewHolder(view:View): RecyclerView.ViewHolder(view){
+    private lateinit var chat: SendChat
+    private val nickname: TextView =itemView.findViewById(R.id.sender_name)
+    private val profileImage: ImageView =itemView.findViewById(R.id.imageView16)
+    private val unReadNumber: TextView =itemView.findViewById(R.id.unreadNumber)
+    private val sendTime: TextView =itemView.findViewById(R.id.sendTime)
+    private val chatText: TextView =itemView.findViewById(R.id.chatText)
+
+    fun bind(chat: SendChat) {
+        this.chat=chat
+        val token= this.chat.createdTime.split("-", "T", ":")
+        sendTime.text=token[1]+"/"+token[2]+" "+token[3]+":"+token[4]
+        if(this.chat.unreadCount!=0) unReadNumber.text=this.chat.unreadCount.toString()
+        chatText.text=this.chat.message
+        nickname.text=this.chat.nickname
+        when (this.chat.imageNum) {
+            0 -> profileImage.setImageResource(R.drawable.profile1)
+            1 -> profileImage.setImageResource(R.drawable.profile1)
+            2 -> profileImage.setImageResource(R.drawable.profile2)
+            3 -> profileImage.setImageResource(R.drawable.profile3)
+            4 -> profileImage.setImageResource(R.drawable.profile4)
+            5 -> profileImage.setImageResource(R.drawable.profile5)
+            6 -> profileImage.setImageResource(R.drawable.profile6)
+            else -> profileImage.setImageResource(R.drawable.profile1)
+        }
+
+        profileImage.setOnClickListener{ //작성자 프로필 조회
+            val userProfile = Intent(this@ChatRoom, ShowUserProfileActivity::class.java)
+            userProfile.putExtra("memberId",this.chat.memberId)
+            startActivity(userProfile)
+        }
+    }
+}
+    inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
+        private lateinit var chat: SendChat
+        private val unReadNumber: TextView =itemView.findViewById(R.id.unreadNumber)
+        private val sendTime: TextView =itemView.findViewById(R.id.sendTime)
+        private val chatText: TextView =itemView.findViewById(R.id.chatText)
+
+        fun bind(chat: SendChat) {
+            this.chat=chat
+            val token= this.chat.createdTime.split("-", "T", ":")
+            sendTime.text=token[1]+"/"+token[2]+" "+token[3]+":"+token[4]
+            if(this.chat.unreadCount!=0) unReadNumber.text=this.chat.unreadCount.toString()
+            chatText.text=this.chat.message
+        }
+    }
+    inner class MyAdapter(val list:ArrayList<SendChat>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        override fun getItemCount(): Int = list.size
+
+        override fun getItemViewType(position: Int): Int {
+            return if(list[position].memberId == memberId) 1
+            else 2
+        }
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            return if(viewType==1)
+                MyViewHolder(layoutInflater.inflate(R.layout.item_chatting_my, parent, false))
+            else
+                OtherViewHolder(layoutInflater.inflate(R.layout.item_chatting_group, parent, false))
+        }
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            if(list[position].memberId == memberId) {
+                (holder as MyViewHolder).bind(list[position])
+                holder.setIsRecyclable(false)
+            }
+            else {
+                (holder as OtherViewHolder).bind(list[position])
+                holder.setIsRecyclable(false)
+            }
+        }
+    }
+
     inner class SideViewHolder(view:View): RecyclerView.ViewHolder(view){
         private lateinit var friend: ChangeChatRoom
         private val friendImage: ImageView =itemView.findViewById(R.id.friend_image)
@@ -233,16 +311,15 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
                 now.visibility=View.INVISIBLE
                 button.visibility=View.INVISIBLE
             }
-            val imageResource = this.friend.member.userImageNum
-            when (imageResource) {
-                0 -> friendImage.setImageResource(R.drawable.profile)
+            when (this.friend.member.userImageNum) {
+                0 -> friendImage.setImageResource(R.drawable.profile1)
                 1 -> friendImage.setImageResource(R.drawable.profile1)
                 2 -> friendImage.setImageResource(R.drawable.profile2)
                 3 -> friendImage.setImageResource(R.drawable.profile3)
                 4 -> friendImage.setImageResource(R.drawable.profile4)
                 5 -> friendImage.setImageResource(R.drawable.profile5)
                 6 -> friendImage.setImageResource(R.drawable.profile6)
-                else -> friendImage.setImageResource(R.drawable.profile)
+                else -> friendImage.setImageResource(R.drawable.profile1)
             }
             friendImage.setOnClickListener{ //작성자 프로필 조회
                 val userProfile = Intent(this@ChatRoom, ShowUserProfileActivity::class.java)
@@ -297,11 +374,19 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ topicMessage: StompMessage ->
                     val text= topicMessage.payload //todo 이 text를 recyclerView에 입히기
-                    val roomId=JSONObject(text).getString("roomId")
+                    //val roomId=JSONObject(text).getString("roomId")
                     val memberId:Long=JSONObject(text).getString("memberId").toLong()
                     val nickName=JSONObject(text).getString("nickName")
                     val message=JSONObject(text).getString("message")
                     val unreadCount=JSONObject(text).getString("unreadCount").toInt()
+                    //val time= JSONObject(text).getString("createdTime")
+                    //val imageNum=JSONObject(text).getString("imageNum").toInt() //todo 이미지넘버 확인
+                    val newMessage=SendChat(memberId, nickName, 1, message, unreadCount, "2022-08-18T17:24:05.3960486") //todo 이미지넘버 확인
+                    Log.d("sendChat", "${newMessage}")
+                    oldMessage.add(newMessage)
+                    Log.d("sendChat", "${oldMessage}")
+                    //MyAdapter(oldMessage).notifyItemInserted(oldMessage.size)
+                    recyclerView.adapter?.notifyItemInserted(oldMessage.size)
                     Log.d(
                         TAG,
                         "Received $topicMessage"
@@ -424,9 +509,19 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
             override fun onResponse(call: Call<Chat>, response: Response<Chat>) {
                 Log.d("retrofit", "메인 채팅방 내부 - 응답 성공 / t : ${response.raw()}")
 
+                //테스트
+                val messageList:List<ChatMessage> = response.body()!!.chatMessageList
+                Log.d("chat", "${messageList.size}")
+                for(i in 0 until messageList.size){ //아이디 닉네임 메세지 카운트 타임
+                    val message=SendChat(messageList[i].sender.id, messageList[i].sender.nickname, messageList[i].sender.userImageNum, messageList[i].message, messageList[i].unreadCount, messageList[i].createdDate)
+                    Log.d("chat", "${message}")
+                    oldMessage.add(message)
+                }
+                Log.d("old chat", "${oldMessage}")
                 recyclerView=binding.recyclerView
                 recyclerView.layoutManager= LinearLayoutManager(this@ChatRoom)
-                recyclerView.adapter=MyAdapter(response.body()!!.chatMessageList)
+                //recyclerView.adapter=MyAdapter(response.body()!!.chatMessageList)
+                recyclerView.adapter= MyAdapter(oldMessage)
 
                 soloCheck=response.body()!!.soloCheck
                 if(soloCheck){

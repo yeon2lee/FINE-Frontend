@@ -54,8 +54,16 @@ class WaitingList : AppCompatActivity() {
         fun bind(crew: Recruit) {
             this.crew=crew
             name.text=this.crew.member.nickname
-            //image.setImageResource(R.drawable.ic_sprout)
-            //image.setImageResource(this.crew.capacity)
+            when (this.crew.member.userImageNum) {
+                0 -> image.setImageResource(R.drawable.profile1)
+                1 -> image.setImageResource(R.drawable.profile1)
+                2 -> image.setImageResource(R.drawable.profile2)
+                3 -> image.setImageResource(R.drawable.profile3)
+                4 -> image.setImageResource(R.drawable.profile4)
+                5 -> image.setImageResource(R.drawable.profile5)
+                6 -> image.setImageResource(R.drawable.profile6)
+                else -> image.setImageResource(R.drawable.profile1)
+            }
             //level.setImageResource(this.crew.capacity)
             button.setOnClickListener{
                 if(this.crew.acceptCheck) manageJoinGroup(postingID, this.crew.recruitingId, AcceptCheck(false))
