@@ -2,6 +2,7 @@ package com.fine_app.ui.chatList
 
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +30,7 @@ import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 import ua.naiksoftware.stomp.dto.StompMessage
+import kotlin.properties.Delegates
 
 class ChatListFragment : Fragment() {
 
@@ -41,13 +44,18 @@ class ChatListFragment : Fragment() {
     private var compositeDisposable: CompositeDisposable? = null
 
     private val roomId:Long = 2
-    private val myId:Long = 2
+    private var myId by Delegates.notNull<Long>()
+    lateinit var userInfo: SharedPreferences
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         _binding = FragmentChatlistBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        userInfo = this.getActivity()!!.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        myId = userInfo.getString("userInfo", "2")!!.toLong()
+
         viewChatList()
         binding.fabMain.setOnClickListener {
             toggleFab()
