@@ -44,6 +44,7 @@ class FriendListFragment : Fragment() {
         binding.myImage.setOnClickListener {
             activity?.let{
                 val intent = Intent(context, ShowUserProfileActivity::class.java)
+                intent.putExtra("memberId", myId)
                 startActivity(intent)
             }
         }
@@ -151,6 +152,7 @@ class FriendListFragment : Fragment() {
     }
     override fun onResume() {
         super.onResume()
+        myId = userInfo.getString("userInfo", "2")!!.toLong()
         viewFriendList(myId)
     }
     override fun onDestroyView() {
