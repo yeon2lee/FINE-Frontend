@@ -63,14 +63,14 @@ class CreateMainChatRoom: AppCompatActivity(), ConfirmDialogInterface {
             friendIntro.text=this.friend.intro
             var imageResource = this.friend.imageNum
             when (imageResource) {
-                0 -> friendProfileImage.setImageResource(R.drawable.profile)
+                0 -> friendProfileImage.setImageResource(R.drawable.profile1)
                 1 -> friendProfileImage.setImageResource(R.drawable.profile1)
                 2 -> friendProfileImage.setImageResource(R.drawable.profile2)
                 3 -> friendProfileImage.setImageResource(R.drawable.profile3)
                 4 -> friendProfileImage.setImageResource(R.drawable.profile4)
                 5 -> friendProfileImage.setImageResource(R.drawable.profile5)
                 6 -> friendProfileImage.setImageResource(R.drawable.profile6)
-                else -> friendProfileImage.setImageResource(R.drawable.profile)
+                else -> friendProfileImage.setImageResource(R.drawable.profile1)
             }
             itemView.setOnClickListener{
                 val dialog = ConfirmDialog(this@CreateMainChatRoom, "${this.friend.nickname} 님과 \n1:1 채팅방을 개설하시겠습니까?", 0, 0)

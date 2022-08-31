@@ -10,7 +10,6 @@ import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fine_app.*
@@ -23,8 +22,6 @@ import com.fine_app.ui.community.ConfirmDialogInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.acl.Group
-import kotlin.properties.Delegates
 
 class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
 
@@ -45,9 +42,14 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
             finish()
         }
         binding.button.setOnClickListener{
-            val dialog = ConfirmDialog(this@CreateGroupChatRoom, "그룹 채팅방을 개설하시겠습니까?", 0, 100)
-            dialog.isCancelable = false
-            dialog.show(this@CreateGroupChatRoom.supportFragmentManager, "ConfirmDialog")
+            if(receiverId.size==0){
+                val dialog = ConfirmDialog(this@CreateGroupChatRoom, "인원을 선택해주세요", 0, 1)
+                dialog.show(this@CreateGroupChatRoom.supportFragmentManager, "ConfirmDialog")
+            }else{
+                val dialog = ConfirmDialog(this@CreateGroupChatRoom, "그룹 채팅방을 개설하시겠습니까?", 0, 0)
+                dialog.isCancelable = false
+                dialog.show(this@CreateGroupChatRoom.supportFragmentManager, "ConfirmDialog")
+            }
         }
     }
 
@@ -58,16 +60,15 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
         fun bind(friend: Friend){
             this.friend=friend
             friendNickname.text=this.friend.nickname
-            val imageResource = this.friend.imageNum
-            when (imageResource) {
-                0 -> friendProfile.setImageResource(R.drawable.profile)
+            when (this.friend.imageNum) {
+                0 -> friendProfile.setImageResource(R.drawable.profile1)
                 1 -> friendProfile.setImageResource(R.drawable.profile1)
                 2 -> friendProfile.setImageResource(R.drawable.profile2)
                 3 -> friendProfile.setImageResource(R.drawable.profile3)
                 4 -> friendProfile.setImageResource(R.drawable.profile4)
                 5 -> friendProfile.setImageResource(R.drawable.profile5)
                 6 -> friendProfile.setImageResource(R.drawable.profile6)
-                else -> friendProfile.setImageResource(R.drawable.profile)
+                else -> friendProfile.setImageResource(R.drawable.profile1)
             }
         }
     }
@@ -94,16 +95,15 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
         fun bind(friend: Friend){
             this.friend=friend
             friendName.text=this.friend.nickname
-            val imageResource = this.friend.imageNum
-            when (imageResource) {
-                0 -> friendProfileImage.setImageResource(R.drawable.profile)
+            when (this.friend.imageNum) {
+                0 -> friendProfileImage.setImageResource(R.drawable.profile1)
                 1 -> friendProfileImage.setImageResource(R.drawable.profile1)
                 2 -> friendProfileImage.setImageResource(R.drawable.profile2)
                 3 -> friendProfileImage.setImageResource(R.drawable.profile3)
                 4 -> friendProfileImage.setImageResource(R.drawable.profile4)
                 5 -> friendProfileImage.setImageResource(R.drawable.profile5)
                 6 -> friendProfileImage.setImageResource(R.drawable.profile6)
-                else -> friendProfileImage.setImageResource(R.drawable.profile)
+                else -> friendProfileImage.setImageResource(R.drawable.profile1)
             }
             itemView.setOnClickListener{
                 if(checkBox.isChecked){
@@ -191,9 +191,8 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
         Log.d("retrofit", "인텐트 종료")
         if (resultCode == RESULT_OK) {
             roomName = data?.getStringExtra("text")!!
-            addGroupChatRoom(GroupChat(myId,receiverId.toList(), roomName))
-            Log.d("ff", "리스트: ${receiverId}")
-            Log.d("ff", "방 이름: ${roomName}")
+            val imageNum = data.getIntExtra("image", 1)
+            addGroupChatRoom(GroupChat(myId,receiverId.toList(), roomName, imageNum))
             finish()
         }
     }

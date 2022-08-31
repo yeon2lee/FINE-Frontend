@@ -60,14 +60,14 @@ class ShowUserProfileActivity : AppCompatActivity() {
                     var imageResource = userData.userImageNum
                     binding.profileUserFriendNumTv.text = userData.follower.toString()
                     when (imageResource) {
-                        0 -> binding.profileUserImageIv.setImageResource(R.drawable.profile)
+                        0 -> binding.profileUserImageIv.setImageResource(R.drawable.profile1)
                         1 -> binding.profileUserImageIv.setImageResource(R.drawable.profile1)
                         2 -> binding.profileUserImageIv.setImageResource(R.drawable.profile2)
                         3 -> binding.profileUserImageIv.setImageResource(R.drawable.profile3)
                         4 -> binding.profileUserImageIv.setImageResource(R.drawable.profile4)
                         5 -> binding.profileUserImageIv.setImageResource(R.drawable.profile5)
                         6 -> binding.profileUserImageIv.setImageResource(R.drawable.profile6)
-                        else -> binding.profileUserImageIv.setImageResource(R.drawable.profile)
+                        else -> binding.profileUserImageIv.setImageResource(R.drawable.profile1)
                     }
 
                     // 내 프로필일 경우

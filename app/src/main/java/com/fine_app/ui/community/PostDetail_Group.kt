@@ -62,12 +62,21 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
         private lateinit var comment: Comment
         private val nickname: TextView =itemView.findViewById(R.id.nickname)
         private val text: TextView =itemView.findViewById(R.id.comment)
-        private val image: ImageView =itemView.findViewById(R.id.profileImage)
+        private val image: ImageView =itemView.findViewById(R.id.commentProfileImage)
         fun bind(comment:Comment){
             this.comment=comment
             nickname.text=this.comment.member.nickname
             text.text=this.comment.text
-            //image.setImageResource(this.comment.profileID)
+            when (this.comment.member.userImageNum) {
+                0 -> image.setImageResource(R.drawable.profile1)
+                1 -> image.setImageResource(R.drawable.profile1)
+                2 -> image.setImageResource(R.drawable.profile2)
+                3 -> image.setImageResource(R.drawable.profile3)
+                4 -> image.setImageResource(R.drawable.profile4)
+                5 -> image.setImageResource(R.drawable.profile5)
+                6 -> image.setImageResource(R.drawable.profile6)
+                else -> image.setImageResource(R.drawable.profile1)
+            }
 
             nickname.setOnClickListener { //댓글 작성자 프로필 조회
                 val userProfile = Intent(this@PostDetail_Group, ShowUserProfileActivity::class.java)
@@ -150,14 +159,14 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
         binding.max.text=postCapacity.toString()
         binding.participants.text=participants.toString()
         when (postWriterImage) {
-            0 -> binding.writerImage.setImageResource(R.drawable.profile)
+            0 -> binding.writerImage.setImageResource(R.drawable.profile1)
             1 -> binding.writerImage.setImageResource(R.drawable.profile1)
             2 -> binding.writerImage.setImageResource(R.drawable.profile2)
             3 -> binding.writerImage.setImageResource(R.drawable.profile3)
             4 -> binding.writerImage.setImageResource(R.drawable.profile4)
             5 -> binding.writerImage.setImageResource(R.drawable.profile5)
             6 -> binding.writerImage.setImageResource(R.drawable.profile6)
-            else -> binding.writerImage.setImageResource(R.drawable.profile)
+            else -> binding.writerImage.setImageResource(R.drawable.profile1)
         }
 
         binding.backButton.setOnClickListener{ //글 세부페이지 종료
@@ -272,7 +281,7 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
                 writerID=response.body()!!.memberId
                 createdDate=response.body()!!.createdDate
                 lastModifiedDate=response.body()!!.lastModifiedDate
-                postWriterImage=intent.getIntExtra("profileID", 0)
+                postWriterImage=response.body()!!.userImageNum
                 comments=response.body()!!.comments
                 adapter=MyAdapter(comments)
                 postCapacity=response.body()!!.capacity

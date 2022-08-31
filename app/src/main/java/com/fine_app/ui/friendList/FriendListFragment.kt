@@ -12,18 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fine_app.Friend
-import com.fine_app.Member
 import com.fine_app.R
 import com.fine_app.databinding.FragmentFriendlistBinding
-import com.fine_app.databinding.FriendSearchBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
-import com.fine_app.ui.myPage.ManagePostActivity
-import com.fine_app.ui.myPage.MyPageFragment
 import com.fine_app.ui.myPage.Profile
 import com.fine_app.ui.myPage.ServiceCreator
-import com.fine_app.ui.community.PostDetail_Group
 import com.fine_app.ui.community.ShowUserProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -65,14 +60,14 @@ class FriendListFragment : Fragment() {
             friendIntro.text=this.friend.intro
 
             when (this.friend.imageNum) {
-                0 -> friendProfileImage.setImageResource(R.drawable.profile)
+                0 -> friendProfileImage.setImageResource(R.drawable.profile1)
                 1 -> friendProfileImage.setImageResource(R.drawable.profile1)
                 2 -> friendProfileImage.setImageResource(R.drawable.profile2)
                 3 -> friendProfileImage.setImageResource(R.drawable.profile3)
                 4 -> friendProfileImage.setImageResource(R.drawable.profile4)
                 5 -> friendProfileImage.setImageResource(R.drawable.profile5)
                 6 -> friendProfileImage.setImageResource(R.drawable.profile6)
-                else -> friendProfileImage.setImageResource(R.drawable.profile)
+                else -> friendProfileImage.setImageResource(R.drawable.profile1)
             }
             // todo 사용자 레벨
             friendLevelImage.setImageResource(R.drawable.ic_sprout)
@@ -109,14 +104,14 @@ class FriendListFragment : Fragment() {
                     binding.myIntro.text=response.body()!!.intro
                     var imageResource = response.body()!!.userImageNum
                     when (imageResource) {
-                        0 -> binding.myImage.setImageResource(R.drawable.profile)
+                        0 -> binding.myImage.setImageResource(R.drawable.profile1)
                         1 -> binding.myImage.setImageResource(R.drawable.profile1)
                         2 -> binding.myImage.setImageResource(R.drawable.profile2)
                         3 -> binding.myImage.setImageResource(R.drawable.profile3)
                         4 -> binding.myImage.setImageResource(R.drawable.profile4)
                         5 -> binding.myImage.setImageResource(R.drawable.profile5)
                         6 -> binding.myImage.setImageResource(R.drawable.profile6)
-                        else -> binding.myImage.setImageResource(R.drawable.profile)
+                        else -> binding.myImage.setImageResource(R.drawable.profile1)
                     }
                     //todo 레벨 연결
                 }

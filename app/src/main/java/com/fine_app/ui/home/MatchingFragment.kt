@@ -15,7 +15,7 @@ import com.fine_app.R
 import com.fine_app.Test
 import com.fine_app.databinding.FragmentMatchingBinding
 
-class MatchingAreaFragment : Fragment() {
+class MatchingFragment : Fragment() {
     private var _binding: FragmentMatchingBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView

@@ -1,10 +1,13 @@
 package com.fine_app.ui.chatList
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.fine_app.CreateChatRoom
@@ -25,26 +28,46 @@ class CreateRoomName: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ChattingSettingBinding.inflate(layoutInflater)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val window: Window = window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        }
         var imageNum=1
-        val buttonList: RadioGroup =binding.radioGroup
-        buttonList.setOnCheckedChangeListener{_, checkedId ->
+        binding.radioGroup.setOnCheckedChangeListener{_, checkedId ->
             when(checkedId){
                 R.id.radioButton -> {
+                    binding.radioGroup2.clearCheck()
                     imageNum=1
+                    Log.d("dd", "1번 체크")
                 }
                 R.id.radioButton2 -> {
+                    binding.radioGroup2.clearCheck()
                     imageNum=2
+                    Log.d("dd", "2번 체크")
                 }
                 R.id.radioButton3 -> {
+                    binding.radioGroup2.clearCheck()
                     imageNum=3
+                    Log.d("dd", "3번 체크")
                 }
+            }
+        }
+        binding.radioGroup2.setOnCheckedChangeListener{_, checkedId ->
+            when(checkedId){
                 R.id.radioButton4 -> {
+                    binding.radioGroup.clearCheck()
+                    Log.d("dd", "4번 체크")
                     imageNum=4
                 }
                 R.id.radioButton5 -> {
+                    binding.radioGroup.clearCheck()
+                    Log.d("dd", "5번 체크")
                     imageNum=5
                 }
                 R.id.radioButton6 -> {
+                    binding.radioGroup.clearCheck()
+                    Log.d("dd", "6번 체크")
                     imageNum=6
                 }
             }

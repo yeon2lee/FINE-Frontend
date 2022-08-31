@@ -60,12 +60,12 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지역" />
+            android:text="나와 딱 맞는 친구" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="학교" />
+            android:text="지역" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -75,7 +75,12 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="랜덤" />
+            android:text="취미" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전체" />
 
     </com.google.android.material.tabs.TabLayout>
 

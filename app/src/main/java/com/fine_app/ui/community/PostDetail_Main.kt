@@ -29,7 +29,7 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var adapter:MyAdapter
     private var postingId by Delegates.notNull<Long>()
     private var writerID by Delegates.notNull<Long>()
-    private var myID :Long=2
+    private var myID :Long=2 //todo 내 아이디 가져오기
     private var postTitle by Delegates.notNull<String>()
     private var postContent by Delegates.notNull<String>()
     private var postWriter by Delegates.notNull<String>()
@@ -58,12 +58,21 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
         private lateinit var comment: Comment
         private val nickname: TextView =itemView.findViewById(R.id.nickname)
         private val text: TextView =itemView.findViewById(R.id.comment)
-        private val image:ImageView=itemView.findViewById(R.id.profileImage)
+        private val image:ImageView=itemView.findViewById(R.id.commentProfileImage)
         fun bind(comment:Comment){
             this.comment=comment
             nickname.text=this.comment.member.nickname
             text.text=this.comment.text
-            //image.setImageResource(this.comment.profileID) //todo 댓글 프로필사진 등록
+            when (this.comment.member.userImageNum) {
+                0 -> image.setImageResource(R.drawable.profile1)
+                1 -> image.setImageResource(R.drawable.profile1)
+                2 -> image.setImageResource(R.drawable.profile2)
+                3 -> image.setImageResource(R.drawable.profile3)
+                4 -> image.setImageResource(R.drawable.profile4)
+                5 -> image.setImageResource(R.drawable.profile5)
+                6 -> image.setImageResource(R.drawable.profile6)
+                else -> image.setImageResource(R.drawable.profile1)
+            }
 
 
             nickname.setOnClickListener { //댓글 작성자 프로필 조회
@@ -139,21 +148,19 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
         binding.postContent.text=postContent
         binding.writerName.text=postWriter
         when (intent.getIntExtra("profileID", 0)) {
-            0 -> binding.writerImage.setImageResource(R.drawable.profile)
+            0 -> binding.writerImage.setImageResource(R.drawable.profile1)
             1 -> binding.writerImage.setImageResource(R.drawable.profile1)
             2 -> binding.writerImage.setImageResource(R.drawable.profile2)
             3 -> binding.writerImage.setImageResource(R.drawable.profile3)
             4 -> binding.writerImage.setImageResource(R.drawable.profile4)
             5 -> binding.writerImage.setImageResource(R.drawable.profile5)
             6 -> binding.writerImage.setImageResource(R.drawable.profile6)
-            else -> binding.writerImage.setImageResource(R.drawable.profile)
+            else -> binding.writerImage.setImageResource(R.drawable.profile1)
         }
-        Log.d("dd", "attatch : ${writerID}")
         binding.writerImage.setOnClickListener{ //작성자 프로필 조회
             val userProfile = Intent(this, ShowUserProfileActivity::class.java)
             userProfile.putExtra("memberId","binding : ${writerID}")
             startActivity(userProfile)
-            Log.d("dd", "${writerID}")
         }
         //-----------------------------------------------------버튼 클릭-------------------------------------------------
         binding.backButton.setOnClickListener{ //글 세부페이지 종료
@@ -225,24 +232,22 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
 
             override fun onResponse(call: Call<Post>, response: Response<Post>) {
                 Log.d("retrofit", "메인 커뮤니티 세부 글 - 응답 성공 / t : ${response.raw()}")
-                Log.d("retrofit", response.body().toString())
                  postTitle=response.body()!!.title
                  postContent=response.body()!!.content
                  postWriter=response.body()!!.nickname
                  writerID=response.body()!!.memberId
-                Log.d("dd", "response : ${writerID}")
                  createdDate=response.body()!!.createdDate
                  lastModifiedDate=response.body()!!.lastModifiedDate
                 bookMarkId=response.body()!!.checkBookmarkId
-                when (intent.getIntExtra("profileID", 0)) {
-                    0 -> binding.writerImage.setImageResource(R.drawable.profile)
+                when (response.body()!!.userImageNum) {
+                    0 -> binding.writerImage.setImageResource(R.drawable.profile1)
                     1 -> binding.writerImage.setImageResource(R.drawable.profile1)
                     2 -> binding.writerImage.setImageResource(R.drawable.profile2)
                     3 -> binding.writerImage.setImageResource(R.drawable.profile3)
                     4 -> binding.writerImage.setImageResource(R.drawable.profile4)
                     5 -> binding.writerImage.setImageResource(R.drawable.profile5)
                     6 -> binding.writerImage.setImageResource(R.drawable.profile6)
-                    else -> binding.writerImage.setImageResource(R.drawable.profile)
+                    else -> binding.writerImage.setImageResource(R.drawable.profile1)
                 }
                 comments=response.body()!!.comments
                 adapter=MyAdapter(comments)
