@@ -22,3 +22,8 @@ data class RequestLoginData(
     val id: String,
     val password: String
 )
+
+data class ResponseDto(
+    val code: String,
+    val message: String
+)

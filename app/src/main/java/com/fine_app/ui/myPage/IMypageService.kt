@@ -1,4 +1,5 @@
 package com.fine_app.ui.myPage
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -42,6 +43,30 @@ interface IMypageService {
         @Path("memberId") memberId: Long,
         @Body userResidence: String
     ): Call<Long>
+
+    // 대학 인증
+    @GET("https://www.career.go.kr/cnet/openapi/getOpenApi?apiKey=efb0890dbac3202c498b279ad01a8e28&svcType=api&svcCode=SCHOOL&contentType=json&gubun=univ_list")
+    fun searchUniversity(
+        @Query("apiKey") apiKey: String,
+        @Query("svcType") svcType: String,
+        @Query("svcCode") svcCode: String,
+        @Query("contentType") contentType: String,
+        @Query("gubun") gubun: String,
+        @Query("searchSchulNm") searchSchulNm: String
+    ): Call<DataSearch>
+
+    // 대학 메일 보내기
+    @POST("/mail")
+    fun sendMail(
+        @Body address: String
+    ): Call<Long>
+
+    // 대학 메일 인증
+    @POST("/emailVerification/{memberId}")
+    fun verifyUniversityAuth(
+        @Path("memberId") memberId: Long,
+        @Body UniversityDto: UniversityDto
+    ): Call<UniversityDto>
 
     // 프로필 생성
     @GET("mypage/{memberId}")

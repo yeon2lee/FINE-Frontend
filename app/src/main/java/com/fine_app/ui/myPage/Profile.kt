@@ -1,6 +1,7 @@
 package com.fine_app.ui.myPage
 
 import java.io.Serializable
+import java.time.LocalDateTime
 
 // DTO 클래스 생성
 data class Profile (
@@ -29,3 +30,23 @@ data class Friend(
     val intro: String,
     val level : String,
 ): Serializable
+
+data class DataSearch(
+    val dataSearch: Content,
+)
+
+data class Content(
+    val content: ArrayList<University>,
+)
+
+data class University(
+    val campusName: String,
+    val schoolName: String,
+    val link: String,
+)
+
+data class UniversityDto(
+    val token: String,
+    val university: String,
+    val updateDate: LocalDateTime
+)
