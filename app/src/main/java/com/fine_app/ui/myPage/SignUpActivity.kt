@@ -3,8 +3,11 @@ package com.fine_app.ui.myPage
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.fine_app.R
 import com.fine_app.databinding.ActivitySignUpBinding
 import com.fine_app.ui.myPage.Profile
@@ -27,6 +30,25 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.etUserPwd2.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val pwdConfirm = binding.etUserPwd2.text.toString()
+                if (!binding.etUserPwd.text.toString().equals(pwdConfirm)) {
+                    binding.alertPassword.setText("비밀번호가 일치하지 않습니다.")
+                } else {
+                    binding.alertPassword.setText("비밀번호가 일치합니다.")
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                TODO("Not yet implemented")
+            }
+        })
 
     }
 
@@ -85,17 +107,18 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun signUp() {
         val requestAuthData = RequestAuthData(
             userId = binding.etUserId.text.toString(),
             password = binding.etUserPwd.text.toString(),
-            nickname = binding.etUserId.text.toString(),
-            keyword1 = checked[0].toString(),
-            keyword2 = checked[1].toString(),
-            keyword3 = checked[2].toString(),
+            nickname = binding.etNickname2.text.toString(),
+            userImageNum = 1,
+            intro = binding.etIntro.text.toString(),
+            keyword1 = "한이음대학교",
+            keyword2 = "서울",
+            keyword3 = checked[0].toString(),
         )
 
         val pwdConfirm = binding.etUserPwd2.text.toString()

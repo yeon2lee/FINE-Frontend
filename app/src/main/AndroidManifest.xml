@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Fine_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.myPage.SearchUniversityActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.myPage.AuthUniversityActivity"
             android:exported="false" />
         <activity
@@ -83,28 +86,28 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.community.SearchList"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.friendList.SearchFriendList"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.chatList.CreateMainChatRoom"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.chatList.CreateGroupChatRoom"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.chatList.ChatRoom"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.chatList.CreateRoomName"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
