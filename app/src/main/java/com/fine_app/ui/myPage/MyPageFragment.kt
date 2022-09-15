@@ -65,7 +65,7 @@ class MyPageFragment : Fragment() {
 
         binding.tvManageBookmark.setOnClickListener() {
             activity?.let{
-                val intent = Intent(context, ManageBookmarkActivity::class.java)
+                val intent = Intent(context, AuthUniversityActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -139,9 +139,7 @@ class MyPageFragment : Fragment() {
 //                    binding.mypageProfileKeyword1.setText("서울")
 //                    binding.mypageProfileKeyword2.setText("컴퓨터공학")
 //                    binding.mypageProfileKeyword3.setText("DIY")
-                    binding.mypageProfileKeyword1.setText("키워드" + userData.keyword1)
-                    binding.mypageProfileKeyword2.setText("키워드" + userData.keyword2)
-                    binding.mypageProfileKeyword3.setText("키워드" + userData.keyword3)
+                    binding.mypageProfileKeyword1.setText("키워드" + userData.keyword3)
                     if (userData.follower != null) {
                         binding.mypageProfileFriendNumTv.setText(userData.follower.toString())
                     } else {

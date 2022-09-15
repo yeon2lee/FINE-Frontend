@@ -23,6 +23,18 @@ interface IMypageService {
     @GET("mypage/{memberId}")
     fun userSecession(@Path("memberId") memberId: Long): Call<Profile>
 
+    // 아이디 중복 확인
+    @POST("/idVerification")
+    fun verifyId(
+        @Body userId: String
+    ): Call<ResponseDto>
+
+    // 닉네임 중복 확인
+    @POST("/nickNameVerification")
+    fun verifyNickname(
+        @Body userNickName: String
+    ): Call<ResponseDto>
+
     // 전화번호로 인증 번호 전송
     @POST("/mypage/phone/{memberId}")
     fun sendAuthMesssage(
