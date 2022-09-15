@@ -74,11 +74,11 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="60dp"
                 app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/profile_user_level_tv"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_intro_tv"
                 app:srcCompat="@drawable/ic_friend" />
 
             <TextView
-                android:id="@+id/profile_user_level_tv"
+                android:id="@+id/profile_user_intro_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="자기소개"
@@ -111,7 +111,7 @@
                 android:layout_marginStart="70dp"
                 android:layout_marginTop="25dp"
                 app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/profile_user_level_tv"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_intro_tv"
                 app:srcCompat="@drawable/ic_sprout" />
 
             <TextView
@@ -178,7 +178,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/textView56"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@+id/mypage_profile_level"
-                app:layout_constraintTop_toBottomOf="@+id/profile_user_level_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_intro_tv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -218,7 +218,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="20dp"
         android:background="#DDDDDD"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/mypage_auth_university_ic"
         app:layout_constraintTop_toTopOf="@+id/box2" />
 
     <View
@@ -228,11 +228,11 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:background="#DDDDDD"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/mypage_auth_phone_ic"
         app:layout_constraintTop_toTopOf="@+id/box2" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/mypage_auth_university_ic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="29dp"
@@ -242,7 +242,7 @@
         app:srcCompat="@drawable/ic_auth_check" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/mypage_auth_phone_ic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -252,7 +252,7 @@
         app:srcCompat="@drawable/ic_auth_add" />
 
     <ImageView
-        android:id="@+id/imageView24"
+        android:id="@+id/mypage_auth_location_ic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -262,7 +262,7 @@
         app:srcCompat="@drawable/ic_auth_add" />
 
     <TextView
-        android:id="@+id/textView62"
+        android:id="@+id/mypage_auth_university_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
@@ -270,10 +270,10 @@
         android:text="한국대학교"
         android:textColor="#615A55"
         app:layout_constraintStart_toStartOf="@+id/box2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_university_ic" />
 
     <TextView
-        android:id="@+id/textView59"
+        android:id="@+id/mypage_auth_phone_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
@@ -281,10 +281,10 @@
         android:text="번호 인증"
         android:textColor="#615A55"
         app:layout_constraintStart_toEndOf="@+id/view30"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_phone_ic" />
 
     <TextView
-        android:id="@+id/textView60"
+        android:id="@+id/mypage_auth_location_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -292,10 +292,10 @@
         android:text="지역 인증"
         android:textColor="#615A55"
         app:layout_constraintEnd_toEndOf="@+id/box2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView24" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_location_ic" />
 
     <TextView
-        android:id="@+id/textView61"
+        android:id="@+id/mypage_auth_university_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
@@ -303,7 +303,7 @@
         android:textColor="#C4C4C4"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/box2"
-        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_university_tv" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout4"

@@ -1,5 +1,7 @@
 package com.fine_app.ui.myPage
 
+import java.time.LocalDateTime
+
 data class RequestProfileData(
     val userImageNum: Int,
     val nickname: String,
@@ -28,4 +30,9 @@ data class RequestLoginData(
 data class ResponseDto(
     val code: String,
     val message: String
+)
+
+data class ResidenceDto(
+    val userResidence: String,
+    val updateDate: LocalDateTime
 )

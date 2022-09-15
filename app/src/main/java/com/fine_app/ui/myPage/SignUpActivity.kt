@@ -50,6 +50,9 @@ class SignUpActivity : AppCompatActivity() {
             }
         })
 
+        binding.imgProfile1.setOnClickListener {
+            binding.imgProfile1.setBackgroundResource(R.drawable.profile_border)
+        }
     }
 
     fun onClick(v: View?) {

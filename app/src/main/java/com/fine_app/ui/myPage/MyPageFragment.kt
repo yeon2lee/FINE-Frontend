@@ -98,6 +98,27 @@ class MyPageFragment : Fragment() {
             }
         }
 
+        binding.mypageAuthUniversityIc.setOnClickListener {
+            activity?.let{
+                val intent = Intent(context, AuthUniversityActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        binding.mypageAuthPhoneIc.setOnClickListener {
+            activity?.let{
+                val intent = Intent(context, AuthPhoneActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        binding.mypageAuthLocationIc.setOnClickListener {
+            activity?.let{
+                val intent = Intent(context, AuthLocationActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
         return root
     }
 
@@ -147,41 +168,32 @@ class MyPageFragment : Fragment() {
 
                     }
 
-//                    if (userData.userUniversity == null) {
-//                        binding.mypageUniversityTv.setText("대학 내역 없음")
-//                        binding.mypageUniversityAuthTv.setText("인증 내역 없음")
-//                        binding.mypageUniversityDate.setText("인증하러 가기")
-//                        binding.mypageUniversityDate.setTextColor(Color.parseColor("#615A55"))
-//                    } else {
-//                        binding.mypageUniversityTv.setText(userData.userUniversity)
-//                        binding.mypageUniversityAuthTv.setText("인증 완료")
-//                        binding.mypageUniversityDate.setText("(2022.8.18)")
-//                        binding.mypageUniversityDate.setTextColor(Color.parseColor("#989898"))
-//                    }
-//
-//                    if (userData.userPhoneNumber == null) {
-//                        binding.mypagePhoneTv.setText("번호 내역 없음")
-//                        binding.mypagePhoneAuthTv.setText("인증 내역 없음")
-//                        binding.mypagePhoneDate.setText("인증하러 가기")
-//                        binding.mypagePhoneDate.setTextColor(Color.parseColor("#615A55"))
-//                    } else {
-//                        binding.mypagePhoneTv.setText(userData.userUniversity)
-//                        binding.mypagePhoneAuthTv.setText("인증 완료")
-//                        binding.mypagePhoneDate.setText("(2022.8.18)")
-//                        binding.mypagePhoneDate.setTextColor(Color.parseColor("#989898"))
-//                    }
-//
-//                    if (userData.userResidence == null) {
-//                        binding.mypageLocationTv.setText("지역 내역 없음")
-//                        binding.mypageLocationAuthTv.setText("인증 내역 없음")
-//                        binding.mypageLocationDate.setText("인증하러 가기")
-//                        binding.mypageLocationDate.setTextColor(Color.parseColor("#615A55"))
-//                    } else {
-//                        binding.mypageLocationTv.setText(userData.userUniversity)
-//                        binding.mypageLocationAuthTv.setText("인증 완료")
-//                        binding.mypageLocationDate.setText("(2022.8.18)")
-//                        binding.mypageLocationDate.setTextColor(Color.parseColor("#989898"))
-//                    }
+                    if (userData.userUniversity == null) {
+                        binding.mypageAuthUniversityIc.setImageResource(R.drawable.ic_auth_add)
+                        binding.mypageAuthUniversityTv.setText("학교 인증")
+                    } else {
+                        binding.mypageAuthUniversityIc.setImageResource(R.drawable.ic_auth_check)
+                        binding.mypageAuthUniversityTv.setText(userData.userUniversity)
+                        binding.mypageAuthUniversityDate.setText("2022.9.15")
+                    }
+
+                    if (userData.userPhoneNumber == null) {
+                        binding.mypageAuthPhoneIc.setImageResource(R.drawable.ic_auth_add)
+                        binding.mypageAuthPhoneTv.setText("번호 인증")
+                    } else {
+                        binding.mypageAuthPhoneIc.setImageResource(R.drawable.ic_auth_check)
+                        binding.mypageAuthPhoneTv.setText(userData.userPhoneNumber)
+                        binding.mypageAuthPhoneDate.setText("2022.9.15")
+                    }
+
+                    if (userData.userResidence == null) {
+                        binding.mypageAuthLocationIc.setImageResource(R.drawable.ic_auth_add)
+                        binding.mypageAuthLocationTv.setText("지역 인증")
+                    } else {
+                        binding.mypageAuthLocationIc.setImageResource(R.drawable.ic_auth_check)
+                        binding.mypageAuthLocationTv.setText(userData.userResidence)
+                        binding.mypageAuthLocationDate.setText("2022.9.15")
+                    }
 
                 } else {
                     Toast.makeText(context, "프로필 정보 불러오기 실패", Toast.LENGTH_SHORT).show()

@@ -53,7 +53,7 @@ interface IMypageService {
     @POST("/mypage/residence/{memberId}")
     fun verifyLocationAuth(
         @Path("memberId") memberId: Long,
-        @Body userResidence: String
+        @Body residenceDto: ResidenceDto
     ): Call<Long>
 
     // 대학 인증

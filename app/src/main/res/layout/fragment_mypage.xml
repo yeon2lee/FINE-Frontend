@@ -22,8 +22,8 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="97dp"
-            android:background="@color/white"
+            android:layout_marginTop="81dp"
+            android:background="@drawable/box_border"
             android:elevation="10dp" />
     </RelativeLayout>
 
@@ -70,7 +70,7 @@
                 style="@style/CardView.Light"
                 android:layout_width="314dp"
                 android:layout_height="191dp"
-                android:layout_marginTop="96dp"
+                android:layout_marginTop="81dp"
                 android:elevation="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +119,7 @@
                 android:id="@+id/mypage_profile_image_iv"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/profile1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -180,11 +180,16 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="0dp"
-            android:background="@color/white"
+            android:background="@drawable/box_border"
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
     </RelativeLayout>
 
     <View
@@ -194,7 +199,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="20dp"
         android:background="#DDDDDD"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/mypage_auth_university_ic"
         app:layout_constraintTop_toTopOf="@+id/box2" />
 
     <View
@@ -204,7 +209,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:background="#DDDDDD"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/mypage_auth_phone_ic"
         app:layout_constraintTop_toTopOf="@+id/box2" />
 
     <View
@@ -241,7 +246,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvManageBookmark" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/mypage_auth_university_ic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="29dp"
@@ -251,7 +256,7 @@
         app:srcCompat="@drawable/ic_auth_check" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/mypage_auth_phone_ic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -261,7 +266,7 @@
         app:srcCompat="@drawable/ic_auth_add" />
 
     <ImageView
-        android:id="@+id/imageView24"
+        android:id="@+id/mypage_auth_location_ic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -391,37 +396,57 @@
         app:srcCompat="@drawable/ic_setting" />
 
     <TextView
-        android:id="@+id/textView62"
+        android:id="@+id/mypage_auth_university_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
         android:text="한국대학교"
         app:layout_constraintStart_toStartOf="@+id/box2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_university_ic" />
 
     <TextView
-        android:id="@+id/textView59"
+        android:id="@+id/mypage_auth_phone_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
         android:layout_marginTop="10dp"
         android:text="번호 인증"
         app:layout_constraintStart_toEndOf="@+id/view30"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_phone_ic" />
 
     <TextView
-        android:id="@+id/textView60"
+        android:id="@+id/mypage_auth_phone_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:textColor="#C4C4C4"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/box2"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_phone_tv" />
+
+    <TextView
+        android:id="@+id/mypage_auth_location_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="232dp"
+        android:textColor="#C4C4C4"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/box2"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_location_tv" />
+
+    <TextView
+        android:id="@+id/mypage_auth_location_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:text="지역 인증"
         app:layout_constraintEnd_toEndOf="@+id/box2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView24" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_location_ic" />
 
     <TextView
-        android:id="@+id/textView61"
+        android:id="@+id/mypage_auth_university_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
@@ -429,7 +454,7 @@
         android:textColor="#C4C4C4"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/box2"
-        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_auth_university_tv" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout4"
@@ -446,10 +471,15 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:background="@color/white"
+            android:background="@drawable/box_border"
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
     </RelativeLayout>
 
     <TextView

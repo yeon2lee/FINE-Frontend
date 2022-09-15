@@ -19,6 +19,7 @@ import com.google.android.gms.location.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -61,8 +62,11 @@ class AuthLocationActivity : AppCompatActivity() {
     }
 
     private fun verifyLocationAuth() {
-        val residence = binding.authLocation.text.toString()
-        val call: Call<Long> = ServiceCreator.service.verifyAuth(userId, residence)
+        val residenceDto = ResidenceDto(
+            userResidence = binding.authLocation.text.toString(),
+            updateDate = LocalDateTime.now()
+        )
+        val call: Call<Long> = ServiceCreator.service.verifyLocationAuth(userId, residenceDto)
 
         call.enqueue(object : Callback<Long> {
             override fun onResponse(call: Call<Long>, response: Response<Long>) {
