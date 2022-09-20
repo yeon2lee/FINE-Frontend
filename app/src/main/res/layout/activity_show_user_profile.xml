@@ -9,27 +9,27 @@
         android:id="@+id/profile_user_follow_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/box_border"
         android:drawableLeft="@drawable/ic_follow"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp"
-        android:text="팔로우"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text=" 팔로우"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/box3"
             android:layout_width="314dp"
-            android:layout_height="191dp"
+            android:layout_height="170dp"
             android:layout_alignParentStart="false"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="false"
@@ -45,13 +45,18 @@
             android:layout_width="314dp"
             android:layout_height="109dp"
             android:layout_below="@+id/box3"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="49dp"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="48dp"
             android:background="@drawable/box_border"
             android:elevation="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
 
     </RelativeLayout>
 
@@ -71,7 +76,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="60dp"
                 app:layout_constraintEnd_toEndOf="@+id/box"
                 app:layout_constraintTop_toBottomOf="@+id/profile_user_intro_tv"
@@ -97,7 +102,7 @@
                 android:id="@+id/box"
                 style="@style/CardView.Light"
                 android:layout_width="314dp"
-                android:layout_height="191dp"
+                android:layout_height="170dp"
                 android:layout_marginTop="96dp"
                 android:elevation="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +114,7 @@
                 android:layout_width="17dp"
                 android:layout_height="19dp"
                 android:layout_marginStart="70dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/box"
                 app:layout_constraintTop_toBottomOf="@+id/profile_user_intro_tv"
                 app:srcCompat="@drawable/ic_sprout" />
@@ -170,7 +175,7 @@
             <View
                 android:id="@+id/view29"
                 android:layout_width="1dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="37dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="57dp"
@@ -202,19 +207,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/box_border"
         android:drawableLeft="@drawable/ic_chat"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp"
-        android:text="1:1 채팅"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:text=" 1:1 채팅"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
 
     <View
         android:id="@+id/view30"
         android:layout_width="1dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="20dp"
         android:background="#DDDDDD"
@@ -224,7 +229,7 @@
     <View
         android:id="@+id/view31"
         android:layout_width="1dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:background="#DDDDDD"
@@ -268,7 +273,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
         android:text="한국대학교"
-        android:textColor="#615A55"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/box2"
         app:layout_constraintTop_toBottomOf="@+id/mypage_auth_university_ic" />
 
@@ -279,7 +284,7 @@
         android:layout_marginStart="23dp"
         android:layout_marginTop="10dp"
         android:text="번호 인증"
-        android:textColor="#615A55"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/view30"
         app:layout_constraintTop_toBottomOf="@+id/mypage_auth_phone_ic" />
 
@@ -290,7 +295,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:text="지역 인증"
-        android:textColor="#615A55"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/box2"
         app:layout_constraintTop_toBottomOf="@+id/mypage_auth_location_ic" />
 
