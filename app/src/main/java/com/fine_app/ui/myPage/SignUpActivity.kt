@@ -31,24 +31,24 @@ class SignUpActivity : AppCompatActivity() {
         _binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.etUserPwd2.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val pwdConfirm = binding.etUserPwd2.text.toString()
-                if (!binding.etUserPwd.text.toString().equals(pwdConfirm)) {
-                    binding.alertPassword.setText("비밀번호가 일치하지 않습니다.")
-                } else {
-                    binding.alertPassword.setText("비밀번호가 일치합니다.")
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                TODO("Not yet implemented")
-            }
-        })
+//        binding.etUserPwd2.addTextChangedListener(object: TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                val pwdConfirm = binding.etUserPwd2.text.toString()
+//                if (!binding.etUserPwd.text.toString().equals(pwdConfirm)) {
+//                    binding.alertPassword.setText("비밀번호가 일치하지 않습니다.")
+//                } else {
+//                    binding.alertPassword.setText("비밀번호가 일치합니다.")
+//                }
+//            }
+//
+//            override fun afterTextChanged(s: Editable?) {
+//                TODO("Not yet implemented")
+//            }
+//        })
 
         binding.imgProfile1.setOnClickListener {
             binding.imgProfile1.setBackgroundResource(R.drawable.profile_border)

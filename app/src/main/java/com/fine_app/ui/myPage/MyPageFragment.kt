@@ -160,7 +160,7 @@ class MyPageFragment : Fragment() {
 //                    binding.mypageProfileKeyword1.setText("서울")
 //                    binding.mypageProfileKeyword2.setText("컴퓨터공학")
 //                    binding.mypageProfileKeyword3.setText("DIY")
-                    binding.mypageProfileKeyword1.setText("키워드" + userData.keyword3)
+                    binding.mypageProfileKeyword1.setText(userData.keyword1)
                     if (userData.follower != null) {
                         binding.mypageProfileFriendNumTv.setText(userData.follower.toString())
                     } else {

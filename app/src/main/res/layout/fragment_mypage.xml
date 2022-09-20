@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/box3"
             android:layout_width="314dp"
-            android:layout_height="191dp"
+            android:layout_height="170dp"
             android:layout_alignParentStart="false"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="false"
@@ -43,7 +43,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="60dp"
                 app:layout_constraintEnd_toEndOf="@+id/box"
                 app:layout_constraintTop_toBottomOf="@+id/tvIntro"
@@ -69,7 +69,7 @@
                 android:id="@+id/box"
                 style="@style/CardView.Light"
                 android:layout_width="314dp"
-                android:layout_height="191dp"
+                android:layout_height="170dp"
                 android:layout_marginTop="81dp"
                 android:elevation="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
                 android:layout_width="17dp"
                 android:layout_height="19dp"
                 android:layout_marginStart="70dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/box"
                 app:layout_constraintTop_toBottomOf="@+id/tvIntro"
                 app:srcCompat="@drawable/ic_sprout" />
@@ -92,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:text="새싹 3단계"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/box"
                 app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
@@ -101,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="닉네임"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/box"
                 app:layout_constraintStart_toStartOf="@+id/box"
@@ -112,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:text="매칭 친구"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/mypage_profile_friend_num_tv"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
@@ -132,15 +135,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
                 android:text="3"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/box"
                 app:layout_constraintTop_toTopOf="@+id/textView56" />
 
             <View
                 android:id="@+id/view29"
                 android:layout_width="1dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="37dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="19dp"
                 android:layout_marginEnd="57dp"
                 android:background="#DDDDDD"
                 app:layout_constraintEnd_toStartOf="@+id/textView56"
@@ -195,7 +199,7 @@
     <View
         android:id="@+id/view30"
         android:layout_width="1dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="20dp"
         android:background="#DDDDDD"
@@ -205,7 +209,7 @@
     <View
         android:id="@+id/view31"
         android:layout_width="1dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:background="#DDDDDD"
@@ -280,8 +284,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:text="북마크한 커뮤니티 글"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/box5" />
 
@@ -292,6 +297,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:text="그룹 신청글 확인"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/view27" />
 
@@ -302,6 +308,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:text="내가 쓴 글 관리"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/imageView14"
         app:layout_constraintTop_toBottomOf="@+id/view26" />
 
@@ -312,6 +319,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:text="설정"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/imageView22"
         app:layout_constraintTop_toBottomOf="@+id/view25" />
 
@@ -319,7 +327,7 @@
         android:id="@+id/imageView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="33dp"
         android:layout_marginEnd="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/box5"
@@ -360,7 +368,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/box5"
         app:srcCompat="@drawable/ic_bookmark" />
@@ -400,8 +408,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="한국대학교"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/box2"
         app:layout_constraintTop_toBottomOf="@+id/mypage_auth_university_ic" />
 
@@ -412,6 +421,7 @@
         android:layout_marginStart="23dp"
         android:layout_marginTop="10dp"
         android:text="번호 인증"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/view30"
         app:layout_constraintTop_toBottomOf="@+id/mypage_auth_phone_ic" />
 
@@ -442,6 +452,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:text="지역 인증"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/box2"
         app:layout_constraintTop_toBottomOf="@+id/mypage_auth_location_ic" />
 
@@ -450,7 +461,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:text="2022.8.15"
         android:textColor="#C4C4C4"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/box2"
@@ -512,6 +522,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
         android:text="닉네임"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/box5"
         app:layout_constraintTop_toTopOf="@+id/box5" />
 
@@ -521,6 +532,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="님의 관심분야는"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/textView32"
         app:layout_constraintTop_toTopOf="@+id/box5" />
 
@@ -528,9 +540,7 @@
         android:id="@+id/button3"
         android:layout_width="42dp"
         android:layout_height="24dp"
-        android:layout_margin="0dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="5dp"
         android:backgroundTint="#EAF6D6"
         android:padding="0dp"
         android:text="편집"

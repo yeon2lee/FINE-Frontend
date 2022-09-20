@@ -37,9 +37,7 @@ class AuthUniversityActivity : AppCompatActivity() {
             }
             //텍스트 입력과 동시에 호출
             override fun onQueryTextChange(p0: String): Boolean {
-                search = Intent(this@AuthUniversityActivity, SearchUniversityActivity::class.java)
-                search.putExtra("query", binding.searchUniversityView.query.toString())
-                startActivityForResult(search, 1000)
+
                 return true
             }
         })
