@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.fine_app.CreateChatRoom
 import com.fine_app.Friend
+import com.fine_app.PersonalChat
 import com.fine_app.R
 import com.fine_app.databinding.ActivityShowUserProfileBinding
 import com.fine_app.retrofit.API
@@ -42,16 +44,34 @@ class ShowUserProfileActivity : AppCompatActivity() {
         binding.profileUserFollowBtn.setOnClickListener {
             if (binding.profileUserFollowBtn.text.toString().equals("팔로우")) {
                 followFriend(userId, myId) // TODO: 내 아이디 불러오기
-                binding.profileUserFollowBtn.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                binding.profileUserFollowBtn.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_follow_cancel), null, null, null)
                 binding.profileUserFollowBtn.setText("팔로우 취소")
-                binding.profileUserFollowBtn.setTextColor(Color.parseColor("#615A55"))
             } else { // 팔로우 취소
                 cancelFollow(userId, myId) // TODO: 내 아이디 불러오기
-                binding.profileUserFollowBtn.setBackgroundColor(Color.parseColor("#6DB33F"))
+                binding.profileUserFollowBtn.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_follow), null, null, null)
                 binding.profileUserFollowBtn.setText("팔로우")
-                binding.profileUserFollowBtn.setTextColor(Color.parseColor("#FFFFFF"))
             }
         }
+
+        binding.profileUserChatBtn.setOnClickListener {
+            addPersonalChatRoom(PersonalChat(myId, userId))
+        }
+    }
+
+    private fun addPersonalChatRoom(Info:PersonalChat){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val call = iRetrofit?.addPersonalChatRoom(Info) ?:return
+        Log.d("retrofit", "개인 채팅방 생성 - 나: ${myId}, 상대: ${userId}")
+        call.enqueue(object : Callback<CreateChatRoom> {
+            override fun onResponse(call: Call<CreateChatRoom>, response: Response<CreateChatRoom>) {
+                Log.d("retrofit", "개인 채팅방 생성 - 응답 성공 / t : ${response.raw()}")
+                finish()
+            }
+            override fun onFailure(call: Call<CreateChatRoom>, t: Throwable) {
+                Log.d("retrofit", "개인 채팅방 생성 - 응답 실패 / t: $t")
+            }
+        })
     }
 
     private fun getUserProfile() {
@@ -144,16 +164,16 @@ class ShowUserProfileActivity : AppCompatActivity() {
                 Log.d("retrofit", "친구 목록 - 응답 성공 / t : ${response.raw()}")
                 friendList = response.body()!!
                 // 친구 팔로우 상태 표시
-                    if (friendList != null) {
-                        for (i in 0..(friendList.size - 1)) {
-                            if (friendList.get(i).friendId.equals(userId)) {
-                                binding.profileUserFollowBtn.setBackgroundColor(Color.parseColor("#FFFFFF"))
-                                binding.profileUserFollowBtn.setText("팔로우 취소")
-                                binding.profileUserFollowBtn.setTextColor(Color.parseColor("#615A55"))
-                                break
-                            }
+                if (friendList != null) {
+                    for (i in 0..(friendList.size - 1)) {
+                        if (friendList.get(i).friendId.equals(userId)) {
+                            binding.profileUserFollowBtn.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                            binding.profileUserFollowBtn.setText("팔로우 취소")
+                            binding.profileUserFollowBtn.setTextColor(Color.parseColor("#615A55"))
+                            break
                         }
                     }
+                }
             }
 
             override fun onFailure(call: Call<List<Friend>>, t: Throwable) {
