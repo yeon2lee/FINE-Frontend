@@ -1,72 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="2sp">
 
             <TextView
                 android:id="@+id/groupPost_title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:maxLength="20"
                 android:padding="15dp"
                 android:text="일이삼사오육칠팔구십일이삼사오육칠팔구십일이"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
+                android:id="@+id/linearLayout4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="5sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/groupPost_imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="15sp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="2sp"
-                    android:layout_weight="0.5"
-                    app:srcCompat="@drawable/ic_group"
-                    app:tint="#6DB33F" />
+                android:gravity="right"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
-                    android:id="@+id/groupPost_participant"
+                    android:id="@+id/post_keyword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:text="2" />
+                    android:layout_margin="5sp"
+                    android:background="@drawable/manage_button"
+                    android:paddingStart="6sp"
+                    android:paddingTop="2sp"
+                    android:paddingEnd="6sp"
+                    android:paddingBottom="2sp"
+                    android:text="자유"
+                    android:textAlignment="center"
+                    android:textColor="#6DB33F"
+                    android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/groupPost_partition"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="0.7"
-                    android:text="/" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="5sp">
 
-                <TextView
-                    android:id="@+id/groupPost_capacity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:text="4" />
+                    <ImageView
+                        android:id="@+id/groupPost_imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15sp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="2sp"
+                        android:layout_weight="0.5"
+                        app:srcCompat="@drawable/ic_group"
+                        app:tint="#6DB33F" />
+
+                    <TextView
+                        android:id="@+id/groupPost_participant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:text="2" />
+
+                    <TextView
+                        android:id="@+id/groupPost_partition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="0.7"
+                        android:text="/" />
+
+                    <TextView
+                        android:id="@+id/groupPost_capacity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:text="4" />
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

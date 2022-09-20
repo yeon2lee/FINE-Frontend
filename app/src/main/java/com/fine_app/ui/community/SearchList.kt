@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,13 +38,26 @@ class SearchList : AppCompatActivity() {
             binding.searchView.setQuery(text, false)
             searchPosting(text!!)
         }
-        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            //검색 버튼 눌렀을 때 호출
+
+        val items = arrayOf("닉네임", "키워드")
+        val spinner: Spinner = binding.spinner5
+        spinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                when (position) {
+                    0 -> binding.keywordBox.visibility=View.INVISIBLE
+                    1 -> binding.keywordBox.visibility=View.VISIBLE
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener,
+            SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String): Boolean {
                 searchPosting(p0)
                 return true
             }
-            //텍스트 입력과 동시에 호출
             override fun onQueryTextChange(p0: String): Boolean {
                 return true
             }

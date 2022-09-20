@@ -72,14 +72,14 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             nickname.text=this.comment.member.nickname
             text.text=this.comment.text
             when (this.comment.member.userImageNum) {
-                0 -> image.setImageResource(R.drawable.profile1)
-                1 -> image.setImageResource(R.drawable.profile1)
-                2 -> image.setImageResource(R.drawable.profile2)
-                3 -> image.setImageResource(R.drawable.profile3)
-                4 -> image.setImageResource(R.drawable.profile4)
-                5 -> image.setImageResource(R.drawable.profile5)
-                6 -> image.setImageResource(R.drawable.profile6)
-                else -> image.setImageResource(R.drawable.profile1)
+                0 -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                1 -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                2 -> image.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                3 -> image.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                4 -> image.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                5 -> image.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                6 -> image.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                else -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
             }
 
             nickname.setOnClickListener { //댓글 작성자 프로필 조회
@@ -140,10 +140,13 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
     override fun onYesButtonClick(num: Int, theme:Int) {
         when (num) {
             0 -> joinGroup(postingID,myID, AcceptCheck(false))
-            1 -> deletePosting(postingID)
+            1 -> {
+                deletePosting(postingID)
+                finish()
+            }
             4 -> cancelJoinGroup(recruitingId)
         }
-        finish()
+
     }
 
     //---------------------------------API 연결-----------------------------------------------------
@@ -163,14 +166,14 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
         binding.max.text=postCapacity.toString()
         binding.participants.text=participants.toString()
         when (postWriterImage) {
-            0 -> binding.writerImage.setImageResource(R.drawable.profile1)
-            1 -> binding.writerImage.setImageResource(R.drawable.profile1)
-            2 -> binding.writerImage.setImageResource(R.drawable.profile2)
-            3 -> binding.writerImage.setImageResource(R.drawable.profile3)
-            4 -> binding.writerImage.setImageResource(R.drawable.profile4)
-            5 -> binding.writerImage.setImageResource(R.drawable.profile5)
-            6 -> binding.writerImage.setImageResource(R.drawable.profile6)
-            else -> binding.writerImage.setImageResource(R.drawable.profile1)
+            0 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+            1 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+            2 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+            3 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+            4 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+            5 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+            6 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+            else -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
         }
 
         binding.backButton.setOnClickListener{ //글 세부페이지 종료
@@ -193,9 +196,6 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             joinButton.visibility= VISIBLE
             joinButton.setOnClickListener {
                 if (recruitingId!=0.toLong()){//참여하기 취소
-                    val dialog = ConfirmDialog(this, "참여를 취소하시겠습니까?", 4, 0)
-                    dialog.isCancelable = false
-                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
 
                 } else{//참여하기 신청
                     val dialog = ConfirmDialog(this, "참여하시겠습니까?", 0, 0)
@@ -242,6 +242,7 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
                 val waitingList = Intent(this, WaitingList::class.java)
                 waitingList.putExtra("postingID", postingID)
                 waitingList.putExtra("myID", myID)
+                waitingList.putExtra("capacity", postCapacity)
                 //waitingList.putExtra("recruitingList",recruitingList)
                 //waitingList.putExtra("closingCheck",closingCheck )
                 startActivity(waitingList)

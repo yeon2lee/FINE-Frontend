@@ -12,51 +12,59 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/solid_button"
+        android:backgroundTint="#3E6DB33F"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/keywordBox">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/searchview_bg"
-            android:focusable="true"
-            app:iconifiedByDefault="false"
-            app:queryBackground="@null"
-            app:submitBackground="@null">
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/solid_button"
+            android:backgroundTint="#006DB33F">
 
-        </androidx.appcompat.widget.SearchView>
+        </SearchView>
+
+        <Spinner
+            android:id="@+id/spinner5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5" />
 
         <Button
             android:id="@+id/cancelButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="#00FFFFFF"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
             android:text="취소"
             android:textColor="#6DB33F"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <HorizontalScrollView
         android:id="@+id/keywordBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/scrollView"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <RadioGroup
+            android:id="@+id/keywordGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <RadioButton
@@ -64,15 +72,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
                 android:checked="true"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="기획, 전략"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -80,15 +89,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="회계, 재무"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -96,15 +106,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="유통, 물류"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -112,15 +123,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="건축"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -128,15 +140,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="연구개발, 설계"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -144,37 +157,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="의료, 보건"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/keyword7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="미디어"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -182,15 +191,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="인사, 노무"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -198,15 +208,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="마케팅"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -214,15 +225,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="영업, 영업관리"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -230,15 +242,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="IT, SW"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
@@ -246,18 +259,70 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_radio_button"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="전체"
+                android:text="디자인"
                 android:textAlignment="center"
                 android:textColor="@drawable/selector_radio_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-    </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/keyword13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_radio_button"
+                android:button="@null"
+                android:checked="false"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="토목, 환경"
+                android:textAlignment="center"
+                android:textColor="@drawable/selector_radio_text"
+                android:textSize="10sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/keyword14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_radio_button"
+                android:button="@null"
+                android:checked="false"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="교육"
+                android:textAlignment="center"
+                android:textColor="@drawable/selector_radio_text"
+                android:textSize="10sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/keyword15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_radio_button"
+                android:button="@null"
+                android:checked="false"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="생산, 생산관리"
+                android:textAlignment="center"
+                android:textColor="@drawable/selector_radio_text"
+                android:textSize="10sp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </RadioGroup>
+    </HorizontalScrollView>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
@@ -265,11 +330,10 @@
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintTop_toBottomOf="@id/keywordBox"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keywordBox">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

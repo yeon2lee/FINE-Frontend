@@ -68,14 +68,14 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
             nickname.text=this.comment.member.nickname
             text.text=this.comment.text
             when (this.comment.member.userImageNum) {
-                0 -> image.setImageResource(R.drawable.profile1)
-                1 -> image.setImageResource(R.drawable.profile1)
-                2 -> image.setImageResource(R.drawable.profile2)
-                3 -> image.setImageResource(R.drawable.profile3)
-                4 -> image.setImageResource(R.drawable.profile4)
-                5 -> image.setImageResource(R.drawable.profile5)
-                6 -> image.setImageResource(R.drawable.profile6)
-                else -> image.setImageResource(R.drawable.profile1)
+                0 -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                1 -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                2 -> image.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                3 -> image.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                4 -> image.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                5 -> image.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                6 -> image.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                else -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
             }
 
 
@@ -152,18 +152,18 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
         binding.postContent.text=postContent
         binding.writerName.text=postWriter
         when (intent.getIntExtra("profileID", 0)) {
-            0 -> binding.writerImage.setImageResource(R.drawable.profile1)
-            1 -> binding.writerImage.setImageResource(R.drawable.profile1)
-            2 -> binding.writerImage.setImageResource(R.drawable.profile2)
-            3 -> binding.writerImage.setImageResource(R.drawable.profile3)
-            4 -> binding.writerImage.setImageResource(R.drawable.profile4)
-            5 -> binding.writerImage.setImageResource(R.drawable.profile5)
-            6 -> binding.writerImage.setImageResource(R.drawable.profile6)
-            else -> binding.writerImage.setImageResource(R.drawable.profile1)
+            0 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+            1 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+            2 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+            3 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+            4 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+            5 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+            6 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+            else -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
         }
         binding.writerImage.setOnClickListener{ //작성자 프로필 조회
             val userProfile = Intent(this, ShowUserProfileActivity::class.java)
-            userProfile.putExtra("memberId","binding : ${writerID}")
+            userProfile.putExtra("memberId",writerID)
             startActivity(userProfile)
         }
         //-----------------------------------------------------버튼 클릭-------------------------------------------------
@@ -244,14 +244,14 @@ class PostDetail_Main : AppCompatActivity(), ConfirmDialogInterface {
                  lastModifiedDate=response.body()!!.lastModifiedDate
                 bookMarkId=response.body()!!.checkBookmarkId
                 when (response.body()!!.userImageNum) {
-                    0 -> binding.writerImage.setImageResource(R.drawable.profile1)
-                    1 -> binding.writerImage.setImageResource(R.drawable.profile1)
-                    2 -> binding.writerImage.setImageResource(R.drawable.profile2)
-                    3 -> binding.writerImage.setImageResource(R.drawable.profile3)
-                    4 -> binding.writerImage.setImageResource(R.drawable.profile4)
-                    5 -> binding.writerImage.setImageResource(R.drawable.profile5)
-                    6 -> binding.writerImage.setImageResource(R.drawable.profile6)
-                    else -> binding.writerImage.setImageResource(R.drawable.profile1)
+                    0 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                    1 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                    2 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                    3 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                    4 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                    5 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                    6 -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                    else -> binding.writerImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
                 }
                 comments=response.body()!!.comments
                 adapter=MyAdapter(comments)

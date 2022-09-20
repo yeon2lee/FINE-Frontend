@@ -9,11 +9,11 @@
 
     <ImageView
         android:id="@+id/imageView16"
-        android:layout_width="35sp"
-        android:layout_height="35sp"
+        android:layout_width="40sp"
+        android:layout_height="44dp"
         android:layout_gravity="top"
         android:layout_marginRight="5sp"
-        app:srcCompat="@drawable/profile1" />
+        app:srcCompat="@drawable/ic_noun_dooda_angry_2019970" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,14 +60,14 @@
                     android:id="@+id/unreadNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="8sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/sendTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="오후 4:13"
-                    android:textSize="8sp" />
+                    android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
 

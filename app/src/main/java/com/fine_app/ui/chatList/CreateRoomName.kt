@@ -36,39 +36,25 @@ class CreateRoomName: AppCompatActivity(){
         var imageNum=1
         binding.radioGroup.setOnCheckedChangeListener{_, checkedId ->
             when(checkedId){
-                R.id.radioButton -> {
-                    binding.radioGroup2.clearCheck()
+                R.id.radioButton1 -> {
                     imageNum=1
                     Log.d("dd", "1번 체크")
                 }
                 R.id.radioButton2 -> {
-                    binding.radioGroup2.clearCheck()
                     imageNum=2
                     Log.d("dd", "2번 체크")
                 }
                 R.id.radioButton3 -> {
-                    binding.radioGroup2.clearCheck()
                     imageNum=3
                     Log.d("dd", "3번 체크")
                 }
-            }
-        }
-        binding.radioGroup2.setOnCheckedChangeListener{_, checkedId ->
-            when(checkedId){
                 R.id.radioButton4 -> {
-                    binding.radioGroup.clearCheck()
-                    Log.d("dd", "4번 체크")
                     imageNum=4
+                    Log.d("dd", "3번 체크")
                 }
                 R.id.radioButton5 -> {
-                    binding.radioGroup.clearCheck()
-                    Log.d("dd", "5번 체크")
                     imageNum=5
-                }
-                R.id.radioButton6 -> {
-                    binding.radioGroup.clearCheck()
-                    Log.d("dd", "6번 체크")
-                    imageNum=6
+                    Log.d("dd", "3번 체크")
                 }
             }
         }

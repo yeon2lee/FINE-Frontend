@@ -70,7 +70,7 @@ class CommunityMainFragment : Fragment() {
 
         call.enqueue(object : retrofit2.Callback<List<Post>>{
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-                Log.d("retrofit", "메인커뮤니티목록 - 응답 성공 / t : ${response.body().toString()}")
+                Log.d("retrofit", "메인커뮤니티목록 - 응답 성공 / t : ${response.raw()}")
                 val adapter=MyAdapter(response.body()!!)
                 recyclerView=binding.recyclerView
                 recyclerView.layoutManager= LinearLayoutManager(context)

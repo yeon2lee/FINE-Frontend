@@ -2,12 +2,11 @@ package com.fine_app.ui.chatList
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -95,22 +94,23 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
         private val friendProfileImage:ImageView=itemView.findViewById(R.id.friend_image)
         private val friendLevelImage:ImageView=itemView.findViewById(R.id.friend_level) //todo 레벨 이미지 정해야함
         private val friendName:TextView=itemView.findViewById(R.id.friend_name)
-        private val checkBox:CheckBox=itemView.findViewById(R.id.checkBox)
+        //private val checkBox:CheckBox=itemView.findViewById(R.id.checkBox)
 
         fun bind(friend: Friend){
             this.friend=friend
             friendName.text=this.friend.nickname
             when (this.friend.imageNum) {
-                0 -> friendProfileImage.setImageResource(R.drawable.profile1)
-                1 -> friendProfileImage.setImageResource(R.drawable.profile1)
-                2 -> friendProfileImage.setImageResource(R.drawable.profile2)
-                3 -> friendProfileImage.setImageResource(R.drawable.profile3)
-                4 -> friendProfileImage.setImageResource(R.drawable.profile4)
-                5 -> friendProfileImage.setImageResource(R.drawable.profile5)
-                6 -> friendProfileImage.setImageResource(R.drawable.profile6)
-                else -> friendProfileImage.setImageResource(R.drawable.profile1)
+                0 -> friendProfileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                1 -> friendProfileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                2 -> friendProfileImage.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                3 -> friendProfileImage.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                4 -> friendProfileImage.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                5 -> friendProfileImage.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                6 -> friendProfileImage.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                else -> friendProfileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
             }
             itemView.setOnClickListener{
+                /*
                 if(checkBox.isChecked){
                     checkBox.isChecked=false
                     if(selectionList.contains(this.friend)) {
@@ -125,11 +125,23 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
                     }
                     checkBox.isChecked=true
                 }
+
+                 */
+                if(selectionList.contains(this.friend)) {
+                    selectionList.remove(friend)
+                    receiverId.remove(friend.friendId)
+                    itemView.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                }else{
+                    selectionList.add(friend)
+                    receiverId.add(friend.friendId)
+                    itemView.setBackgroundColor(Color.parseColor("#3EC4C4C4"))
+                }
                 recyclerView=binding.recyclerView
                 recyclerView.layoutManager= LinearLayoutManager(this@CreateGroupChatRoom, LinearLayoutManager.HORIZONTAL, false)
                 recyclerView.visibility=View.VISIBLE
                 recyclerView.adapter=MyAdapter(selectionList)
             }
+            /*
             checkBox.setOnCheckedChangeListener(object:CompoundButton.OnCheckedChangeListener{
                 override fun onCheckedChanged(p0: CompoundButton?, isChecked: Boolean) {
                     if(isChecked){
@@ -149,6 +161,8 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
                     recyclerView.adapter=MyAdapter(selectionList)
                 }
             })
+
+             */
 
         }
     }

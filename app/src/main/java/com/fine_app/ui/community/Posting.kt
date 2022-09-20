@@ -27,6 +27,7 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
     private lateinit var binding: CommunityPostingBinding
     private var myID by Delegates.notNull<Long>()
     lateinit var userInfo: SharedPreferences
+    lateinit var keyWord:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,9 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
         var capacity=2
         val spinner: Spinner = binding.spinner
         val items = arrayOf("인원 선택", 2, 3, 4, 5, 6)
+        val spinner2: Spinner = binding.spinner2
+        val spinner2Item = arrayOf("자유","기획, 전략","회계, 재무", "유통, 물류", "연구개발, 설계",  "건축, 인테리어","의료, 보건","미디어",
+            "영업, 영업관리", "마케팅, 광고, 홍보","인사, 노무" ,"IT, SW","생산, 생산관리", "토목, 환경", "교육", "디자인"  )
         var groupCheck=false
         val groupCheckList: RadioGroup =binding.groupCheck
         groupCheckList.setOnCheckedChangeListener{_, checkedId ->
@@ -69,6 +73,31 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
             }
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
+        spinner2.adapter= ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinner2Item)
+        spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                when (position) {
+                    0 -> keyWord="자유"
+                    1 -> keyWord="기획, 전략"
+                    2 -> keyWord="회계, 재무"
+                    3 -> keyWord="유통, 물류"
+                    4 -> keyWord="연구개발, 설계"
+                    5 -> keyWord="건축, 인테리어"
+                    6-> keyWord="의료, 보건"
+                    7-> keyWord="미디어"
+                    8-> keyWord="영업, 영업관리"
+                    9-> keyWord="마케팅, 광고"
+                    10-> keyWord="인사, 노무"
+                    11-> keyWord="IT, SW"
+                    12-> keyWord="생산, 생산관리"
+                    13-> keyWord="토목, 환경"
+                    14-> keyWord="교육"
+                    15-> keyWord="디자인"
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
         binding.inputTitle.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -89,7 +118,7 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
             dialog.show(this.supportFragmentManager, "ConfirmDialog")
         }
         binding.finButton.setOnClickListener{ //등록
-            val newPost= Posting(title, content, groupCheck, capacity)
+            val newPost= Posting(title, content, groupCheck, capacity, keyWord)
             addPost(myID, newPost)
             finish()
         }
@@ -100,7 +129,7 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
         finish()
     }
 
-    private fun addPost(memberId:Long?, postInfo:Posting){
+    private fun addPost(memberId:Long?, postInfo:Posting){ //todo 포스팅에서 키워드 넘겨주기
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= memberId ?:0

@@ -20,10 +20,10 @@
         <ImageView
             android:id="@+id/commentProfileImage"
             android:layout_width="10sp"
-            android:layout_height="20sp"
+            android:layout_height="30sp"
             android:layout_margin="1sp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/profile1" />
+            app:srcCompat="@drawable/ic_noun_dooda_angry_2019970" />
 
         <TextView
             android:id="@+id/nickname"

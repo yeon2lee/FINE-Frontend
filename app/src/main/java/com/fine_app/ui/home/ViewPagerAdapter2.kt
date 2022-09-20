@@ -8,11 +8,11 @@ class ViewPagerAdapter2 (fragment : FriendRecommendFragment) : FragmentStateAdap
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> MatchingFragment()
-            1 -> MatchingAreaFragment()
-            2 -> MatchingMajorFragment()
-            3 -> MatchingHobbyFragment()
+            1 -> MatchingMajorFragment()
+            2 -> MatchingAreaFragment()
+            3 -> MatchingSchoolFragment()
             4 -> MatchingAllFragment()
-            else -> MatchingHobbyFragment()
+            else -> MatchingFragment()
         }
     }
 }

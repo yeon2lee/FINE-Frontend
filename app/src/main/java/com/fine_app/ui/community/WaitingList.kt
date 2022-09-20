@@ -22,13 +22,14 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.properties.Delegates
 
-class WaitingList : AppCompatActivity() {
+class WaitingList : AppCompatActivity(), ConfirmDialogInterface  {
     private lateinit var binding: CommunityWaitinglistBinding
     private lateinit var memberRecyclerView: RecyclerView
     private lateinit var waitingRecyclerView: RecyclerView
     var waitingList=ArrayList<Recruit>()
     var memberList=ArrayList<Recruit>()
     private var postingID by Delegates.notNull<Long>()
+    private var capacity by Delegates.notNull<Long>()
     private var myID by Delegates.notNull<Long>()
     lateinit var userInfo: SharedPreferences
     private lateinit var recruitingList:ArrayList<Recruit>
@@ -37,7 +38,6 @@ class WaitingList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
         myID = userInfo.getString("userInfo", "2")!!.toLong()
-
         binding = CommunityWaitinglistBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.backButton.setOnClickListener{
@@ -59,19 +59,29 @@ class WaitingList : AppCompatActivity() {
             this.crew=crew
             name.text=this.crew.member.nickname
             when (this.crew.member.userImageNum) {
-                0 -> image.setImageResource(R.drawable.profile1)
-                1 -> image.setImageResource(R.drawable.profile1)
-                2 -> image.setImageResource(R.drawable.profile2)
-                3 -> image.setImageResource(R.drawable.profile3)
-                4 -> image.setImageResource(R.drawable.profile4)
-                5 -> image.setImageResource(R.drawable.profile5)
-                6 -> image.setImageResource(R.drawable.profile6)
-                else -> image.setImageResource(R.drawable.profile1)
+                0 -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                1 -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                2 -> image.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                3 -> image.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                4 -> image.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                5 -> image.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                6 -> image.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                else -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
             }
             //level.setImageResource(this.crew.capacity)
             button.setOnClickListener{
-                if(this.crew.acceptCheck) manageJoinGroup(postingID, this.crew.recruitingId, AcceptCheck(false))
-                else manageJoinGroup(postingID, this.crew.recruitingId, AcceptCheck(true))
+                Log.d("waiting", "정원: ${capacity}, 현재: ${memberList.size.toLong()}")
+                if(this.crew.acceptCheck) {
+                    manageJoinGroup(postingID, this.crew.recruitingId, AcceptCheck(false))
+                }
+                else {
+                    if(memberList.size.toLong() != capacity) { //정원이 다 안 찬 상태
+                        manageJoinGroup(postingID, this.crew.recruitingId, AcceptCheck(true))
+                    }else{ //정원이 다 찬 상태
+                        val dialog = ConfirmDialog(this@WaitingList, "인원을 더 추가할 수 없습니다", 2,1)
+                        dialog.show(this@WaitingList.supportFragmentManager, "ConfirmDialog")
+                    }
+                }
             }
             image.setOnClickListener{
                 val userProfile = Intent(this@WaitingList, ShowUserProfileActivity::class.java)
@@ -116,6 +126,7 @@ class WaitingList : AppCompatActivity() {
                 recruitingList=response.body()!!.recruitingList
                 memberList.clear()
                 waitingList.clear()
+                capacity=response.body()!!.capacity.toLong()
                 for(i in 0 until recruitingList.size){
                     if(recruitingList[i].acceptCheck) memberList.add(recruitingList[i])
                     else waitingList.add(recruitingList[i])
@@ -142,12 +153,21 @@ class WaitingList : AppCompatActivity() {
                 }
 
                 binding.closingButton.setOnClickListener{
-                    editClosing(postingID)
+                    if(response.body()!!.closingCheck){
+                        val dialog = ConfirmDialog(this@WaitingList, "마감을 수정할 수 없습니다.", 3,1)
+                        dialog.show(this@WaitingList.supportFragmentManager, "ConfirmDialog")
+                    }else{
+                        val dialog = ConfirmDialog(this@WaitingList, "모집을 마감하시겠습니까?", 4, 0)
+                        dialog.isCancelable = false
+                        dialog.show(this@WaitingList.supportFragmentManager, "ConfirmDialog")
+                    }
+
+
                 }
             }
             //응답실패
             override fun onFailure(call: Call<Post>, t: Throwable) {
-                Log.d("retrofit", "그룹 커뮤니티 세부 글 - 응답 실패 / t: $t")
+                Log.d("retrofit", "그룹 커뮤니티 대기 - 응답 실패 / t: $t")
             }
         })
     }
@@ -187,6 +207,46 @@ class WaitingList : AppCompatActivity() {
 
     fun showAgain(){
         viewPosting(intent.getLongExtra("postingID", 0), myID)
+    }
+
+    override fun onYesButtonClick(num: Int, theme: Int) {
+        when(num){
+            4->{
+                if(memberList.size>1){ //임의로 마감
+                    binding.closingButton.isEnabled=true
+                    binding.closingButton.text="글 마감"
+                    waitingRecyclerView.visibility=View.VISIBLE
+                    binding.textView5.visibility=View.VISIBLE
+                    binding.view15.visibility=View.VISIBLE
+                    editClosing(postingID)
+                    val receiverList=ArrayList<Long>()
+                    receiverList.clear()
+                    for( i in 0..memberList.size-1){
+                        receiverList.add(memberList[i].member.memberId)
+                    }
+                    Log.d("waiting", "receiverList: ${receiverList}")
+                    addGroupChatRoom(GroupChat(myID,receiverList.toList(), "그룹 채팅방", 0))
+                }else{
+                    val dialog = ConfirmDialog(this, "인원을 추가해주세요", 2,1)
+                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
+                }
+            }
+        }
+    }
+    private fun addGroupChatRoom(Info:GroupChat){
+        val iRetrofit : IRetrofit? =
+            RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
+        val call = iRetrofit?.addGroupChatRoom(Info) ?:return
+
+        call.enqueue(object : Callback<CreateChatRoom> {
+            override fun onResponse(call: Call<CreateChatRoom>, response: Response<CreateChatRoom>) {
+                Log.d("retrofit", "그룹 채팅방 생성 - 응답 성공 / t : ${response.raw()}")
+                finish()
+            }
+            override fun onFailure(call: Call<CreateChatRoom>, t: Throwable) {
+                Log.d("retrofit", "그룹 채팅방 생성 - 응답 실패 / t: $t")
+            }
+        })
     }
 
 }

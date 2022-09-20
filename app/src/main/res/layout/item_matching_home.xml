@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="10sp"
     android:background="#FFFFFF"
     android:elevation="5dp"
-    android:paddingTop="15sp"
-    android:paddingBottom="15sp">
+    android:orientation="vertical"
+    android:padding="15sp">
 
     <ImageView
-        android:id="@+id/friend_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:id="@+id/home_matching_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/ic_noun_dooda_angry_2019970" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
             android:gravity="center|left"
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/matching_level"
+                android:id="@+id/home_matching_level"
                 android:layout_width="wrap_content"
                 android:layout_height="18sp"
                 app:srcCompat="@drawable/ic_sprout" />
 
             <TextView
-                android:id="@+id/matching_name"
+                android:id="@+id/home_matching_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -55,29 +57,14 @@
                 android:textColor="#000000" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/matching_intro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:ellipsize="end"
-            android:gravity="left"
-            android:text="소개\n소개"
-            android:textAlignment="viewStart"
-            android:textColor="#615A55"
-            android:textSize="12sp" />
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15sp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView22"
-                android:layout_width="wrap_content"
+                android:id="@+id/home_matching_keyword1"
+                android:layout_width="30sp"
                 android:layout_height="wrap_content"
                 android:layout_margin="3sp"
                 android:layout_weight="1"
@@ -89,8 +76,8 @@
                 android:textSize="8sp" />
 
             <TextView
-                android:id="@+id/textView23"
-                android:layout_width="wrap_content"
+                android:id="@+id/home_matching_keyword2"
+                android:layout_width="30sp"
                 android:layout_height="wrap_content"
                 android:layout_margin="3sp"
                 android:layout_weight="1"
@@ -102,8 +89,8 @@
                 android:textSize="8sp" />
 
             <TextView
-                android:id="@+id/textView26"
-                android:layout_width="wrap_content"
+                android:id="@+id/home_matching_keyword3"
+                android:layout_width="30sp"
                 android:layout_height="wrap_content"
                 android:layout_margin="3sp"
                 android:layout_weight="1"
@@ -114,5 +101,7 @@
                 android:textColor="#6DB33F"
                 android:textSize="8sp" />
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>

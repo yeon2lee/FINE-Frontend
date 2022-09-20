@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fine_app.*
@@ -27,6 +27,7 @@ class SearchFriendList : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private var myID by Delegates.notNull<Long>()
     lateinit var userInfo: SharedPreferences
+    lateinit var keyword:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,22 @@ class SearchFriendList : AppCompatActivity() {
         binding = FriendSearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        val items = arrayOf("닉네임", "키워드")
+        val spinner: Spinner = binding.spinner5
+        spinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                when (position) {
+                    0 -> binding.keywordBox.visibility=View.INVISIBLE
+                    1 -> binding.keywordBox.visibility=View.VISIBLE
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener,
+            SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String): Boolean {
                 searchFriend(p0)
                 return true
@@ -46,9 +62,31 @@ class SearchFriendList : AppCompatActivity() {
                 return true
             }
         })
-        binding.cancelButton.setOnClickListener{
+        binding.cancelButton.setOnClickListener {
             finish()
         }
+        binding.keywordGroup.setOnCheckedChangeListener { _, id ->
+            when(id){ //todo 키워드 검색 api보고 수정정
+               R.id.keyword1 -> keyword="1"
+                R.id.keyword2 -> keyword="1"
+                R.id.keyword3 -> keyword="1"
+                R.id.keyword4 -> keyword="1"
+                R.id.keyword5 -> keyword="1"
+                R.id.keyword6 -> keyword="1"
+                R.id.keyword7 -> keyword="1"
+                R.id.keyword8 -> keyword="1"
+                R.id.keyword9-> keyword="1"
+                R.id.keyword10 -> keyword="1"
+                R.id.keyword11 -> keyword="1"
+                R.id.keyword12 -> keyword="1"
+                R.id.keyword13 -> keyword="1"
+                R.id.keyword14 -> keyword="1"
+                R.id.keyword15 -> keyword="1"
+
+            }
+
+        }
+
 
     }
     inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){

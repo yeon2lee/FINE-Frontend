@@ -10,10 +10,10 @@
         <ImageView
             android:id="@+id/friend_image"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
             android:layout_margin="5sp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/profile1" />
+            app:srcCompat="@drawable/ic_noun_dooda_angry_2019970" />
 
         <TextView
             android:id="@+id/friend_name"

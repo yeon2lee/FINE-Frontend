@@ -73,279 +73,436 @@
         android:paddingBottom="10sp">
 
 
-        <TextView
-            android:id="@+id/textView13"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25sp"
-            android:text="친구 추천"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5sp"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:layout_marginBottom="10sp"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/userBox1"
+            <TextView
+                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/userImage1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/profile1" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/userLevel1"
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_sprout" />
-
-                    <TextView
-                        android:id="@+id/userName1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="joy123" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/userBox2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/userImage2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:src="@drawable/profile2" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/userLevel2"
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_sprout" />
-
-                    <TextView
-                        android:id="@+id/userName2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="이브와" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/userBox3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/userImage3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/profile3" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/userLevel3"
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_sprout" />
-
-                    <TextView
-                        android:id="@+id/userName3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="버거조아" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5sp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/userBox4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/userImage4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/profile6" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/userLevel4"
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_sprout" />
-
-                    <TextView
-                        android:id="@+id/userName4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="풀문" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/userBox5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/userImage5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/profile5" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/userLevel5"
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_sprout" />
-
-                    <TextView
-                        android:id="@+id/userName5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="페르시안" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/userBox6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/userImage6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/profile4" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/userLevel6"
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_sprout" />
-
-                    <TextView
-                        android:id="@+id/userName6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="고양이" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.7"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/showButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5sp"
-                android:background="@drawable/round_background"
-                android:gravity="center"
-                android:minHeight="0dp"
-                android:paddingStart="15sp"
-                android:paddingTop="5sp"
-                android:paddingEnd="15sp"
-                android:paddingBottom="5sp"
-                android:text="전체 친구 보기"
+                android:text="친구 추천"
+                android:textColor="#000000"
+                android:textSize="18sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="3sp">
+
+            <LinearLayout
+                android:id="@+id/friendBox1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3sp"
+                android:layout_marginTop="3sp"
+                android:layout_marginBottom="3sp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:padding="5sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_noun_area_1177747" />
+
+                    <TextView
+                        android:id="@+id/recommend_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="지역" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/home_matching_image1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_noun_dooda_angry_2019970" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="10sp"
+                        android:gravity="center|left"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/home_matching_level1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="18sp"
+                            app:srcCompat="@drawable/ic_sprout" />
+
+                        <TextView
+                            android:id="@+id/home_matching_name1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5sp"
+                            android:gravity="center"
+                            android:hint="한이음"
+                            android:textColor="#000000"
+                            android:textColorHint="#000000"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="님"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/home_matching_keyword1"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/manage_button"
+                            android:gravity="center"
+                            android:padding="3sp"
+                            android:text="서울"
+                            android:textColor="#6DB33F"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:id="@+id/home_matching_keyword2"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/manage_button"
+                            android:gravity="center"
+                            android:padding="3sp"
+                            android:text="컴퓨터"
+                            android:textColor="#6DB33F"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:id="@+id/home_matching_keyword3"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/manage_button"
+                            android:gravity="center"
+                            android:padding="3sp"
+                            android:text="코딩"
+                            android:textColor="#6DB33F"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/friendBox2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3sp"
+                android:layout_marginTop="3sp"
+                android:layout_marginRight="3sp"
+                android:layout_marginBottom="3sp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:padding="5sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_noun_school_1085277" />
+
+                    <TextView
+                        android:id="@+id/recommend_school"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="학교" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/home_matching_image2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_noun_dooda_angry_2019970" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="10sp"
+                        android:gravity="center|left"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/home_matching_level2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="18sp"
+                            app:srcCompat="@drawable/ic_sprout" />
+
+                        <TextView
+                            android:id="@+id/home_matching_name2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5sp"
+                            android:gravity="center"
+                            android:hint="한이음"
+                            android:textColor="#000000"
+                            android:textColorHint="#000000"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="님"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/home_matching_keyword4"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/manage_button"
+                            android:gravity="center"
+                            android:padding="3sp"
+                            android:text="서울"
+                            android:textColor="#6DB33F"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:id="@+id/home_matching_keyword5"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/manage_button"
+                            android:gravity="center"
+                            android:padding="3sp"
+                            android:text="컴퓨터"
+                            android:textColor="#6DB33F"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:id="@+id/home_matching_keyword6"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/manage_button"
+                            android:gravity="center"
+                            android:padding="3sp"
+                            android:text="코딩"
+                            android:textColor="#6DB33F"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/friendBox3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3sp"
+                android:layout_marginRight="3sp"
+                android:layout_marginBottom="5sp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:padding="5sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_noun_subject_3858302" />
+
+                    <TextView
+                        android:id="@+id/recommend_keyword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="키워드" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/home_matching_image3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_noun_dooda_angry_2019970" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="10sp"
+                        android:gravity="center|left"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/home_matching_level3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="18sp"
+                            app:srcCompat="@drawable/ic_sprout" />
+
+                        <TextView
+                            android:id="@+id/home_matching_name3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5sp"
+                            android:gravity="center"
+                            android:hint="한이음"
+                            android:textColor="#000000"
+                            android:textColorHint="#000000"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="님"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/home_matching_keyword7"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/manage_button"
+                            android:gravity="center"
+                            android:padding="3sp"
+                            android:text="서울"
+                            android:textColor="#6DB33F"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:id="@+id/home_matching_keyword8"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/manage_button"
+                            android:gravity="center"
+                            android:padding="3sp"
+                            android:text="컴퓨터"
+                            android:textColor="#6DB33F"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:id="@+id/home_matching_keyword9"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/manage_button"
+                            android:gravity="center"
+                            android:padding="3sp"
+                            android:text="코딩"
+                            android:textColor="#6DB33F"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/showButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:background="@drawable/round_background"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:paddingStart="15sp"
+            android:paddingTop="5sp"
+            android:paddingEnd="15sp"
+            android:paddingBottom="5sp"
+            android:text="전체 친구 보기"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

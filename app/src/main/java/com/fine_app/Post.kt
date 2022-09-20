@@ -25,6 +25,7 @@ data class Post(
     val participants:Int,
     val comments: ArrayList<Comment>,
     val recruitingList:ArrayList<Recruit>,
+    val keyword:String
 ):Serializable
 
 data class Recruit(
@@ -87,7 +88,8 @@ data class Posting(
     val title:String,
     val content:String,
     val groupCheck : Boolean,
-    val maxMember:Int
+    val maxMember:Int,
+    val keyword: String
 ):Serializable
 
 data class NewComment(
@@ -152,6 +154,8 @@ data class ChangeChatRoom(
 
 data class ChatMember(
     val roomId:String,
+    @SerializedName(value = "onerId")
+    val ownerId:Long,
     val chatMemberList:List<ChangeChatRoom>
 ):Serializable
 
@@ -181,13 +185,14 @@ data class GroupChat(
     val myId:Long,
     val receiverList:List<Long>,
     val roomName:String,
-    val imageNum: Int
+    val roomImageNum: Int
 ):Serializable
 
 data class ChangeRoomName(
     val memberId:Long,
     val roomId:Long,
-    val roomName: String
+    val roomName: String,
+    val roomImageNum: Int
 ):Serializable
 
 data class ChatRoom(
@@ -202,4 +207,15 @@ data class SendChat(
     val message:String,
     val unreadCount:Int,
     val createdTime:String
+):Serializable
+
+data class MatchingFriend(
+    val nickname:String,
+    val userImageNum:Int,
+    val intro:String,
+    val keyword1:String,
+    val keyword2: String,
+    val keyword3: String,
+    val follower:Int,
+    val level:Int
 ):Serializable

@@ -66,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
+            android:layout_marginBottom="20sp"
             android:text="대표 이미지를 선택하세요."
             android:textAlignment="center"
             android:textColor="#000000"
@@ -76,70 +77,43 @@
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:gravity="center"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
+                android:id="@+id/radioButton1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:background="@drawable/selector_chatting_radio_button"
-                android:button="@drawable/profile1"
-                android:checked="true"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                android:layout_weight="1"
+                android:button="@drawable/ic_noun_girl_2106536" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:background="@drawable/selector_chatting_radio_button"
-                android:button="@drawable/profile2" />
+                android:layout_weight="1"
+                android:button="@drawable/ic_noun_girl_2106536" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:background="@drawable/selector_chatting_radio_button"
-                android:button="@drawable/profile3"
-                android:fallbackLineSpacing="false"
-                android:hapticFeedbackEnabled="false" />
-
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/radioGroup2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+                android:layout_weight="1"
+                android:button="@drawable/ic_noun_girl_2106536" />
 
             <RadioButton
                 android:id="@+id/radioButton4"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:background="@drawable/selector_chatting_radio_button"
-                android:button="@drawable/profile4" />
+                android:layout_weight="1"
+                android:button="@drawable/ic_noun_girl_2106536" />
 
             <RadioButton
                 android:id="@+id/radioButton5"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:background="@drawable/selector_chatting_radio_button"
-                android:button="@drawable/profile5" />
+                android:layout_weight="1"
+                android:button="@drawable/ic_noun_girl_2106536" />
 
-            <RadioButton
-                android:id="@+id/radioButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:background="@drawable/selector_chatting_radio_button"
-                android:button="@drawable/profile6" />
         </RadioGroup>
 
 

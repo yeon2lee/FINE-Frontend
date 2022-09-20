@@ -92,10 +92,9 @@
 
                 <ImageView
                     android:id="@+id/writer_image"
-                    android:layout_width="25sp"
-                    android:layout_height="25sp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/profile1" />
+                    android:layout_width="10sp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/writer_name"
@@ -103,7 +102,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="10"
-                    android:hint="글쓴이닉네임"
                     android:textColor="#6DB33F"
                     android:textColorHint="#6DB33F"
                     android:textSize="14sp"
@@ -114,7 +112,6 @@
                 android:id="@+id/postTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="카페에서 오늘 같이 공부하실 분!"
                 android:padding="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
@@ -125,10 +122,8 @@
                 android:id="@+id/postContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="열심히 하실 분! \n오프라인 온라인 모두 가능하지만 주로 오프라인 만남을 선호합니다. 지역 고려해서 참여해주세요~ \n활동기간은 5월~10월입니다"
                 android:padding="10dp"
                 android:textColor="#000000"
-                android:textColorHint="#000000"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -150,7 +145,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="1"
                     android:textAlignment="viewEnd"
                     android:textColor="#000000"
                     android:textSize="16sp"
@@ -172,7 +166,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="6"
                     android:textAlignment="viewStart"
                     android:textColor="#000000"
                     android:textSize="16sp"
@@ -188,7 +181,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:hint="12/25 12:34"
                     android:textAlignment="viewEnd"
                     android:textColor="#615A55"
                     android:textColorHint="#615A55"

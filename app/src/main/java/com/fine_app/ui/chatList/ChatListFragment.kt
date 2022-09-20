@@ -20,6 +20,7 @@ import com.fine_app.databinding.FragmentChatlistBinding
 import com.fine_app.retrofit.API
 import com.fine_app.retrofit.IRetrofit
 import com.fine_app.retrofit.RetrofitClient
+import com.google.gson.JsonObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -40,21 +41,22 @@ class ChatListFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private var isFabOpen = false
-    private var mStompClient: StompClient? = null
+    //private var mStompClient: StompClient? = null
+    //var mStompClient=MainActivity().mStompClient
     private var compositeDisposable: CompositeDisposable? = null
 
     private val roomId:Long = 2
     private var myId by Delegates.notNull<Long>()
     lateinit var userInfo: SharedPreferences
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         _binding = FragmentChatlistBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        userInfo = this.getActivity()!!.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        userInfo = this.requireActivity().getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
         myId = userInfo.getString("userInfo", "2")!!.toLong()
+        //roomInfo = this.requireActivity().getSharedPreferences("roomInfo", AppCompatActivity.MODE_PRIVATE)
 
         viewChatList()
         binding.fabMain.setOnClickListener {
@@ -72,16 +74,18 @@ class ChatListFragment : Fragment() {
             startActivity(create)
         }
 
+        /*
         mStompClient = Stomp.over(
             Stomp.ConnectionProvider.OKHTTP, "ws://" + "54.209.17.39" + ":" + "8080" + "/ws-fine" + "/websocket"
         )
         resetSubscriptions()
 
+         */
+
         return root
     }
 
     private fun toggleFab() {
-        Toast.makeText(this.context, "메인 버튼 클릭!", Toast.LENGTH_SHORT).show()
         if (isFabOpen) {
             ObjectAnimator.ofFloat(binding.fabSolo, "translationY", 0f).apply { start() }
             ObjectAnimator.ofFloat(binding.fabGroup, "translationY", 0f).apply { start() }
@@ -94,75 +98,15 @@ class ChatListFragment : Fragment() {
         isFabOpen = !isFabOpen
     }
 
-
-    fun disconnectStomp(view: View?) {
-        mStompClient!!.disconnect()
-    }
-
-    fun connectStomp() {
-        mStompClient!!.withClientHeartbeat(1000).withServerHeartbeat(1000)
-        resetSubscriptions()
-        val dispLifecycle = mStompClient!!.lifecycle() //note 커넥트 여부 확인
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { lifecycleEvent: LifecycleEvent ->
-                when (lifecycleEvent.type) {
-                    LifecycleEvent.Type.OPENED -> toast("Stomp connection opened")
-                    LifecycleEvent.Type.ERROR -> {
-                        Log.e(
-                            TAG,
-                            "Stomp connection error",
-                            lifecycleEvent.exception
-                        )
-                        toast("Stomp connection error")
-                    }
-                    LifecycleEvent.Type.CLOSED -> toast("Stomp connection closed")
-                    LifecycleEvent.Type.FAILED_SERVER_HEARTBEAT -> toast("Stomp failed server heartbeat")
-                }
-            }
-        compositeDisposable!!.add(dispLifecycle)
-
-        val dispTopic =
-            mStompClient!!.topic("/sub/message/$roomId") //note 어떤 방에 연결하겠다 -> topic 이 순간부터 수신 가능
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ topicMessage: StompMessage ->
-
-                    Log.d(
-                        TAG,
-                        "Received ${topicMessage.payload}" //note
-                    )
-                }
-                ) { throwable: Throwable? ->
-                    Log.e(
-                        TAG,
-                        "Error on subscribe topic",
-                        throwable
-                    )
-                }
-
-        // 간소화한 버전
-//        mStompClient.topic("/sub/message" + roomId)
-//                .subscribe(); //note 구독이 되면 정상적으로 실행 되는 상태
-        compositeDisposable!!.add(dispTopic)
-        mStompClient!!.connect()
-    }
-
-
-
-
-
-    private fun toast(text: String?) {
-        Log.i(TAG, text!!)
-        Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
-    }
-
+/*
     private fun resetSubscriptions() {
         if (compositeDisposable != null) {
             compositeDisposable!!.dispose()
         }
         compositeDisposable = CompositeDisposable()
     }
+
+ */
 
 
 
@@ -188,27 +132,60 @@ class ChatListFragment : Fragment() {
                 capacity.text=this.chatroom.memberCount.toString()
             }
             if(this.chatroom.unreadMessageCount==0) {
-               unreadCount.visibility=View.INVISIBLE
+                unreadCount.visibility=View.INVISIBLE
             }else{
                 unreadCount.text=this.chatroom.unreadMessageCount.toString()
             }
             when (this.chatroom.imageNum) {
-                0 -> roomImage.setImageResource(R.drawable.profile1)
-                1 -> roomImage.setImageResource(R.drawable.profile1)
-                2 -> roomImage.setImageResource(R.drawable.profile2)
-                3 -> roomImage.setImageResource(R.drawable.profile3)
-                4 -> roomImage.setImageResource(R.drawable.profile4)
-                5 -> roomImage.setImageResource(R.drawable.profile5)
-                6 -> roomImage.setImageResource(R.drawable.profile6)
-                else -> roomImage.setImageResource(R.drawable.profile1)
+                0 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                1 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                2 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                3 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                4 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                5 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                6 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                else -> roomImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
             }
             itemView.setOnClickListener{
+                //enter(this.chatroom.roomId)
+                //com.fine_app.ui.Stomp().enter(this.chatroom.roomId, myId)
                 val create= Intent(activity, ChatRoom::class.java)
                 create.putExtra("roomId" , this.chatroom.roomId)
                 startActivity(create)
             }
         }
     }
+    /*
+    fun enter(roomId:Long) { //note 방에 들어간 걸 알림  -- 채팅방 화면 보여줌
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("type", "ENTER")
+        jsonObject.addProperty("roomId", roomId)
+        jsonObject.addProperty("memberId", myId)
+        Log.d("dkdkdk", "채팅방 입장 완료 ${jsonObject}")
+        Log.d("dkdkdk", "${mStompClient?.isConnected}")
+        mStompClient!!.send("/pub/message", jsonObject.toString()) //note pub 송신 sub 수신
+            .subscribe({
+                Log.d("dkdkdk", "방 입장 완료")
+                Log.d(
+                    TAG,
+                    "STOMP send successfully"
+                )
+
+            }
+            ) { throwable: Throwable ->
+                Log.d("dkdkdk", "방 입장 실패")
+                Log.e(TAG, "Error send STOMP", throwable)
+                toast(throwable.message)
+            }
+        Log.d("dkdkdk", "send...")
+    }
+    private fun toast(text: String?) {
+        Log.i(TAG, text!!)
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+    }
+
+     */
+
     inner class MyAdapter(val list:List<ChatRoomList>): RecyclerView.Adapter<MyViewHolder>() {
         override fun getItemCount(): Int = list.size
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
