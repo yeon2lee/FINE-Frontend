@@ -124,7 +124,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/auth_university_send_message" />
+        app:layout_constraintTop_toBottomOf="@+id/auth_university_msg" />
 
     <TextView
         android:id="@+id/textView44"
@@ -174,5 +174,14 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/auth_university_mail_et"
         app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+    <TextView
+        android:id="@+id/auth_university_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textColor="#F44336"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auth_university_send_message" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

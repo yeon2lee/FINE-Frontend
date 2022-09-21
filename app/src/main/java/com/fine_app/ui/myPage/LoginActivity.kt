@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginOkBtn.setOnClickListener {
             userLogin()
+            Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
         }
 
         binding.loginSignupTv.setOnClickListener {
@@ -40,21 +41,17 @@ class LoginActivity : AppCompatActivity() {
             password = binding.loginPwdEt.text.toString(),
         )
 
-        val id = binding.loginIdEt.text.toString()
-        val password = binding.loginPwdEt.text.toString()
-
         val call: Call<Profile> = ServiceCreator.service.userLogin(requestLoginData)
 
         call.enqueue(object : Callback<Profile> {
             override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                     userData = response.body()!!
                     userInfo.edit().putString("userInfo", userData.id.toString()).apply()
                     finish()
                 } else {
-                    Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
                     // 로그인 실패
+                    Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
                 }
             }
 

@@ -23,6 +23,7 @@ class SignUpActivity : AppCompatActivity() {
     //var checked = Array(13){i -> false}
     var checked = arrayOfNulls<String>(3)
     var size = 0
+    var imageNum = 0
 
     private val binding get() = _binding!!
 
@@ -51,7 +52,52 @@ class SignUpActivity : AppCompatActivity() {
 //        })
 
         binding.imgProfile1.setOnClickListener {
-            binding.imgProfile1.setBackgroundResource(R.drawable.profile_border)
+            if (binding.imgProfile1.background==null) {
+                binding.imgProfile1.setBackgroundResource(R.drawable.profile_image_border)
+                imageNum = 1
+            } else {
+                binding.imgProfile1.setBackgroundResource(0)
+            }
+        }
+        binding.imgProfile2.setOnClickListener {
+            if (binding.imgProfile2.background==null) {
+                binding.imgProfile2.setBackgroundResource(R.drawable.profile_image_border)
+                imageNum = 2
+            } else {
+                binding.imgProfile2.setBackgroundResource(0)
+            }
+        }
+        binding.imgProfile3.setOnClickListener {
+            if (binding.imgProfile3.background==null) {
+                binding.imgProfile3.setBackgroundResource(R.drawable.profile_image_border)
+                imageNum = 3
+            } else {
+                binding.imgProfile3.setBackgroundResource(0)
+            }
+        }
+        binding.imgProfile4.setOnClickListener {
+            if (binding.imgProfile4.background==null) {
+                binding.imgProfile4.setBackgroundResource(R.drawable.profile_image_border)
+                imageNum = 4
+            } else {
+                binding.imgProfile4.setBackgroundResource(0)
+            }
+        }
+        binding.imgProfile5.setOnClickListener {
+            if (binding.imgProfile5.background==null) {
+                binding.imgProfile5.setBackgroundResource(R.drawable.profile_image_border)
+                imageNum = 5
+            } else {
+                binding.imgProfile5.setBackgroundResource(0)
+            }
+        }
+        binding.imgProfile6.setOnClickListener {
+            if (binding.imgProfile6.background==null) {
+                binding.imgProfile6.setBackgroundResource(R.drawable.profile_image_border)
+                imageNum = 6
+            } else {
+                binding.imgProfile6.setBackgroundResource(0)
+            }
         }
     }
 
@@ -61,52 +107,62 @@ class SignUpActivity : AppCompatActivity() {
                 R.id.btnSignUp -> signUp()
                 // 키워드 클릭 체크
                 R.id.signup_keyword1 ->  {
-                    checked[size++] = "1"
+                    checked[size++] = binding.signupKeyword1.text.toString()
                     binding.signupKeyword1.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword2 ->  {
-                    checked[size++] = "2"
+                    checked[size++] = binding.signupKeyword2.text.toString()
                     binding.signupKeyword2.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword3 -> {
-                    checked[size++] = "3"
+                    checked[size++] = binding.signupKeyword3.text.toString()
                     binding.signupKeyword3.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword4 ->  {
-                    checked[size++] = "4"
+                    checked[size++] = binding.signupKeyword4.text.toString()
                     binding.signupKeyword4.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword5 ->  {
-                    checked[size++] = "5"
+                    checked[size++] = binding.signupKeyword5.text.toString()
                     binding.signupKeyword5.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword6 ->  {
-                    checked[size++] = "6"
+                    checked[size++] = binding.signupKeyword6.text.toString()
                     binding.signupKeyword6.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword7 ->  {
-                    checked[size++] = "7"
+                    checked[size++] = binding.signupKeyword7.text.toString()
                     binding.signupKeyword7.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword8 ->  {
-                    checked[size++] = "8"
+                    checked[size++] = binding.signupKeyword8.text.toString()
                     binding.signupKeyword8.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword9 ->  {
-                    checked[size++] = "9"
+                    checked[size++] = binding.signupKeyword9.text.toString()
                     binding.signupKeyword9.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword10 -> {
-                    checked[size++] = "10"
+                    checked[size++] = binding.signupKeyword10.text.toString()
                     binding.signupKeyword10.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword11 -> {
-                    checked[size++] = "11"
+                    checked[size++] = binding.signupKeyword11.text.toString()
                     binding.signupKeyword11.setTextColor(Color.parseColor("#6DB33F"))
                 }
                 R.id.signup_keyword12 -> {
-                    checked[size++] = "12"
+                    checked[size++] = binding.signupKeyword12.text.toString()
                     binding.signupKeyword12.setTextColor(Color.parseColor("#6DB33F"))
+                }
+
+                R.id.signup_keyword13 -> {
+                    checked[size++] = binding.signupKeyword13.text.toString()
+                    binding.signupKeyword13.setTextColor(Color.parseColor("#6DB33F"))
+                }
+
+                R.id.signup_keyword14 -> {
+                    checked[size++] = binding.signupKeyword14.text.toString()
+                    binding.signupKeyword14.setTextColor(Color.parseColor("#6DB33F"))
                 }
             }
         }
@@ -117,7 +173,7 @@ class SignUpActivity : AppCompatActivity() {
             userId = binding.etUserId.text.toString(),
             password = binding.etUserPwd.text.toString(),
             nickname = binding.etNickname2.text.toString(),
-            userImageNum = 1,
+            userImageNum = imageNum,
             intro = binding.etIntro.text.toString(),
             keyword1 = "한이음대학교",
             keyword2 = "서울",

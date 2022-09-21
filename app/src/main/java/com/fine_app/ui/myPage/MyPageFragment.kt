@@ -59,6 +59,9 @@ class MyPageFragment : Fragment() {
                 val intent = Intent(context, UpdateProfileActivity::class.java)
                 intent.putExtra("nickname", binding.tvNickname.text)
                 intent.putExtra("intro", binding.tvIntro.text)
+                intent.putExtra("keyword1", userData.keyword1)
+                intent.putExtra("keyword2", userData.keyword2)
+                intent.putExtra("keyword3", userData.keyword3)
                 startActivity(intent)
             }
         }
@@ -76,20 +79,6 @@ class MyPageFragment : Fragment() {
                 startActivity(intent)
             }
         }
-
-//        binding.mypagePhoneDate.setOnClickListener {
-//            activity?.let{
-//                val intent = Intent(context, AuthPhoneActivity::class.java)
-//                startActivity(intent)
-//            }
-//        }
-
-//        binding.mypageLocationDate.setOnClickListener {
-//            activity?.let{
-//                val intent = Intent(context, AuthLocationActivity::class.java)
-//                startActivity(intent)
-//            }
-//        }
 
         binding.tvManageGroup.setOnClickListener {
             activity?.let{
@@ -119,12 +108,33 @@ class MyPageFragment : Fragment() {
             }
         }
 
+        binding.mypageKeywordUpdate.setOnClickListener {
+            activity?.let{
+                val intent = Intent(context, UpdateProfileActivity::class.java)
+                intent.putExtra("nickname", binding.tvNickname.text)
+                intent.putExtra("intro", binding.tvIntro.text)
+                intent.putExtra("keyword1", userData.keyword1)
+                intent.putExtra("keyword2", userData.keyword2)
+                intent.putExtra("keyword3", userData.keyword3)
+                startActivity(intent)
+            }
+        }
+
         return root
+    }
+
+    // Fragment 새로고침
+    fun refreshFragment(fragment: Fragment, fragmentManager: FragmentManager) {
+        var ft: FragmentTransaction = fragmentManager.beginTransaction()
+        ft.detach(fragment).attach(fragment).commit()
     }
 
     override fun onResume() {
         super.onResume()
         getMyProfile()
+
+        // Fragment 클래스에서 사용 시
+        getFragmentManager()?.let { refreshFragment(this, it) }
     }
 
     override fun onDestroyView() {
@@ -140,27 +150,26 @@ class MyPageFragment : Fragment() {
                 if (response.isSuccessful) {
                     userData = response.body()!!
                     binding.tvNickname.setText(userData.nickname)
+                    binding.mypageKeywordNickname.setText(userData.nickname)
                     binding.tvIntro.setText(userData.intro)
                     var imageResource = userData.userImageNum
                     when (imageResource) {
-                        0 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile)
-                        1 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile1)
-                        2 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile2)
-                        3 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile3)
-                        4 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile4)
-                        5 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile5)
-                        6 -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile6)
-                        else -> binding.mypageProfileImageIv.setImageResource(R.drawable.profile)
+                        0 -> binding.mypageProfileImageIv.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                        1 -> binding.mypageProfileImageIv.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                        2 -> binding.mypageProfileImageIv.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                        3 -> binding.mypageProfileImageIv.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                        4 -> binding.mypageProfileImageIv.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                        5 -> binding.mypageProfileImageIv.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                        6 -> binding.mypageProfileImageIv.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                        else -> binding.mypageProfileImageIv.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
                     }
                     if (userData.level == null) {
                         binding.mypageProfileLevel.setText("새싹 " + "1단계")
                     } else {
                         binding.mypageProfileLevel.setText("새싹 " + userData.level + "단계")
                     }
-//                    binding.mypageProfileKeyword1.setText("서울")
-//                    binding.mypageProfileKeyword2.setText("컴퓨터공학")
-//                    binding.mypageProfileKeyword3.setText("DIY")
-                    binding.mypageProfileKeyword1.setText(userData.keyword1)
+
+                    binding.mypageProfileKeyword1.setText(userData.keyword3)
                     if (userData.follower != null) {
                         binding.mypageProfileFriendNumTv.setText(userData.follower.toString())
                     } else {
@@ -168,12 +177,12 @@ class MyPageFragment : Fragment() {
 
                     }
 
-                    if (userData.userUniversity == null) {
+                    if (userData.keyword1 == null) {
                         binding.mypageAuthUniversityIc.setImageResource(R.drawable.ic_auth_add)
                         binding.mypageAuthUniversityTv.setText("학교 인증")
                     } else {
                         binding.mypageAuthUniversityIc.setImageResource(R.drawable.ic_auth_check)
-                        binding.mypageAuthUniversityTv.setText(userData.userUniversity)
+                        binding.mypageAuthUniversityTv.setText(userData.keyword1)
                         binding.mypageAuthUniversityDate.setText("2022.9.15")
                     }
 
@@ -186,12 +195,12 @@ class MyPageFragment : Fragment() {
                         binding.mypageAuthPhoneDate.setText("2022.9.15")
                     }
 
-                    if (userData.userResidence == null) {
+                    if (userData.keyword2 == null) {
                         binding.mypageAuthLocationIc.setImageResource(R.drawable.ic_auth_add)
                         binding.mypageAuthLocationTv.setText("지역 인증")
                     } else {
                         binding.mypageAuthLocationIc.setImageResource(R.drawable.ic_auth_check)
-                        binding.mypageAuthLocationTv.setText(userData.userResidence)
+                        binding.mypageAuthLocationTv.setText(userData.keyword2)
                         binding.mypageAuthLocationDate.setText("2022.9.15")
                     }
 

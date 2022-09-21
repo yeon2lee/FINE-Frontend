@@ -34,7 +34,6 @@ class UpdateProfileActivity : AppCompatActivity() {
         userInfo = getSharedPreferences("userInfo", MODE_PRIVATE)
         userId = userInfo.getString("userInfo", "2")!!.toLong()
 
-        binding.etNickname.setText(intent.getStringExtra("nickname"))
         binding.etInfo.setText(intent.getStringExtra("intro"))
 
         binding.btnBefore.setOnClickListener {
@@ -76,7 +75,7 @@ class UpdateProfileActivity : AppCompatActivity() {
         binding.profileSettingImage5Iv.setOnClickListener {
             if (binding.profileSettingImage5Iv.background==null) {
                 binding.profileSettingImage5Iv.setBackgroundResource(R.drawable.profile_image_border)
-                imageNum = 4
+                imageNum = 5
             } else {
                 binding.profileSettingImage5Iv.setBackgroundResource(0)
             }
@@ -98,53 +97,63 @@ class UpdateProfileActivity : AppCompatActivity() {
                 R.id.btnOk -> editProfile()
 
                 // 키워드 클릭 체크
-                R.id.profile_keyword1 ->  {
-                    checked[size++] = "1"
-                    binding.profileKeyword1.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword1 ->  {
+                    checked[size++] = binding.signupKeyword1.text.toString()
+                    binding.signupKeyword1.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword2 ->  {
-                    checked[size++] = "2"
-                    binding.profileKeyword2.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword2 ->  {
+                    checked[size++] = binding.signupKeyword2.text.toString()
+                    binding.signupKeyword2.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword3 -> {
-                    checked[size++] = "3"
-                    binding.profileKeyword3.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword3 -> {
+                    checked[size++] = binding.signupKeyword3.text.toString()
+                    binding.signupKeyword3.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword4 ->  {
-                    checked[size++] = "4"
-                    binding.profileKeyword4.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword4 ->  {
+                    checked[size++] = binding.signupKeyword4.text.toString()
+                    binding.signupKeyword4.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword5 ->  {
-                    checked[size++] = "5"
-                    binding.profileKeyword5.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword5 ->  {
+                    checked[size++] = binding.signupKeyword5.text.toString()
+                    binding.signupKeyword5.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword6 ->  {
-                    checked[size++] = "6"
-                    binding.profileKeyword6.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword6 ->  {
+                    checked[size++] = binding.signupKeyword6.text.toString()
+                    binding.signupKeyword6.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword7 ->  {
-                    checked[size++] = "7"
-                    binding.profileKeyword7.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword7 ->  {
+                    checked[size++] = binding.signupKeyword7.text.toString()
+                    binding.signupKeyword7.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword8 ->  {
-                    checked[size++] = "8"
-                    binding.profileKeyword8.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword8 ->  {
+                    checked[size++] = binding.signupKeyword8.text.toString()
+                    binding.signupKeyword8.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword9 ->  {
-                    checked[size++] = "9"
-                    binding.profileKeyword9.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword9 ->  {
+                    checked[size++] = binding.signupKeyword9.text.toString()
+                    binding.signupKeyword9.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword10 -> {
-                    checked[size++] = "10"
-                    binding.profileKeyword10.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword10 -> {
+                    checked[size++] = binding.signupKeyword10.text.toString()
+                    binding.signupKeyword10.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword11 -> {
-                    checked[size++] = "11"
-                    binding.profileKeyword11.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword11 -> {
+                    checked[size++] = binding.signupKeyword11.text.toString()
+                    binding.signupKeyword11.setTextColor(Color.parseColor("#6DB33F"))
                 }
-                R.id.profile_keyword12 -> {
-                    checked[size++] = "12"
-                    binding.profileKeyword12.setTextColor(Color.parseColor("#6DB33F"))
+                R.id.signup_keyword12 -> {
+                    checked[size++] = binding.signupKeyword12.text.toString()
+                    binding.signupKeyword12.setTextColor(Color.parseColor("#6DB33F"))
+                }
+
+                R.id.signup_keyword13 -> {
+                    checked[size++] = binding.signupKeyword13.text.toString()
+                    binding.signupKeyword13.setTextColor(Color.parseColor("#6DB33F"))
+                }
+
+                R.id.signup_keyword14 -> {
+                    checked[size++] = binding.signupKeyword14.text.toString()
+                    binding.signupKeyword14.setTextColor(Color.parseColor("#6DB33F"))
                 }
             }
         }
@@ -155,12 +164,11 @@ class UpdateProfileActivity : AppCompatActivity() {
     private fun editProfile() {
         val requestProfileData = RequestProfileData(
             userImageNum = imageNum,
-            nickname = binding.etNickname.text.toString(),
+            nickname = intent.getStringExtra("nickname").toString(),
             intro = binding.etInfo.text.toString(),
-            keyword1 = checked[0].toString(),
-            keyword2 = checked[1].toString(),
-            keyword3 = checked[2].toString()
-
+            keyword1 = intent.getStringExtra("keyword1").toString(),
+            keyword2 = intent.getStringExtra("keyword2").toString(),
+            keyword3 = checked[0].toString()
         )
 
         val call: Call<Profile> = ServiceCreator.service.editProfile(userId, requestProfileData)

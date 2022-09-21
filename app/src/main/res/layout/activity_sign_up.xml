@@ -181,49 +181,51 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="30dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imgProfile1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="@drawable/profile_image_border"
-                    app:srcCompat="@drawable/profile1" />
+                    app:srcCompat="@drawable/ic_noun_dooda_angry_2019970" />
 
                 <ImageView
                     android:id="@+id/imgProfile2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="@drawable/profile_image_border"
-                    app:srcCompat="@drawable/profile2" />
+                    app:srcCompat="@drawable/ic_noun_dooda_business_man_2019971" />
 
                 <ImageView
                     android:id="@+id/imgProfile3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="@drawable/profile_image_border"
-                    app:srcCompat="@drawable/profile3" />
+                    app:srcCompat="@drawable/ic_noun_dooda_mustache_2019978" />
 
                 <ImageView
                     android:id="@+id/imgProfile4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="@drawable/profile_image_border"
-                    app:srcCompat="@drawable/profile4" />
+                    app:srcCompat="@drawable/ic_noun_dooda_prince_2019982" />
 
                 <ImageView
                     android:id="@+id/imgProfile5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="@drawable/profile_image_border"
-                    app:srcCompat="@drawable/profile5" />
+                    app:srcCompat="@drawable/ic_noun_dooda_listening_music_2019991" />
+
+                <ImageView
+                    android:id="@+id/imgProfile6"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_noun_dooda_in_love_2019979" />
             </LinearLayout>
 
             <TextView
@@ -258,7 +260,7 @@
                 android:textStyle="bold" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <Button
@@ -269,7 +271,7 @@
                     android:layout_marginTop="15dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="회계/재무"
+                    android:text="회계,재무"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -280,7 +282,7 @@
                     android:layout_marginTop="15dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="의료/보건"
+                    android:text="의료,보건"
                     app:layout_constraintEnd_toStartOf="@+id/signup_keyword6"
                     app:layout_constraintStart_toEndOf="@+id/signup_keyword4"
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword1" />
@@ -293,7 +295,7 @@
                     android:layout_marginTop="15dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="건축/인테리어"
+                    android:text="건축,인테리어"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword1" />
 
@@ -310,18 +312,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword7" />
 
                 <Button
-                    android:id="@+id/signup_keyword15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="50dp"
-                    android:backgroundTint="@color/white"
-                    android:onClick="onClick"
-                    android:text="언어"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/signup_keyword10" />
-
-                <Button
                     android:id="@+id/signup_keyword13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -329,7 +319,7 @@
                     android:layout_marginTop="12dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="토목/환경"
+                    android:text="토목,환경"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword10" />
 
@@ -340,8 +330,9 @@
                     android:layout_marginTop="12dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="디자인"
-                    app:layout_constraintEnd_toStartOf="@+id/signup_keyword15"
+                    android:text="생산,생산관리"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
                     app:layout_constraintStart_toEndOf="@+id/signup_keyword13"
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword10" />
 
@@ -353,7 +344,7 @@
                     android:layout_marginTop="12dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="영업/영업관리"
+                    android:text="영업,영업관리"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword7" />
 
@@ -365,7 +356,7 @@
                     android:layout_marginEnd="50dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="인사/노무"
+                    android:text="인사,노무"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword4" />
 
@@ -377,7 +368,7 @@
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="IT/SW"
+                    android:text="IT,SW"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword4" />
 
@@ -388,7 +379,7 @@
                     android:layout_marginTop="15dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="유통/물류"
+                    android:text="유통,물류"
                     app:layout_constraintEnd_toStartOf="@+id/signup_keyword3"
                     app:layout_constraintStart_toEndOf="@+id/signup_keyword1"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -401,7 +392,7 @@
                     android:layout_marginEnd="50dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="연구개발/설계"
+                    android:text="연구개발,설계"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -412,7 +403,7 @@
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="마케팅/광고/홍보"
+                    android:text="마케팅,광고,홍보"
                     app:layout_constraintEnd_toStartOf="@+id/signup_keyword9"
                     app:layout_constraintStart_toEndOf="@+id/signup_keyword7"
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword4" />
@@ -424,7 +415,7 @@
                     android:layout_marginTop="15dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onClick"
-                    android:text="생산/생산관리"
+                    android:text="디자인"
                     app:layout_constraintEnd_toStartOf="@+id/signup_keyword12"
                     app:layout_constraintStart_toEndOf="@+id/signup_keyword10"
                     app:layout_constraintTop_toBottomOf="@+id/signup_keyword7" />

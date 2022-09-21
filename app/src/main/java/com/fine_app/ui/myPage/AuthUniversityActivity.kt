@@ -69,6 +69,7 @@ class AuthUniversityActivity : AppCompatActivity() {
         call.enqueue(object : Callback<Long> {
             override fun onResponse(call: Call<Long>, response: Response<Long>) {
                 if (response.isSuccessful) {
+                    binding.authUniversityMsg.setText("인증번호를 발송했습니다.")
                     Toast.makeText(this@AuthUniversityActivity, "인증번호 전송 성공", Toast.LENGTH_SHORT).show()
                 } else {
                     //Toast.makeText(this@AuthUniversityActivity, "인증번호 전송 실패", Toast.LENGTH_SHORT).show()
