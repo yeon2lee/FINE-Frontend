@@ -168,12 +168,16 @@ data class Chat(
 ):Serializable
 
 data class ChatMessage(
-    val createdDate:String,
-    val lastModifiedDate:String,
-    val messageId:Long,
-    val sender:Member,
+    val memberInfo:RoomMember,
     val message:String,
+    val createdTime:String,
     val unreadCount:Int
+) :Serializable
+
+data class RoomMember(
+    val memberId:Long,
+    val nickName:String,
+    val imageNum:Int
 ) :Serializable
 
 data class PersonalChat(

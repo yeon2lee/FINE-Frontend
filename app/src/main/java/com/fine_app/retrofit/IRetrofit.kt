@@ -35,7 +35,7 @@ interface IRetrofit {
     @POST("/post/{postingId}/{memberId}/join") //참여하기
     fun joinGroup(@Path("postingId") postingId:Long, @Path("memberId") memberId:Long, @Body acceptCheck:AcceptCheck) :Call<Join>
 
-    @DELETE("/post/{recruitingId}/delete") //참여하기 취소
+    @DELETE("/post/delete/{recruitingId}") //참여하기 취소
     fun cancelJoinGroup(@Path("recruitingId") recruitingId:Long):Call<Long>
 
     @POST("/{postingId}/{recruitingId}/accept") //참가 수락 및 수락 취소

@@ -50,11 +50,12 @@ class CommunityGroupFragment : Fragment() {
         private val capacity: TextView =itemView.findViewById(R.id.groupPost_capacity)
         private val partition: TextView=itemView.findViewById(R.id.groupPost_partition)
         private val image:ImageView=itemView.findViewById(R.id.groupPost_imageView)
+        private val keyword: TextView=itemView.findViewById(R.id.post_keyword)
 
         fun bind(post: Post){
             this.post=post
             postTitle.text=this.post.title
-
+            keyword.text=this.post.keyword
             if(this.post.closingCheck){
                 participant.text=""
                 capacity.text=""

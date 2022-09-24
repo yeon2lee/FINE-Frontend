@@ -192,6 +192,9 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
 
         if (closingCheck){
             joinButton.visibility= INVISIBLE
+            binding.participants.visibility= INVISIBLE
+            binding.max.visibility= INVISIBLE
+            binding.textView11.text="모집 마감"
         }else{
             joinButton.visibility= VISIBLE
             joinButton.setOnClickListener {

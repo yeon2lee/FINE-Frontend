@@ -86,7 +86,7 @@ class MainChatRoom: AppCompatActivity() {
             this.chat=chat
             unReadNumber.text=this.chat.unreadCount.toString()
             chatText.text=this.chat.message
-            nickname.text=this.chat.sender.nickname
+            nickname.text=this.chat.memberInfo.nickName
         }
     }
     inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
@@ -105,7 +105,7 @@ class MainChatRoom: AppCompatActivity() {
         override fun getItemCount(): Int = list.size
 
         override fun getItemViewType(position: Int): Int {
-            return if(list[position].sender.id == memberId) 1
+            return if(list[position].memberInfo.memberId == memberId) 1
             else 2
         }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -115,7 +115,7 @@ class MainChatRoom: AppCompatActivity() {
                 OtherViewHolder(layoutInflater.inflate(R.layout.item_chatting_group, parent, false))
         }
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            if(list[position].sender.id == memberId) {
+            if(list[position].memberInfo.memberId == memberId) {
                 (holder as MyViewHolder).bind(list[position])
                 holder.setIsRecyclable(false)
             }
