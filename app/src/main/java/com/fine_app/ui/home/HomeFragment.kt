@@ -61,34 +61,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        userInfo = this.requireActivity().getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
-        myId = userInfo.getString("userInfo", "2")!!.toLong()
-
-        binding.showButton.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_navigation_home_recommend)
-        }
-        viewPopularPosting()
-        //todo 친구추천 서버 올라온 후 확인
-        //viewMatchingFriends(1)
-        //viewMatchingFriends(2)
-        //viewMatchingFriends(3)
-
-        binding.friendBox1.setOnClickListener{
-            val userProfile = Intent(context, ShowUserProfileActivity::class.java)
-            userProfile.putExtra("memberId",user1_id)
-            startActivity(userProfile)
-        }
-        binding.friendBox2.setOnClickListener{
-            val userProfile = Intent(context, ShowUserProfileActivity::class.java)
-            userProfile.putExtra("memberId",user2_id)
-            startActivity(userProfile)
-        }
-        binding.friendBox3.setOnClickListener{
-            val userProfile = Intent(context, ShowUserProfileActivity::class.java)
-            userProfile.putExtra("memberId",user3_id)
-            startActivity(userProfile)
-        }
+        Log.d("home", "홈 프래그먼트 create")
         return root
     }
 
@@ -108,13 +81,12 @@ class HomeFragment : Fragment() {
             this.post=post
             recommendTitle.text=this.post.title
             recommendContent.text=this.post.content
-            //recommendKeyWord2.text=this.post.keyword //todo 키워드 서버 올라오면 실행
+            recommendKeyWord2.text=this.post.keyword
             if(this.post.groupCheck) {
                 recommendKeyWord1.text="그룹"
                 recommendCapacity.text=this.post.capacity.toString()
                 recommendVacancy.text=(this.post.capacity - this.post.participants).toString()
                 matchingBox.setBackgroundResource(R.drawable.recommend_background_group)
-                Log.d("home", "${this.post.capacity}, ${this.post.participants}, ${this.post.capacity - this.post.participants}")
             }
             else {
                 matchingBox.setBackgroundResource(R.drawable.recommend_background)
@@ -235,6 +207,39 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+        userInfo = this.requireActivity().getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        myId = userInfo.getString("userInfo", "2")!!.toLong()
+        Log.d("home", "홈 프래그먼트 resume, ${myId}")
+        binding.showButton.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_home_recommend)
+        }
+        viewPopularPosting()
+
+
+        binding.friendBox1.setOnClickListener{
+            val userProfile = Intent(context, ShowUserProfileActivity::class.java)
+            userProfile.putExtra("memberId",user1_id)
+            startActivity(userProfile)
+        }
+        binding.friendBox2.setOnClickListener{
+            val userProfile = Intent(context, ShowUserProfileActivity::class.java)
+            userProfile.putExtra("memberId",user2_id)
+            startActivity(userProfile)
+        }
+        binding.friendBox3.setOnClickListener{
+            val userProfile = Intent(context, ShowUserProfileActivity::class.java)
+            userProfile.putExtra("memberId",user3_id)
+            startActivity(userProfile)
+        }
+        //todo 친구추천 서버 올라온 후 확인
+        //viewMatchingFriends(1)
+        //viewMatchingFriends(2)
+        //viewMatchingFriends(3)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

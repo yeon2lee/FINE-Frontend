@@ -61,9 +61,9 @@ class MatchingAreaFragment : Fragment() {
         private val nickname: TextView =itemView.findViewById(R.id.matching_name)
         private val intro: TextView =itemView.findViewById(R.id.matching_intro)
         private val image: ImageView =itemView.findViewById(R.id.friend_image)
-        private val keyword1: TextView =itemView.findViewById(R.id.matching_intro)
-        private val keyword2: TextView =itemView.findViewById(R.id.matching_intro)
-        private val keyword3: TextView =itemView.findViewById(R.id.matching_intro)
+        private val keyword1: TextView =itemView.findViewById(R.id.textView22)
+        private val keyword2: TextView =itemView.findViewById(R.id.textView23)
+        private val keyword3: TextView =itemView.findViewById(R.id.textView26)
         fun bind(friend: MatchingFriend) {
             this.friend=friend
             keyword1.text=this.friend.keyword1

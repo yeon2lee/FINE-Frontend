@@ -602,7 +602,7 @@ class ChatRoom: AppCompatActivity() ,NavigationView.OnNavigationItemSelectedList
                 val messageList:List<ChatMessage> = response.body()!!.chatMessageList
                 Log.d("chat", "${messageList.size}")
                 for(i in 0 until messageList.size){ //아이디 닉네임 메세지 카운트 타임
-                    val message=SendChat(messageList[i].sender.id, messageList[i].sender.nickname, messageList[i].sender.userImageNum, messageList[i].message, messageList[i].unreadCount, messageList[i].createdDate)
+                    val message=SendChat(messageList[i].memberInfo.memberId,messageList[i].memberInfo.nickName , messageList[i].memberInfo.imageNum, messageList[i].message, messageList[i].unreadCount, messageList[i].createdTime)
                     Log.d("chat", "${message}")
                     oldMessage.add(message)
                 }

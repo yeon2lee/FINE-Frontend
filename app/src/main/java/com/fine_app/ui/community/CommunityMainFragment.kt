@@ -37,11 +37,13 @@ class CommunityMainFragment : Fragment() {
         private lateinit var post: Post
         private val postTitle: TextView =itemView.findViewById(R.id.mainpost_title)
         private val commentNum: TextView =itemView.findViewById(R.id.mainpost_comment)
+        private val keyword: TextView=itemView.findViewById(R.id.post_keyword2)
 
         fun bind(post: Post) {
             this.post=post
             postTitle.text=this.post.title
             commentNum.text=this.post.commentCount
+            keyword.text=this.post.keyword
             itemView.setOnClickListener{
                 val postDetail= Intent(activity, PostDetail_Main::class.java)
                 postDetail.putExtra("postingId", this.post.postingId)
