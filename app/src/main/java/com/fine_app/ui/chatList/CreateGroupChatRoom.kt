@@ -65,14 +65,14 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
             this.friend=friend
             friendNickname.text=this.friend.nickname
             when (this.friend.imageNum) {
-                0 -> friendProfile.setImageResource(R.drawable.profile1)
-                1 -> friendProfile.setImageResource(R.drawable.profile1)
-                2 -> friendProfile.setImageResource(R.drawable.profile2)
-                3 -> friendProfile.setImageResource(R.drawable.profile3)
-                4 -> friendProfile.setImageResource(R.drawable.profile4)
-                5 -> friendProfile.setImageResource(R.drawable.profile5)
-                6 -> friendProfile.setImageResource(R.drawable.profile6)
-                else -> friendProfile.setImageResource(R.drawable.profile1)
+                0 -> friendProfile.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                1 -> friendProfile.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                2 -> friendProfile.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                3 -> friendProfile.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                4 -> friendProfile.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                5 -> friendProfile.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                6 -> friendProfile.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                else -> friendProfile.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
             }
         }
     }
@@ -110,23 +110,7 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
                 else -> friendProfileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
             }
             itemView.setOnClickListener{
-                /*
-                if(checkBox.isChecked){
-                    checkBox.isChecked=false
-                    if(selectionList.contains(this.friend)) {
-                        selectionList.remove(friend)
-                        receiverId.remove(friend.friendId)
-                    }
-                }
-                else{
-                    if(!selectionList.contains(this.friend))  {
-                        selectionList.add(friend)
-                        receiverId.add(friend.friendId)
-                    }
-                    checkBox.isChecked=true
-                }
 
-                 */
                 if(selectionList.contains(this.friend)) {
                     selectionList.remove(friend)
                     receiverId.remove(friend.friendId)
@@ -141,28 +125,6 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
                 recyclerView.visibility=View.VISIBLE
                 recyclerView.adapter=MyAdapter(selectionList)
             }
-            /*
-            checkBox.setOnCheckedChangeListener(object:CompoundButton.OnCheckedChangeListener{
-                override fun onCheckedChanged(p0: CompoundButton?, isChecked: Boolean) {
-                    if(isChecked){
-                        if(!selectionList.contains(this@MyViewHolder2.friend))  {
-                            selectionList.add(friend)
-                            receiverId.add(friend.friendId)
-                        }
-                    }else{
-                        if(selectionList.contains(this@MyViewHolder2.friend)) {
-                            selectionList.remove(friend)
-                            receiverId.remove(friend.friendId)
-                        }
-                    }
-                    recyclerView=binding.recyclerView
-                    recyclerView.layoutManager= LinearLayoutManager(this@CreateGroupChatRoom, LinearLayoutManager.HORIZONTAL, false)
-                    recyclerView.visibility=View.VISIBLE
-                    recyclerView.adapter=MyAdapter(selectionList)
-                }
-            })
-
-             */
 
         }
     }
@@ -211,6 +173,7 @@ class CreateGroupChatRoom: AppCompatActivity(), ConfirmDialogInterface {
         if (resultCode == RESULT_OK) {
             roomName = data?.getStringExtra("text")!!
             val imageNum = data.getIntExtra("image", 1)
+            Log.d("image", "받은 이미지 넘버: ${imageNum}")
             addGroupChatRoom(GroupChat(myId,receiverId.toList(), roomName, imageNum))
             finish()
         }

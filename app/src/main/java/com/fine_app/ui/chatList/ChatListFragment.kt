@@ -144,6 +144,11 @@ class ChatListFragment : Fragment() {
                 4 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
                 5 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
                 6 -> roomImage.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                11->roomImage.setImageResource(R.drawable.group_pencil)
+                12->roomImage.setImageResource(R.drawable.group_palette)
+                13->roomImage.setImageResource(R.drawable.group_laptop)
+                14->roomImage.setImageResource(R.drawable.group_newspaper)
+                15->roomImage.setImageResource(R.drawable.group_gym)
                 else -> roomImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
             }
             itemView.setOnClickListener{
@@ -155,37 +160,6 @@ class ChatListFragment : Fragment() {
             }
         }
     }
-    /*
-    fun enter(roomId:Long) { //note 방에 들어간 걸 알림  -- 채팅방 화면 보여줌
-        val jsonObject = JsonObject()
-        jsonObject.addProperty("type", "ENTER")
-        jsonObject.addProperty("roomId", roomId)
-        jsonObject.addProperty("memberId", myId)
-        Log.d("dkdkdk", "채팅방 입장 완료 ${jsonObject}")
-        Log.d("dkdkdk", "${mStompClient?.isConnected}")
-        mStompClient!!.send("/pub/message", jsonObject.toString()) //note pub 송신 sub 수신
-            .subscribe({
-                Log.d("dkdkdk", "방 입장 완료")
-                Log.d(
-                    TAG,
-                    "STOMP send successfully"
-                )
-
-            }
-            ) { throwable: Throwable ->
-                Log.d("dkdkdk", "방 입장 실패")
-                Log.e(TAG, "Error send STOMP", throwable)
-                toast(throwable.message)
-            }
-        Log.d("dkdkdk", "send...")
-    }
-    private fun toast(text: String?) {
-        Log.i(TAG, text!!)
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
-    }
-
-     */
-
     inner class MyAdapter(val list:List<ChatRoomList>): RecyclerView.Adapter<MyViewHolder>() {
         override fun getItemCount(): Int = list.size
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
