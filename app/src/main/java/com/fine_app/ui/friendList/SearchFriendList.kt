@@ -84,10 +84,7 @@ class SearchFriendList : AppCompatActivity() {
                 R.id.keyword15 -> keyword="1"
 
             }
-
         }
-
-
     }
     inner class MyViewHolder(view:View): RecyclerView.ViewHolder(view){
         private lateinit var friend: Friend

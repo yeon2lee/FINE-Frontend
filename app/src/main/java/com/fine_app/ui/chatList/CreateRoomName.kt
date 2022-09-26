@@ -10,6 +10,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.fine_app.CreateChatRoom
 import com.fine_app.R
 import com.fine_app.databinding.ChattingSettingBinding
@@ -33,30 +34,55 @@ class CreateRoomName: AppCompatActivity(){
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         }
-        var imageNum=1
-        binding.radioGroup.setOnCheckedChangeListener{_, checkedId ->
-            when(checkedId){
-                R.id.radioButton1 -> {
-                    imageNum=1
-                    Log.d("dd", "1번 체크")
-                }
-                R.id.radioButton2 -> {
-                    imageNum=2
-                    Log.d("dd", "2번 체크")
-                }
-                R.id.radioButton3 -> {
-                    imageNum=3
-                    Log.d("dd", "3번 체크")
-                }
-                R.id.radioButton4 -> {
-                    imageNum=4
-                    Log.d("dd", "3번 체크")
-                }
-                R.id.radioButton5 -> {
-                    imageNum=5
-                    Log.d("dd", "3번 체크")
-                }
-            }
+        var imageNum=11
+        binding.imageButton.setOnClickListener {
+            binding.imageButton.background=ContextCompat.getDrawable(this, R.drawable.box_border2)
+            binding.imageButton2.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton3.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton4.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton5.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            imageNum=15
+            Log.d("image", "이미지 클릭: ${imageNum}")
+        }
+        binding.imageButton2.setOnClickListener {
+            binding.imageButton.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton2.background=ContextCompat.getDrawable(this, R.drawable.box_border2)
+            binding.imageButton3.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton4.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton5.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            imageNum=14
+            Log.d("image", "이미지 클릭: ${imageNum}")
+
+        }
+        binding.imageButton3.setOnClickListener {
+            binding.imageButton.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton2.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton3.background=ContextCompat.getDrawable(this, R.drawable.box_border2)
+            binding.imageButton4.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton5.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            imageNum=13
+            Log.d("image", "이미지 클릭: ${imageNum}")
+
+        }
+        binding.imageButton4.setOnClickListener {
+            binding.imageButton.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton2.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton3.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton4.background=ContextCompat.getDrawable(this, R.drawable.box_border2)
+            binding.imageButton5.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            imageNum=12
+            Log.d("image", "이미지 클릭: ${imageNum}")
+
+        }
+        binding.imageButton5.setOnClickListener {
+            binding.imageButton.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton2.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton3.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton4.background=ContextCompat.getDrawable(this, R.drawable.box_border)
+            binding.imageButton5.background=ContextCompat.getDrawable(this, R.drawable.box_border2)
+            imageNum=11
+            Log.d("image", "이미지 클릭: ${imageNum}")
+
         }
 
         var text=""
@@ -71,6 +97,8 @@ class CreateRoomName: AppCompatActivity(){
             val intent = Intent()
             intent.putExtra("text", text)
             intent.putExtra("image", imageNum)
+            Log.d("image", "이미지 최종: ${imageNum}")
+
             setResult(RESULT_OK, intent)
             finish()
         }

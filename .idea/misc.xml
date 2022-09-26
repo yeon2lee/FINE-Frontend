@@ -29,9 +29,19 @@
         <entry key="..\:/Users/user/Desktop/FINE-Frontend/app/src/main/res/layout/item_postlist_main.xml" value="0.4" />
         <entry key="..\:/Users/user/Desktop/FINE-Frontend/app/src/main/res/layout/item_waitlist_group.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/FINE-Frontend/app/src/main/res/layout/list_item_mypage_post.xml" value="0.4" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/drawable-v24/box_border2.xml" value="0.2585" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/chatting_create.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/chatting_room.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/chatting_room_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/chatting_setting.xml" value="0.264" />
         <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/community_group_post.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/fragment_community_group.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/item_matching.xml" value="0.264" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/fragment_friendlist.xml" value="0.14074074074074075" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/item_chatlist.xml" value="0.146875" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/item_chatting_date.xml" value="0.146875" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/item_create_chat.xml" value="0.4" />
+        <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/item_matching.xml" value="0.536" />
         <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/item_postlist_group.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/Desktop/apiEdit/app/src/main/res/layout/item_postlist_main.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/Desktop/new/app/src/main/res/drawable/comment_bg.xml" value="0.2525" />
