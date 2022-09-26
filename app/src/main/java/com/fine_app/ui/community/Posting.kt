@@ -129,7 +129,7 @@ class Posting : AppCompatActivity(), ConfirmDialogInterface {
         finish()
     }
 
-    private fun addPost(memberId:Long?, postInfo:Posting){ //todo 포스팅에서 키워드 넘겨주기
+    private fun addPost(memberId:Long?, postInfo:Posting){
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val term:Long= memberId ?:0

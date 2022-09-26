@@ -68,9 +68,7 @@ class WaitingList : AppCompatActivity(), ConfirmDialogInterface  {
                 6 -> image.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
                 else -> image.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
             }
-            //level.setImageResource(this.crew.capacity)
             button.setOnClickListener{
-                Log.d("waiting", "정원: ${capacity}, 현재: ${memberList.size.toLong()}")
                 if(this.crew.acceptCheck) {
                     manageJoinGroup(postingID, this.crew.recruitingId, AcceptCheck(false))
                 }
@@ -225,7 +223,7 @@ class WaitingList : AppCompatActivity(), ConfirmDialogInterface  {
                         receiverList.add(memberList[i].member.memberId)
                     }
                     Log.d("waiting", "receiverList: ${receiverList}")
-                    addGroupChatRoom(GroupChat(myID,receiverList.toList(), "그룹 채팅방", 0))
+                    addGroupChatRoom(GroupChat(myID,receiverList.toList(), "그룹 채팅방", 11))
                 }else{
                     val dialog = ConfirmDialog(this, "인원을 추가해주세요", 2,1)
                     dialog.show(this.supportFragmentManager, "ConfirmDialog")

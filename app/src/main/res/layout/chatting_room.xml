@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:background="#DFDFDF"
+            android:background="#68615A55"
             android:orientation="horizontal"
             android:padding="5sp"
             app:layout_constraintBottom_toBottomOf="parent"

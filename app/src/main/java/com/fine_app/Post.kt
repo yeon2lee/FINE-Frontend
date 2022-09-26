@@ -214,6 +214,7 @@ data class SendChat(
 ):Serializable
 
 data class MatchingFriend(
+    val memberId:Long,
     val nickname:String,
     val userImageNum:Int,
     val intro:String,
@@ -222,4 +223,12 @@ data class MatchingFriend(
     val keyword3: String,
     val follower:Int,
     val level:Int
+):Serializable
+
+data class ExitChat(
+    val roomId:Long,
+    val soloCheck:Boolean,
+    val latestMessage:String,
+    val updateTime: String,
+    val members:List<Long>
 ):Serializable

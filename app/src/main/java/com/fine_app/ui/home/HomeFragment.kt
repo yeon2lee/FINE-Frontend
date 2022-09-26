@@ -3,7 +3,6 @@ package com.fine_app.ui.home
 import androidx.fragment.app.Fragment
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -35,28 +34,10 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     lateinit var userInfo: SharedPreferences
-    private var myId by Delegates.notNull<Long>()
-    private val user1_id:Long=1
-    lateinit var user1_name: String
-    lateinit var user1_levelImage:ImageView
-    lateinit var user1_profileImage:ImageView
-    lateinit var user1_keyword1:String
-    lateinit var user1_keyword2:String
-    lateinit var user1_keyword3:String
-    private val user2_id:Long=1
-    lateinit var user2_name: String
-    lateinit var user2_levelImage:ImageView
-    lateinit var user2_profileImage:ImageView
-    lateinit var user2_keyword1:String
-    lateinit var user2_keyword2:String
-    lateinit var user2_keyword3:String
-    private val user3_id:Long=1
-    lateinit var user3_name: String
-    lateinit var user3_levelImage:ImageView
-    lateinit var user3_profileImage:ImageView
-    lateinit var user3_keyword1:String
-    lateinit var user3_keyword2:String
-    lateinit var user3_keyword3:String
+    var myId by Delegates.notNull<Long>()
+    private var user1_id:Long=1
+    private var user2_id:Long=1
+    private var user3_id:Long=1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -142,6 +123,8 @@ class HomeFragment : Fragment() {
         })
     }
     private fun viewMatchingFriends(category:Int){
+        if(myId==0.toLong() ) myId=6.toLong() //todo 추후 로그인 아이디로 변경
+
         val iRetrofit : IRetrofit? =
             RetrofitClient.getClient(API.BASE_URL)?.create(IRetrofit::class.java)
         val call = iRetrofit?.viewMatchingFriends(myId, category = category , select="level") ?:return
@@ -150,56 +133,64 @@ class HomeFragment : Fragment() {
 
             override fun onResponse(call: Call<List<MatchingFriend>>, response: Response<List<MatchingFriend>>) {
                 Log.d("retrofit", "홈 친구추천 - 응답 성공 / t : ${response.raw()}")
-                val friends:MatchingFriend= response.body()!![0]
-                if(category==1){
-                    user1_name=friends.nickname
-                    user1_keyword1=friends.keyword1
-                    user1_keyword2=friends.keyword2
-                    when (friends.userImageNum) {
-                        0 -> user1_profileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
-                        1 -> user1_profileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
-                        2 -> user1_profileImage.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
-                        3 -> user1_profileImage.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
-                        4 -> user1_profileImage.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
-                        5 -> user1_profileImage.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
-                        6 -> user1_profileImage.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
-                        else -> user1_profileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                if(response.body()!!.isNotEmpty()){
+                    val friends:MatchingFriend= response.body()!![0]
+                    when (category) {
+                        1 -> {
+                            user1_id=friends.memberId
+                            binding.homeMatchingName1.text=friends.nickname
+                            binding.homeMatchingKeyword1.text=friends.keyword1
+                            binding.homeMatchingKeyword3.text=friends.keyword3
+                            when (friends.userImageNum) {
+                                0 -> binding.homeMatchingImage1.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                                1 -> binding.homeMatchingImage1.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                                2 -> binding.homeMatchingImage1.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                                3 -> binding.homeMatchingImage1.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                                4 -> binding.homeMatchingImage1.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                                5 -> binding.homeMatchingImage1.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                                6 -> binding.homeMatchingImage1.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                                else -> binding.homeMatchingImage1.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                            }
+                            //todo 유저 레벨 이미지
+                        }
+                        2 -> {
+                            user2_id=friends.memberId
+                            binding.homeMatchingName2.text=friends.nickname
+                            binding.homeMatchingKeyword4.text=friends.keyword1
+                            binding.homeMatchingKeyword5.text=friends.keyword2
+                            when (friends.userImageNum) {
+                                0 -> binding.homeMatchingImage2.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                                1 -> binding.homeMatchingImage2.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                                2 -> binding.homeMatchingImage2.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                                3 -> binding.homeMatchingImage2.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                                4 -> binding.homeMatchingImage2.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                                5 -> binding.homeMatchingImage2.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                                6 -> binding.homeMatchingImage2.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                                else -> binding.homeMatchingImage2.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                            }
+                            //todo 유저 레벨 이미지
+                        }
+                        else -> {
+                            user3_id=friends.memberId
+                            binding.homeMatchingName3.text=friends.nickname
+                            binding.homeMatchingKeyword8.text=friends.keyword2
+                            binding.homeMatchingKeyword9.text=friends.keyword3
+                            when (friends.userImageNum) {
+                                0 -> binding.homeMatchingImage3.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                                1 -> binding.homeMatchingImage3.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                                2 -> binding.homeMatchingImage3.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
+                                3 -> binding.homeMatchingImage3.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
+                                4 -> binding.homeMatchingImage3.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
+                                5 -> binding.homeMatchingImage3.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
+                                6 -> binding.homeMatchingImage3.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
+                                else -> binding.homeMatchingImage3.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
+                            }
+                            //todo 유저 레벨 이미지
+                        }
                     }
-                    //todo 유저 레벨 이미지
-                    // user1_keyword3=friends. todo 유저 키워드3 추가
-                }else if(category==2){
-                    user2_name=friends.nickname
-                    user2_keyword1=friends.keyword1
-                    user2_keyword2=friends.keyword2
-                    when (friends.userImageNum) {
-                        0 -> user2_profileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
-                        1 -> user2_profileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
-                        2 -> user2_profileImage.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
-                        3 -> user2_profileImage.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
-                        4 -> user2_profileImage.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
-                        5 -> user2_profileImage.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
-                        6 -> user2_profileImage.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
-                        else -> user2_profileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
-                    }
-                    //todo 유저 레벨 이미지
-                    // user2_keyword3=friends. todo 유저 키워드3 추가
-                }else{
-                    user3_name=friends.nickname
-                    user3_keyword1=friends.keyword1
-                    user3_keyword2=friends.keyword2
-                    when (friends.userImageNum) {
-                        0 -> user3_profileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
-                        1 -> user3_profileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
-                        2 -> user3_profileImage.setImageResource(R.drawable.ic_noun_dooda_business_man_2019971)
-                        3 -> user3_profileImage.setImageResource(R.drawable.ic_noun_dooda_mustache_2019978)
-                        4 -> user3_profileImage.setImageResource(R.drawable.ic_noun_dooda_prince_2019982)
-                        5 -> user3_profileImage.setImageResource(R.drawable.ic_noun_dooda_listening_music_2019991)
-                        6 -> user3_profileImage.setImageResource(R.drawable.ic_noun_dooda_in_love_2019979)
-                        else -> user3_profileImage.setImageResource(R.drawable.ic_noun_dooda_angry_2019970)
-                    }
-                    //todo 유저 레벨 이미지
-                    // user3_keyword3=friends. todo 유저 키워드3 추가
                 }
+
+
             }
 
             override fun onFailure(call: Call<List<MatchingFriend>>, t: Throwable) {
@@ -212,7 +203,6 @@ class HomeFragment : Fragment() {
         super.onResume()
         userInfo = this.requireActivity().getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
         myId = userInfo.getString("userInfo", "2")!!.toLong()
-        Log.d("home", "홈 프래그먼트 resume, ${myId}")
         binding.showButton.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_navigation_home_recommend)
         }
@@ -234,10 +224,9 @@ class HomeFragment : Fragment() {
             userProfile.putExtra("memberId",user3_id)
             startActivity(userProfile)
         }
-        //todo 친구추천 서버 올라온 후 확인
-        //viewMatchingFriends(1)
-        //viewMatchingFriends(2)
-        //viewMatchingFriends(3)
+        viewMatchingFriends(1)
+        viewMatchingFriends(2)
+        viewMatchingFriends(3)
     }
 
     override fun onDestroyView() {

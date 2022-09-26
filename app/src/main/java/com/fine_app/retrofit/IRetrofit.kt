@@ -106,7 +106,7 @@ interface IRetrofit {
     fun viewChatting(@Path("memberId") memberId:Long, @Path("roomId") roomId:Long ) :Call<Chat>
 
     @DELETE("/room/{roomId}/{targetId}")
-    fun exitChatroom(@Path("roomId") roomId:Long, @Path("targetId") targetId:Long): Call<Long>
+    fun exitChatroom(@Path("roomId") roomId:Long, @Path("targetId") targetId:Long): Call<ExitChat>
 
     // 팔로우
     @POST("/follow/{friendId}/{memberId}")

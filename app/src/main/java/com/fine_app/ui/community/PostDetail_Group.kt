@@ -199,7 +199,9 @@ class PostDetail_Group : AppCompatActivity(), ConfirmDialogInterface {
             joinButton.visibility= VISIBLE
             joinButton.setOnClickListener {
                 if (recruitingId!=0.toLong()){//참여하기 취소
-
+                    val dialog = ConfirmDialog(this, "참여를 취소하시겠습니까?", 4, 0)
+                    dialog.isCancelable = false
+                    dialog.show(this.supportFragmentManager, "ConfirmDialog")
                 } else{//참여하기 신청
                     val dialog = ConfirmDialog(this, "참여하시겠습니까?", 0, 0)
                     dialog.isCancelable = false
